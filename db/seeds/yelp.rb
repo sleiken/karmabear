@@ -14,8 +14,13 @@ nonprofit_params = { category_filter: 'nonprofit',
 foodbank_params = { category_filter: 'foodbanks',
                     limit: 2
                   }
-
-params = [nonprofit_params, foodbank_params]
+animalshelters_params = { category_filter: 'animalshelters',
+                          limit: 2
+                        }
+culturalcenter_params = { category_filter: 'culturalcenter',
+                          limit: 2
+                        }
+params = [nonprofit_params, foodbank_params, animalshelters_params, culturalcenter_params]
 
 params.each do |param|
   response = client.search('San Francisco', param)
