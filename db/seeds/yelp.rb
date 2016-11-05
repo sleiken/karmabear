@@ -9,16 +9,16 @@ client = Yelp::Client.new({ consumer_key: ENV['YOUR_CONSUMER_KEY'],
                           })
 
 nonprofit_params = { category_filter: 'nonprofit',
-                     limit: 2
+                     limit: 20
                    }
 foodbank_params = { category_filter: 'foodbanks',
-                    limit: 2
+                    limit: 20
                   }
 animalshelters_params = { category_filter: 'animalshelters',
-                          limit: 2
+                          limit: 20
                         }
 culturalcenter_params = { category_filter: 'culturalcenter',
-                          limit: 2
+                          limit: 20
                         }
 params = [nonprofit_params, foodbank_params, animalshelters_params, culturalcenter_params]
 
