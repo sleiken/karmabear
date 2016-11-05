@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # root :
   devise_for :managers
   devise_for :givers
 
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
     resources :needs, only: [:show]
   end
 
-  resources :profile, only: [:show], controller: 'givers'
+  # resources :profile, param: :username, only: [:show], controller: 'givers'
+  get ':username', to: 'givers#show', as: :giver
 end
