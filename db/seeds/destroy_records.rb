@@ -1,0 +1,11 @@
+CharityTag.destroy_all
+Charity.destroy_all
+Donation.destroy_all
+Event.destroy_all
+Giver.destroy_all
+Location.destroy_all
+Manager.destroy_all
+Need.destroy_all
+Registration.destroy_all
+Subscription.destroy_all
+Tag.destroy_all
