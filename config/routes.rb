@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  # root :
+  root 'charities#index'
+  get 'home', to: 'charities#index'
+
   devise_for :managers
   devise_for :givers
 
   namespace :manager do
+    root 'manager/charities#show'
+
     resources :charities, only: [:show] do
       resources :events
       resources :needs
