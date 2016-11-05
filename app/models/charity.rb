@@ -1,5 +1,5 @@
 class Charity < ApplicationRecord
-  belongs_to :manager
+  belongs_to :manager, optional: true
   has_many   :events
   has_many   :needs
   has_many   :subscriptions
