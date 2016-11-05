@@ -17,4 +17,3 @@
 .byebug_history
 .DS_Store
 .env
-db/seeds.rb
