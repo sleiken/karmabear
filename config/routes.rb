@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    get 'show', to: 'api#show'
+    get 'charities', to: 'api#charities'
   end
 end
