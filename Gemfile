@@ -56,6 +56,9 @@ end
 gem 'faker'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
+# Api stuff
 gem 'httparty'
 gem 'yelp'
+
 gem 'dotenv'
+gem 'geokit-rails'

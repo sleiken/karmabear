@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'charities#index'
-  get 'home', to: 'charities#index'
+  root 'main#index'
+  get 'home', to: 'main#index'
 
   devise_for :managers
   devise_for :givers
