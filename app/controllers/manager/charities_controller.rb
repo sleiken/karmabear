@@ -1,10 +1,4 @@
 class Manager::CharitiesController < ApplicationController
-	# def new
-	# end
-
-	# def index
-	# end
-
 	def show
 		#Show the main dashboard information, drill into associations to get view data.
 		#Should actually be current user.
@@ -23,6 +17,8 @@ class Manager::CharitiesController < ApplicationController
 		@charity.update(charity_params)
 		redirect_to "charity#show"
 	end
+
+	private
 
 	def charity_params
 		params.require(:charity).permit(:name, :lat, :lng, :address, :description, :phone, :url)
