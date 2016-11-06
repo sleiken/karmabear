@@ -2,6 +2,13 @@
 
 <% @events.each do |event| %>
 
-  <li><%= event.name %> <%= link_to 'show event', manager_charity_event_path(@charity, event) %></li>
+  <li>
+    <%= event.name %>
+      <%= link_to 'show', manager_charity_event_path(@charity, event) %>
+      <%= link_to 'update', manager_charity_event_path(@charity, event), method: 'put' %>
+      <%= link_to 'destroy', manager_charity_event_path(@charity, event), method: 'delete' %>
+  </li>
 
 <% end %>
+
+<p> also good to show: # of total attendees? date, time, etc?</p>
