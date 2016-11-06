@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'main#index'
   get 'home', to: 'main#index'
 
+  post '/search' => 'main#search', as: :search
+
   devise_for :managers
   devise_for :givers
 
@@ -20,6 +22,5 @@ Rails.application.routes.draw do
     resources :needs, only: [:show]
   end
 
-  # resources :profile, param: :username, only: [:show], controller: 'givers'
   get ':username', to: 'givers#show', as: :giver
 end
