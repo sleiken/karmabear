@@ -1,9 +1,8 @@
 class Manager::EventsController < ApplicationController
-
-	def new 
+	def new
 		#Should actually refer to current_user
 		manager = Manager.find(1)
-		@charity = manager.charity	
+		@charity = manager.charity
 	end
 
 	def create
@@ -18,9 +17,6 @@ class Manager::EventsController < ApplicationController
 			render "manager/charities#show"
 		end
 	end
-
-	# def index
-	# end
 
 	def show
 		#Display this charity from link
@@ -45,6 +41,8 @@ class Manager::EventsController < ApplicationController
 		@event = charity.events.find(params[:id])
 		@event.destroy
 	end
+
+	private
 
 	def event_params
 		params.require(:event).permit(:name, :description, :start, :end, :givers_needed)

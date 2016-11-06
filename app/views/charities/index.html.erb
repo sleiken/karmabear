@@ -2,7 +2,7 @@
 
 <ul>
 <% @Charities.each do |charity| %>
-	<li><%=charity.name  %></li>
+	<li><%= link_to charity.name, charity_path(charity) %></li>
 <% end %>
 </ul>
 

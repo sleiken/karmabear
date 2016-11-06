@@ -4,7 +4,7 @@ class CharitiesController < ApplicationController
   end
 
   def show
-    @charity = Charity.find(param[:id])
+    @charity = Charity.find(params[:id])
     @events = @charity.events
     @needs = @charity.needs
   end
