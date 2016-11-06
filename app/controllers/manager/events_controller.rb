@@ -1,17 +1,18 @@
 class Manager::EventsController < Manager::ApplicationController
+	before_action :find_charity
+
+	def index
+		@events = @charity.events
+	end
+
 	def new
-		#Should actually refer to current_user
-		manager = current_manager
-		@charity = manager.charity
+		@event = Event.new
 	end
 
 	def create
-		@charity = Charity.find(params[:charity_id])
 		@event = @charity.events.new(event_params)
 
 		if @event.save
-			p @charity
-			p @event
 			redirect_to manager_charity_path(@charity)
 		else
 			render "manager/charities#show"
@@ -20,8 +21,7 @@ class Manager::EventsController < Manager::ApplicationController
 
 	def show
 		#Display this charity from link
-		charity = find(params[:charity_id])
-		@event = charity.events.find(params[:id])
+		@event = @charity.events.find(params[:id])
 	end
 
 	def edit
@@ -47,4 +47,9 @@ class Manager::EventsController < Manager::ApplicationController
 	def event_params
 		params.require(:event).permit(:name, :description, :start, :end, :givers_needed)
 	end
+
+	def find_charity
+		@charity = Charity.find(params[:charity_id])
+	end
+
 end

@@ -1,0 +1,7 @@
+<h1>Manager Dashboard: Events for <%= @charity.name %></h1>
+
+<% @events.each do |event| %>
+
+  <li><%= event.name %> <%= link_to 'show event', manager_charity_event_path(@charity, event) %></li>
+
+<% end %>
