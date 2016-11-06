@@ -1,11 +1,15 @@
 <h1>Manager Dashboard: Events for <%= @charity.name %></h1>
 
+<div>
+<%= link_to 'Add new event', new_manager_charity_event_path(@charity) %>
+</div>
+
 <% @events.each do |event| %>
 
   <li>
     <%= event.name %>
       <%= link_to 'show', manager_charity_event_path(@charity, event) %>
-      <%= link_to 'update', manager_charity_event_path(@charity, event), method: 'put' %>
+      <%= link_to 'update', edit_manager_charity_event_path(@charity, event) %>
       <%= link_to 'destroy', manager_charity_event_path(@charity, event), method: 'delete' %>
   </li>
 
