@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    
+    get 'home', to: 'api#show'
   end
 end
