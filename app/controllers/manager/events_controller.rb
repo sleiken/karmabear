@@ -1,5 +1,6 @@
 class Manager::EventsController < Manager::ApplicationController
 	before_action :find_charity
+	before_action :find_event, only: [:edit, :update, :destroy]
 
 	def index
 		@events = @charity.events
@@ -26,17 +27,15 @@ class Manager::EventsController < Manager::ApplicationController
 	end
 
 	def edit
-		@event = Event.find(params[:id])
+
 	end
 
 	def update
-		@event = Event.find(params[:id])
 		@event.update(event_params)
 		redirect_to manager_charity_event_url(@charity, @event)
 	end
 
 	def destroy
-		@event = Event.find(params[:id])
 		@event.destroy
 
 		redirect_to manager_charity_events_url(@charity)
@@ -50,6 +49,10 @@ class Manager::EventsController < Manager::ApplicationController
 
 	def find_charity
 		@charity = Charity.find(params[:charity_id])
+	end
+
+	def find_event
+		@event = Event.find(params[:id])
 	end
 
 end
