@@ -41,7 +41,8 @@ Event.create!(name: "Can Food Drive",
 
 Registration.create!(event_id: 1,
                      giver_id: 1,
-                     hours: 2)
+                     pending_hours: 2,
+                     approved_hours: 2)
 
 Subscription.create!(charity_id: 1,
                      giver_id: 1)
