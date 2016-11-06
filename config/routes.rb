@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :givers
 
   namespace :manager do
-    root 'manager/charities#show'
+    root 'charities#show'
 
     resources :charities, only: [:show, :edit, :update] do
       resources :givers, only: [:index, :show]

@@ -1,4 +1,4 @@
-class Manager::GiversController < ApplicationController
+class Manager::GiversController < Manager::ApplicationController
   before_action :find_charity, :find_manager
 
   def index
