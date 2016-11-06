@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'bootstrap-sass'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
@@ -24,7 +24,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
-
 gem 'devise'
 
 # Use Capistrano for deployment
@@ -56,6 +55,9 @@ end
 gem 'faker'
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
+# Api stuff
 gem 'httparty'
 gem 'yelp'
+
 gem 'dotenv'
+gem 'geokit-rails'

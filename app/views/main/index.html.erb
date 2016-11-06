@@ -1,0 +1,8 @@
+<%= form_tag charities_path, method: :get, class: "" do %>
+  <%= text_field_tag(
+      :search,
+      params[:search],
+      placeholder: "Search",
+      class: ""
+  ) %>
+<% end %>

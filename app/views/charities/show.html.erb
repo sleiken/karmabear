@@ -1,0 +1,11 @@
+<h1>Show Page for <%= @charity.name %></h1>
+
+<h2>Events:</h2>
+	<% @events.each do |event| %>
+		<p><%= event.name %></p>
+	<% end %>
+
+<h2>Needs:</h2>
+	<% @needs.each do |need| %>
+		<p><%= need.name %></p>
+	<% end %>

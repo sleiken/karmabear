@@ -27,8 +27,8 @@ params.each do |param|
 
   response.businesses.each do |organization|
     Charity.create!(name: organization.name,
-                    lat: organization.location.coordinate.latitude,
-                    lng: organization.location.coordinate.longitude,
+                    lat: organization.location.coordinate.latitude.to_f,
+                    lng: organization.location.coordinate.longitude.to_f,
                     address: organization.location.display_address,
                     phone: organization.display_phone,
                     url: organization.url)
