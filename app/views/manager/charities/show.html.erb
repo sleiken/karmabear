@@ -1,16 +1,23 @@
-<div class="container" align="center">
-	<h1>Dashboard for <%=@charity.name%></h1>
-	<p>Managed by <%=@charity.manager.username%></p>
 
-	<div class="metrics-container">
-		This is where some fancy charts will be...
-	</div>
+<h1>Dashboard for <%=@charity.name%></h1>
+<p>Managed by <%=@charity.manager.username%></p>
 
-	<div class="givers-container">
-		This is where the list of giver activity goes...
-	</div>
+<div class="metrics-container">
+	fancy shmancy interactive charts -> 2000 hours, 1300 donations, 450 givers
+</div>
 
-	<div class="events-container">
-		This is where the list of my events will be...
-	</div>
+<div class="givers-container">
+	givers activity feed in real time
+</div>
+
+<div class="events-container">
+	list of currently active events
+</div>
+
+<div class="needs-container">
+	list of currently active needs
+</div>
+
+<div class="misc-container">
+	other things to show: list of followers, post new event button, post new need button, click on givers in activity feed to trigger a modal for denying/approving a giver's request
 </div>
