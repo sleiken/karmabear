@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'main#index'
   get 'home', to: 'main#index'
 
-  get ':username', to: 'givers#show', as: :giver
+  get 'givers/:username', to: 'givers#show', as: :giver
 
   devise_for :managers
   devise_for :givers

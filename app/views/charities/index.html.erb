@@ -14,52 +14,54 @@
 
 
 <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-					disableDefaultUI: true,
-          center: {lat: 37.7846334, lng: -122.3996024},
-          mapTypeControl: false,
-		  panControl: false,
-		  zoomControl: false,
-		  streetViewControl: false
-        });
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+		disableDefaultUI: true,
+    center: {lat: <%= @location[0] %>, lng: <%= @location[1] %>},
+    mapTypeControl: false,
+		panControl: false,
+		zoomControl: false,
+		streetViewControl: false
+  });
 
-        var markers = []
+	var marker = new google.maps.Marker({
+  	map: map,
+  	icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+  	position: {lat: <%= @location[0] %>, lng: <%= @location[1] %>},
+  	animation: google.maps.Animation.DROP
+  });
 
-      <%@results.each do |result|%>
-    	//creates an infoWindow object for each place
-    	var infoWindow = new google.maps.InfoWindow();
-    	//get deatils about place
+  var markers = []
 
-    	var location = {lat:<%=result.lat%>, lng:<%=result.lng%>}
+  <%@results.each do |result|%>
+		var infoWindow = new google.maps.InfoWindow();
 
-        var marker = new google.maps.Marker({
-          	map: map,
-          	icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-          	position: location,
-          	animation: google.maps.Animation.DROP
-          });
+		var location = {lat:<%=result.lat%>, lng:<%=result.lng%>}
 
-        markers.push(marker);
+    var marker = new google.maps.Marker({
+    	map: map,
+    	// icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+    	position: location,
+    	animation: google.maps.Animation.DROP
+    });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          	infoWindow.setContent(
-          		"<%=result.name%> <br><%=result.description%><br><br><br><a>Follow</a><a href=<%=charity_path(result)%>>Details</a>"
+    markers.push(marker);
 
-          		);
-          	infoWindow.open(map, this);
-        });
+    google.maps.event.addListener(marker, 'click', function() {
+      	infoWindow.setContent(
+      		"<%=result.name%> <br><%=result.description%><br><br><br><a>Follow</a><a href=<%=charity_path(result)%>>Details</a>"
 
-      <%end%>
+      		);
+      	infoWindow.open(map, this);
+    });
+  <%end%>
 
-      var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      
-    }
-
-
-    </script>
+  var markerCluster = new MarkerClusterer(map, markers,
+    {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+	);
+}
+</script>
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
