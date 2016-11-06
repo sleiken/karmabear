@@ -20,19 +20,19 @@
 					disableDefaultUI: true,
           center: {lat: 37.7846334, lng: -122.3996024},
           mapTypeControl: false,
-		  panControl: false,
-		  zoomControl: false,
-		  streetViewControl: false
+		  		panControl: false,
+		  		zoomControl: false,
+		  		streetViewControl: false
         });
 
-        var markers = []
+      var markers = []
 
       <%@results.each do |result|%>
     	//creates an infoWindow object for each place
-    	var infoWindow = new google.maps.InfoWindow();
+    		var infoWindow = new google.maps.InfoWindow();
     	//get deatils about place
 
-    	var location = {lat:<%=result.lat%>, lng:<%=result.lng%>}
+    		var location = {lat:<%=result.lat%>, lng:<%=result.lng%>}
 
         var marker = new google.maps.Marker({
           	map: map,
@@ -55,7 +55,7 @@
 
       var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      
+
     }
 
 
