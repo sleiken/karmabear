@@ -1,0 +1,32 @@
+<div class="container">
+
+<a href="#" data-toggle="modal" data-target="#proposal-modal">Edit Details</a>
+
+<div class="modal fade" id="proposal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Update Charity Details</h1><br>
+
+						<%=form_for :charities, url: '/manager/charities/:charity_id/edit' do |f|%>
+							<%= f.label :name %>:
+			  				<%= f.text_field :name %><br>
+
+			  				<%= f.label :address %>:
+			  				<%= f.text_area :address %><br>
+
+			  				<%= f.label :description %>:
+			  				<%= f.text_area :description %><br>
+
+			  				<%= f.label :phone %>:
+			  				<%= f.text_area :phone %><br>
+
+			  				<%= f.label :url %>:
+			  				<%= f.text_area :url %><br>
+
+			  				<%= f.submit %>
+			  			<%end%>
+				</div>
+			</div>
+		  </div>
+	
+</div>
