@@ -18,8 +18,9 @@ class Manager::EventsController < Manager::ApplicationController
 		@event = @charity.events.new(event_params)
 
 		if @event.save
-			redirect_to manager_charity_path(@charity)
+			redirect_to manager_charity_event_path(@charity, @event)
 		else
+			@errors = @event.errors.full_messages
 			render "manager/charities#show"
 		end
 	end
