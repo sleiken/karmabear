@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :manager do
     root 'manager/charities#show'
 
-    resources :charities, only: [:show] do
+    resources :charities, only: [:show, :edit, :update] do
       resources :givers, only: [:index, :show]
       resources :events
       resources :needs
