@@ -1,13 +1,18 @@
 class Manager::EventsController < ApplicationController
+
 	def new 
-		@charity = Charity.new
+		#Should actually refer to current_user
+		manager = Manager.find(1)
+		@charity = manager.charity	
 	end
 
 	def create
 		@charity = Charity.find(params[:charity_id])
-		@event = charity.events.new(event_params)
+		@event = @charity.events.new(event_params)
 
 		if @event.save
+			p @charity
+			p @event
 			redirect_to manager_charity_path(@charity)
 		else
 			render "manager/charities#show"
@@ -29,9 +34,10 @@ class Manager::EventsController < ApplicationController
 	end
 
 	def update
-		charity = find(params[:charity_id])
+		@charity = find(params[:charity_id])
 		@event = charity.events.find(params[:id])
 		@event.update(event_params)
+		redirect_to redirect_to manager_charity_path(@charity)
 	end
 
 	def delete
