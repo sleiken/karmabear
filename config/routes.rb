@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root 'manager/charities#show'
 
     resources :charities, only: [:show] do
+      resources :givers, only: [:index, :show]
       resources :events
       resources :needs
     end

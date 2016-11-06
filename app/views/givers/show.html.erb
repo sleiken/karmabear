@@ -1,0 +1,31 @@
+<h1>Giver Profile Page</h1>
+
+<p>First Name: <%= @giver.first_name%></p>
+<p>Email: <%= @giver.email %></p>
+
+<h2>Points</h2>
+<p><%= @giver.points %> points </p>
+
+<h2>Followed Charities</h2>
+
+<ul>
+<% @charities.each do |charity| %>
+  <li><%= charity.name %></li>
+<% end %>
+</ul>
+
+<h2>Registered Events</h2>
+
+<ul>
+<% @events.each do |event| %>
+  <li><%= event.name %> | approved_hours: <%= event.registrations.map { |r| r.approved_hours} %> | pending_hours: <%= event.registrations.map { |r| r.pending_hours} %> </li>
+<% end %>
+</ul>
+
+<h2>Donated Needs</h2>
+
+<ul>
+<% @needs.each do |need| %>
+  <li><%= need.name %> | Given: <%= need.donations.map { |d| d.quantity_given} %></li>
+<% end %>
+</ul>

@@ -1,0 +1,26 @@
+<h1> <%= @charity.name %> Givers </h1>
+<p>Managed By: <%= @manager.first_name %> <%= @manager.last_name %></p>
+
+
+<h2>Followers</h2>
+<ul>
+<% @followers.each do |follower| %>
+  <li><%= follower.first_name %> <%= follower.last_name %></li>
+<% end %>
+</ul>
+
+<h2>Donors</h2>
+<ul>
+<% @donors.each do |donor| %>
+  <li><%= donor.first_name %> <%= donor.last_name %></li>
+<% end %>
+</ul>
+
+<h2>Volunteers</h2>
+<ul>
+<% @volunteers.each do |volunteer| %>
+  <li><%= volunteer.first_name %> <%= volunteer.last_name %></li>
+<% end %>
+</ul>
+
+<p> and other stats about these givers like aggregate count of hours, donations, and points, etc. :)</p>
