@@ -26,21 +26,20 @@ class Manager::EventsController < Manager::ApplicationController
 	end
 
 	def edit
-		charity = find(params[:charity_id])
-		@event = charity.events.find(params[:event_id])
+		@event = Event.find(params[:id])
 	end
 
 	def update
-		@charity = find(params[:charity_id])
-		@event = charity.events.find(params[:id])
+		@event = Event.find(params[:id])
 		@event.update(event_params)
-		redirect_to redirect_to manager_charity_path(@charity)
+		redirect_to manager_charity_event_url(@charity, @event)
 	end
 
-	def delete
-		charity = find(params[:charity_id])
-		@event = charity.events.find(params[:id])
+	def destroy
+		@event = Event.find(params[:id])
 		@event.destroy
+
+		redirect_to manager_charity_events_url(@charity)
 	end
 
 	private
