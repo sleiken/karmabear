@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'main#index'
   get 'home', to: 'main#index'
 
-  post '/search' => 'main#search', as: :search
+  get ':username', to: 'givers#show', as: :giver
 
   devise_for :managers
   devise_for :givers
@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     resources :needs, only: [:show]
   end
 
-  get ':username', to: 'givers#show', as: :giver
+  namespace :api, defaults: { format: :json } do
+    get 'charities', to: 'api#charities'
+  end
 end
