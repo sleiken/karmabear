@@ -1,10 +1,4 @@
 class Manager::EventsController < ApplicationController
-	# def new 
-	# end
-
-	# def index
-	# end
-
 	def show
 		#Display this charity from link
 		charity = find(params[:charity_id])
