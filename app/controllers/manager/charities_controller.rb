@@ -2,7 +2,7 @@ class Manager::CharitiesController < Manager::ApplicationController
 	def show
 		#Show the main dashboard information, drill into associations to get view data.
 		#Should actually be current user.
-		manager = Manager.find(1)
+		manager = current_manager
 		@charity = manager.charity
 	end
 
