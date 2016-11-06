@@ -5,6 +5,11 @@ class Manager::EventsController < Manager::ApplicationController
 		@events = @charity.events
 	end
 
+	def show
+		#Display this charity from link
+		@event = @charity.events.find(params[:id])
+	end
+
 	def new
 		@event = Event.new
 	end
@@ -17,11 +22,6 @@ class Manager::EventsController < Manager::ApplicationController
 		else
 			render "manager/charities#show"
 		end
-	end
-
-	def show
-		#Display this charity from link
-		@event = @charity.events.find(params[:id])
 	end
 
 	def edit
