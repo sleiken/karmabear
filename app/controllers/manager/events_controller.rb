@@ -1,4 +1,4 @@
-class Manager::EventsController < ApplicationController
+class Manager::EventsController < Manager::ApplicationController
 	def new
 		#Should actually refer to current_user
 		manager = Manager.find(1)

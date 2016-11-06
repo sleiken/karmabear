@@ -1,4 +1,4 @@
-class Manager::NeedsController < ApplicationController
+class Manager::NeedsController < Manager::ApplicationController
   # before_action :manager
   before_action :charity
 

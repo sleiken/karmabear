@@ -1,4 +1,4 @@
-class Manager::CharitiesController < ApplicationController
+class Manager::CharitiesController < Manager::ApplicationController
 	def show
 		#Show the main dashboard information, drill into associations to get view data.
 		#Should actually be current user.
