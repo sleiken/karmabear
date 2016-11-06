@@ -22,7 +22,7 @@ class Manager::EventsController < Manager::ApplicationController
 			redirect_to manager_charity_event_path(@charity, @event)
 		else
 			@errors = @event.errors.full_messages
-			render "manager/charities#show"
+			render "manager/events#show"
 		end
 	end
 
