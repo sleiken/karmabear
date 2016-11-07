@@ -20,8 +20,7 @@ class Giver < ApplicationRecord
       giver.last_name = /(?:\S+ ){1}(\S+)/.match(auth.info.name)[1]
       giver.password = Devise.friendly_token[0,20]
       giver.username = "#{giver.first_name.downcase}#{giver.last_name.downcase}"
-
-      # giver.image = auth.info.image # assuming the giver model has an image
+      giver.image_url = auth.info.image # assuming the giver model has an image
     end
   end
 end
