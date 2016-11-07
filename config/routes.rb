@@ -23,11 +23,11 @@ Rails.application.routes.draw do
 
   resources :charities, only: [:index, :show] do
     resources :subscriptions, only: [:create, :destroy]
-    resources :events, only: [:show] do
-      resources :registrations
+    resources :events, only: [:index, :show] do
+      resources :registrations, except: :index
     end
-    resources :needs, only: [:show] do
-      resources :donations
+    resources :needs, only: [:index, :show] do
+      resources :donations, except: :index
     end
   end
 
