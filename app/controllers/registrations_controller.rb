@@ -2,10 +2,6 @@ class RegistrationsController < ApplicationController
   before_action :find_charity
   before_action :find_event
 
-  def index
-    @registrations = @event.registrations
-  end
-
   def new
     @registration = Registration.new
   end
@@ -24,6 +20,14 @@ class RegistrationsController < ApplicationController
       @errors = @registration.errors.full_messages
       render "new"
     end
+  end
+
+  def update
+    #update pending hours
+  end
+
+  def destroy
+    # delete registration record
   end
 
   private
