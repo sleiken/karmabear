@@ -79,14 +79,14 @@ obj9.update_attributes(attributes9)
 attributes10 = {description: "We inspire girls to be joyful, healthy and confident using a fun, experience-based curriculum which creatively integrates running. We envision a world where every girl knows and activates her limitless potential and is free to boldly pursue her dreams.", 
                 url: "http://www.gotrbayarea.org/", 
                 image_url: "https://girlsontherunstlouis.org/sites/default/files/Logo_0.png"}
-obj10 = Charity.find_by_id()
+obj10 = Charity.find_by_id(11)
 obj10.update_attributes(attributes10)
 
 #11
 attributes11 = {description: "CounterPulse is building a movement of risk-taking art that shatters assumptions and builds community. We provide space and resources for emerging artists and cultural innovators, serving as an incubator for the creation of socially relevant, community-based art and culture. CounterPulse acts as a catalyst for art and action; creating a forum for the open exchange of art and ideas, sparking transformation in our communities and our society.", 
                 url: "http://www.counterpulse.org/", 
                 image_url: "http://www.counterpulse.org/wp-content/uploads/2016/03/CP-Red.png"}
-obj11 = Charity.find_by_id()
+obj11 = Charity.find_by_id(12)
 obj11.update_attributes(attributes11)
 
 #12
