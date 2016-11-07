@@ -11,7 +11,7 @@ class GiversController < ApplicationController
   private
 
   def authorize_giver
-    if current_giver != Giver.find_by!(username: params[:username])
+    if current_giver != Giver.find_by(username: params[:username])
       redirect_to root_path
     end
   end
