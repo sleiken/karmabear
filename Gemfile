@@ -63,3 +63,8 @@ gem 'dotenv'
 gem 'geokit-rails'
 
 gem 'omniauth-facebook'
+
+
+
+
+gem 'google-v3-geocoder'
