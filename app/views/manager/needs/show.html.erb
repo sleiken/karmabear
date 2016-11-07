@@ -1,1 +1,11 @@
-<%= @need %>
+<h1>Manager Dashboard: Show <%=@need.name%> Need Page</h1>
+
+<li>Status: <%= @need.status %></li>
+
+<li>Description: <%= @need.description %></li>
+
+<li>Quantity Needed: <%= @need.quantity_needed %></li>
+
+<div>
+  <%= link_to '< back to needs index', manager_charity_needs_path(@charity) %>
+</div>

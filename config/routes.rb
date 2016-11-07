@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   root 'main#index'
   get 'home', to: 'main#index'
 
-  get 'givers/:username', to: 'givers#show', as: :giver
+  get 'users/:username', to: 'givers#show', as: :giver
 
   devise_for :managers
-  devise_for :givers
+  devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
   namespace :manager do
     root 'charities#show'
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    post 'search', to: 'api#search'
     get 'charities', to: 'api#charities'
+    get 'giver_profile', to: 'api#giver_profile'
   end
 end

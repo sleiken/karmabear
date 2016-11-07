@@ -1,3 +1,24 @@
+<h1>Manager Dashboard: Needs for <%= @charity.name %></h1>
+
+<div>
+<%= link_to 'Add new need', new_manager_charity_need_path(@charity) %>
+</div>
+
 <% @needs.each do |need| %>
-  <%= need.name %>
+
+  <li>
+    <%= need.name %>
+      <%= link_to 'show', manager_charity_need_path(@charity, need) %>
+      <%= link_to 'update', edit_manager_charity_need_path(@charity, need) %>
+      <%= link_to 'destroy', manager_charity_need_path(@charity, need), method: 'delete' %>
+  </li>
+
 <% end %>
+
+<div>
+  <p> also good to show: # of total givers? needs fulfilled?</p>
+</div>
+
+<div>
+  <%= link_to '< back to dashboard', manager_charity_path(@charity) %>
+</div>
