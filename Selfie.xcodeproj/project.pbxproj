@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DB1DD000F10003CB87 /* MapKit.framework */; };
+		10FF59DE1DD000FA0003CB87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */; };
+		10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */; };
 		C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA0D19EA299B00E3B500 /* SelfieCollectionViewCell.swift */; };
 		C186CA1019EA34DF00E3B500 /* SelfieImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */; };
 		C186CA1219EA80DB00E3B500 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA1119EA80DB00E3B500 /* ComposeViewController.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10FF59DB1DD000F10003CB87 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationConvenience.swift; sourceTree = "<group>"; };
 		C186CA0D19EA299B00E3B500 /* SelfieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieCollectionViewCell.swift; sourceTree = "<group>"; };
 		C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieImage.swift; sourceTree = "<group>"; };
 		C186CA1119EA80DB00E3B500 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10FF59DE1DD000FA0003CB87 /* CoreLocation.framework in Frameworks */,
+				10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */,
 				C1A1877419B619EE003D119F /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10FF59DA1DD000F00003CB87 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */,
+				10FF59DB1DD000F10003CB87 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D308C7F119B4768300AE6BE5 /* AESCrypt */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +123,7 @@
 				D37383E119B07A75008C2DB6 /* Selfie */,
 				D37383F419B07A75008C2DB6 /* SelfieTests */,
 				D37383E019B07A75008C2DB6 /* Products */,
+				10FF59DA1DD000F00003CB87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +141,7 @@
 			children = (
 				D308C7F119B4768300AE6BE5 /* AESCrypt */,
 				C1B77A6B1A1B98DB0024857B /* HTTPHelper.swift */,
+				10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */,
 				C1F59B1619E4084C0083F33B /* KeychainAccess.swift */,
 				D37383E419B07A75008C2DB6 /* AppDelegate.swift */,
 				D37383E619B07A75008C2DB6 /* ViewController.swift */,
@@ -279,6 +298,7 @@
 				D308C7FB19B4768300AE6BE5 /* NSData+Base64.m in Sources */,
 				D308C7FC19B4768300AE6BE5 /* NSData+CommonCrypto.m in Sources */,
 				C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */,
+				10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */,
 				C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
