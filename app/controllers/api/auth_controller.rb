@@ -39,13 +39,13 @@ class Api::AuthController < ApplicationController
     # render status: :forbidden unless params[:token]
     #
     # token = params[:token]
-    response = HTTParty.get("https://graph.facebook.com/me/?access_token=EAAZA1sMymaZCABAAHVzjORg1UkkrBhmDQyoBVZA5HVEBJmOWZANjDgT0EvqSkNEyu5U0WKq3IJ8WZBkni7jaxyOjx1nZBqvJiLQ05JztuaEZC6O0thRqgazm8hjPY0Fuj6z9GquZAeft86OKLEkBShuexmzzPfKByiZBeFC28WS5B7QZDZD")
+    response = HTTParty.get("https://graph.facebook.com/v2.8/me/?access_token=EAAZA1sMymaZCABAPvu1ebC69Swk3GdOVXXuadShlDtc9sTpIZAkr6WPaCUMu1mnCSEpkD7oHo10JAgQIUpnAzpMu9vxkVwnb2CWN7qobR9vXfQZAX1yhd8cZBukQHZAND4IczZAWMZBmIQrtEs0QfVSiahfMzRHavO7VgwFpgVG6RgZDZD")
 
     if response.code == 200
       data = JSON.parse(response.body)
       # User.
     end
-    # user
+    response
   end
 
   def generate_token(user)
