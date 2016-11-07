@@ -1,4 +1,6 @@
 class CharitiesController < ApplicationController
+  Dotenv.load
+
   def index
     @results = Charity.within(0.8, origin: params[:search])
     @location = geocode_address(params[:search])
@@ -15,7 +17,8 @@ class CharitiesController < ApplicationController
   private
 
   def geocode_address(address)
-    geo = Geokit::Geocoders::MultiGeocoder.geocode(address)
+    Geokit::Geocoders::GoogleGeocoder.api_key = ENV['GOOGLE_GEOCODER_KEY']
+    geo = Geokit::Geocoders::GoogleGeocoder.geocode(address)
     [geo.lat, geo.lng]
   end
 end
