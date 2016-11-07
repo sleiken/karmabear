@@ -14,6 +14,11 @@ class Api::ApiController < ApplicationController
     render :json => JSON.pretty_generate(JSON.parse(Charity.all.to_json))
   end
 
+  def test
+    response = HTTParty.get("https://www.facebook.com/v2.8/dialog/oauth?client_id=1818252068416496&response_type=token&redirect_uri=https://www.facebook.com/connect/login_success.html")
+    render :json => response
+  end
+
   def giver_profile
     giver = Giver.find(1)
     charities = giver.followed_charities.to_json
@@ -33,9 +38,25 @@ class Api::ApiController < ApplicationController
   end
 
   def authorize_user
+    # begin
+    #   decode_token(token)
+    # rescue JWT::VerificationError
+    #   # Handle Signature verification raised error
+    # rescue JWT::ExpiredSignature
+    #   # Handle expired token, e.g. logout user or deny access
+    # end
     token = generate_token(Giver.find_by(username: "samleiken"))
     p token
     p decode_token(token)
+  end
+
+  # Used to verify access token passed from FB OAuth server to iOS
+  def verify_access_token
+    render status: :forbidden unless params[:token]
+
+    token = params[:token]
+    response = HTTParty.get("https://www.facebook.com/v2.8/dialog/oauth?client_id=1818252068416496&response_type=token&redirect_uri=https://www.facebook.com/connect/login_success.html")
+
   end
 
   def generate_token(user)

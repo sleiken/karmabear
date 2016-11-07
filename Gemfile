@@ -64,5 +64,7 @@ gem 'geokit-rails'
 
 gem 'omniauth-facebook'
 gem 'bcrypt'
-# Json web token auth 
+# Json web token auth
 gem 'jwt'
+
+gem 'google-v3-geocoder'

@@ -35,5 +35,6 @@ Rails.application.routes.draw do
     post 'search', to: 'api#search'
     get 'charities', to: 'api#charities'
     get 'giver_profile', to: 'api#giver_profile'
+    get 'test', to: 'api#test'
   end
 end
