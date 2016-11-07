@@ -23,11 +23,13 @@ class Api::AuthController < ApplicationController
 
   def authorize_user
     # begin
-    #   decode_token(token)
+    #   decode_token(params[:token])
     # rescue JWT::VerificationError
     #   # Handle Signature verification raised error
+        # return 
     # rescue JWT::ExpiredSignature
     #   # Handle expired token, e.g. logout user or deny access
+        # return
     # end
     token = generate_token(Giver.find_by(username: "samleiken"))
     p token
@@ -36,15 +38,16 @@ class Api::AuthController < ApplicationController
 
   # Used to verify access token passed from FB OAuth server to iOS
   def verify_access_token
-    # render status: :forbidden unless params[:token]
+    # render status: :forbidden unless params[:access_token]
     #
-    # access_token = params[:token]
+    # access_token = params[:access_token]
     # response = HTTParty.get("https://graph.facebook.com/v2.8/me/?access_token#{access_token}")
     response = HTTParty.get("https://graph.facebook.com/v2.8/me/?access_token=EAAZA1sMymaZCABAPvu1ebC69Swk3GdOVXXuadShlDtc9sTpIZAkr6WPaCUMu1mnCSEpkD7oHo10JAgQIUpnAzpMu9vxkVwnb2CWN7qobR9vXfQZAX1yhd8cZBukQHZAND4IczZAWMZBmIQrtEs0QfVSiahfMzRHavO7VgwFpgVG6RgZDZD")
 
     if response.code == 200
       data = JSON.parse(response.body)
-      # User.
+      # Login /register user
+      # return generate_token(user)
     end
     response.headers
   end
