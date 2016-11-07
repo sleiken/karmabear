@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   devise_for :managers
   devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
-  # devise_scope :giver do
-  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_giver_session
-  # end
-
   namespace :manager do
     root 'charities#show'
 
@@ -28,5 +24,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     get 'charities', to: 'api#charities'
+    get 'giver_profile', to: 'api#giver_profile'
   end
 end
