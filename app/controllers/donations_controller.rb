@@ -26,6 +26,14 @@ class DonationsController < ApplicationController
     end
   end
 
+  def update
+    #update quantity given
+  end
+
+  def destroy
+    #delete donation given
+  end
+
   private
 
   def donation_params
