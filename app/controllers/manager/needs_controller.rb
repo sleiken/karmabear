@@ -1,6 +1,6 @@
 class Manager::NeedsController < Manager::ApplicationController
-  before_action :find_charity
-  before_action :find_need, only: [:edit, :update, :destroy]
+  before_action :charity
+  before_action :need, only: [:edit, :update, :destroy]
 
   def index
     @needs = @charity.needs
@@ -27,7 +27,6 @@ class Manager::NeedsController < Manager::ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -51,12 +50,11 @@ class Manager::NeedsController < Manager::ApplicationController
     params.require(:need).permit(:name, :description, :quantity_needed, :status)
   end
 
-  def find_charity
-    @charity = Charity.find(params[:charity_id])
+  def charity
+    @charity ||= Charity.find(params[:charity_id])
   end
 
-  def find_need
-    @need = Need.find(params[:id])
+  def need
+    @need ||= Need.find(params[:id])
   end
-
 end
