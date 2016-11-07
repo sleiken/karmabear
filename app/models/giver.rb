@@ -17,8 +17,8 @@ class Giver < ApplicationRecord
     where(provider: auth.provider, gid: auth.gid).first_or_create do |giver|
       giver.email = auth.info.email
       giver.password = Devise.friendly_token[0,20]
-      giver.username = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
+      giver.username = auth.info.name   
+      # giver.image = auth.info.image # assuming the giver model has an image
     end
   end
 end
