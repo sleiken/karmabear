@@ -6,11 +6,11 @@ class Api::AuthController < ApplicationController
 
   def giver_profile
     giver = Giver.find(1)
-    charities = giver.followed_charities.to_json
-    events = giver.events.to_json
-    needs = giver.needs.to_json
+    charities = giver.followed_charities
+    events = giver.events
+    needs = giver.needs
 
-    response_json = "[#{giver.to_json}, #{charities}, #{events}, #{needs}]"
+    response_json = {giver: giver, charities: charities, events: events, needs: needs}.to_json
 
     render :json => JSON.pretty_generate(JSON.parse(response_json))
   end
