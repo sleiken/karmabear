@@ -1,11 +1,21 @@
 <h1>Show Page for <%= @charity.name %></h1>
 
 <h2>Events:</h2>
-	<% @events.each do |event| %>
-		<p><%= event.name %></p>
-	<% end %>
+
+<% @events.each do |event| %>
+  <li>
+    <%= event.name %>
+      <%= link_to 'show', charity_event_path(@charity, event) %>
+  </li>
+<% end %>
+
+
 
 <h2>Needs:</h2>
-	<% @needs.each do |need| %>
-		<p><%= need.name %></p>
-	<% end %>
+
+<% @needs.each do |need| %>
+  <li>
+    <%= need.name %>
+      <%= link_to 'show', charity_need_path(@charity, need) %>
+  </li>
+<% end %>
