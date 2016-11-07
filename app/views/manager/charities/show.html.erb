@@ -3,21 +3,50 @@
 <p>Managed by <%=@charity.manager.username%></p>
 
 <div class="metrics-container">
-	fancy shmancy interactive charts -> 2000 hours, 1300 donations, 450 givers
+	<h2>fancy shmancy interactive charts</h2>
+  <li>2000 hours</li>
+  <li>1300 donations</li>
+  <li>450 givers</li>
 </div>
 
 <div class="givers-container">
-	givers activity feed in real time
+	<h2>givers activity feed in real time</h2>
+    <li>
+      click on givers in activity feed to trigger a modal for denying/approving a giver's request:
+        <%= link_to 'givers index page', manager_charity_givers_path(@charity) %>
+    </li>
 </div>
 
 <div class="events-container">
-	list of currently active events
+  <h2>list Events</h2>
+
+	<li>maybe render an events#index partial?:
+    <%= link_to 'events/index', manager_charity_events_path(@charity) %>
+  </li>
 </div>
 
 <div class="needs-container">
-	list of currently active needs
+  <h2>list Needs</h2>
+
+  <li>maybe render a needs#index partial?:
+    <%= link_to 'needs/index', manager_charity_needs_path(@charity) %>
+  </li>
 </div>
 
 <div class="misc-container">
-	other things to show: list of followers, post new event button, post new need button, click on givers in activity feed to trigger a modal for denying/approving a giver's request
+	<h2>other things to show:</h2>
+
+  <li>list of followers</li>
+
+  <li>
+    post new event button:
+      <%= link_to 'add new event', new_manager_charity_event_path(@charity) %>
+  </li>
+
+  <li>
+    post new need button:
+      <%= link_to 'add new need', new_manager_charity_need_path(@charity) %>
+  </li>
+
+  <li>History?</li>
 </div>

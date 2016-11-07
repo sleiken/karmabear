@@ -6,3 +6,7 @@
 <li>Description: <%= @event.description %></li>
 
 <li><%= @event.givers_needed %> givers needed</li>
+
+<div>
+  <%= link_to '< back to events index', manager_charity_events_path(@charity) %>
+</div>
