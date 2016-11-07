@@ -39,7 +39,8 @@ class Api::ApiController < ApplicationController
   end
 
   def generate_token(user)
-    payload = { user: user.username }
+    exp = Time.now.to_i + 7 * 3600
+    payload = { user: user.username, exp: exp }
     JWT.encode payload, ENV['AUTH_SECRET'], 'HS256'
   end
 
