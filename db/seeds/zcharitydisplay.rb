@@ -1,8 +1,8 @@
-attributes = {description: "", 
-              url: "", 
-              image_url: ""}
-obj = Charity.find_by_id()
-obj.update_attributes(attributes)
+# attributes = {description: "", 
+#               url: "", 
+#               image_url: ""}
+# obj = Charity.find_by_id()
+# obj.update_attributes(attributes)
 
 #1
 attributes = {description: "Our mission is to end hunger in San Francisco and Marin. We envision a community where everyone is able to obtain enough nutritious food to support the health and well-being of themselves and their families.", 
@@ -36,7 +36,6 @@ obj3.update_attributes(attributes)
 attributes4 = {description: "Kiva is an international nonprofit, founded in 2005 and based in San Francisco, with a mission to connect people through lending to alleviate poverty. We celebrate and support people looking to create a better future for themselves, their families and their communities.", 
               url: "https://www.kiva.org/", 
               image_url: "https://www-kiva-org.global.ssl.fastly.net/cms/styles/fellows_blog_excerpt/s3/sites/default/files/kivablog/philippines_update_blog.jpg?itok=aNOGL0m5"}
-
 obj4 = Charity.find_by_id(5)
 obj4.update_attributes(attributes4)
 
@@ -97,7 +96,6 @@ attributes12 = {description: "GLIDE's mission is to create a radically inclusive
 obj12 = Charity.find_by_id(13)
 obj12.update_attributes(attributes12)
 
-#13
 
 #14
 attributes14 = {description: "UniversalGiving helps people give and volunteer with the top-performing projects all over the world.  All projects are vetted through UniversalGiving's trademarked, proprietary Quality Model. 100%\ of each donation goes directly to the cause.", 
@@ -226,12 +224,6 @@ attributes31 = {description: "Rocket Dog Rescue is a volunteer based organizatio
 obj31 = Charity.find_by_id(32)
 obj31.update_attributes(attributes31)
 
-#32
-# attributes32 = {description: "", 
-#               url: "", 
-#               image_url: ""}
-# obj32 = Charity.find_by_id(33)
-# obj32.update_attributes(attributes32)
 
 #33
 attributes33 = {description: "Park Animal Hospital has been voted the 'Best Veterinary Hospital in San Francisco' by the San Francisco Examiner and has been repeatedly recognized by the University of California at Davis for our participation in the Center for Companion Animal Health's 'Companion Animal Memorial Program.'", 
@@ -240,12 +232,6 @@ attributes33 = {description: "Park Animal Hospital has been voted the 'Best Vete
 obj33 = Charity.find_by_id(34)
 obj33.update_attributes(attributes33)
 
-#34
-# attributes34 = {description: "", 
-#               url: "", 
-#               image_url: ""}
-# obj34 = Charity.find_by_id()
-# obj34.update_attributes(attributes34)
 
 #35
 attributes35 = {description: "Every day adult and senior cats with treatable medical and behavior conditions are euthanized. GIVE ME SHELTER's goal is to rescue these cats and place them into loving permanent homes.", 
@@ -408,20 +394,6 @@ attributes65 = {description: "We inspire and enable all young people, especially
 obj65 = Charity.find_by_id(65)
 obj65.update_attributes(attributes65)
 
-
-
-
-
-
-
-
-attributes = {description: "", 
-              url: "", 
-              image_url: ""}
-obj = Charity.find_by_id()
-obj.update_attributes(attributes)
-
-        )
 
 
 
