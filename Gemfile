@@ -61,3 +61,5 @@ gem 'yelp'
 
 gem 'dotenv'
 gem 'geokit-rails'
+
+gem 'omniauth-facebook'
