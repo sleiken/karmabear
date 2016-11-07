@@ -14,17 +14,26 @@ class Giver < ApplicationRecord
   has_many :followed_charities, through: :subscriptions, source: :charity
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, gid: auth.gid).first_or_create do |giver|
+    where(provider: auth.provider, gid: auth.uid).first_or_create do |giver|
+      giver.gid = auth.uid
       giver.email = auth.info.email
       giver.first_name = /([^\s]+)/.match(auth.info.name)[0]
       giver.last_name = /(?:\S+ ){1}(\S+)/.match(auth.info.name)[1]
       giver.password = Devise.friendly_token[0,20]
-      giver.username = "#{giver.first_name.downcase}#{giver.last_name.downcase}"
+      giver.username = giver.first_name.downcase + giver.last_name.downcase
       giver.image_url = auth.info.image
     end
   end
 
-  # def self.from_mobile_omniauth(data)
-  #   where(gid:)
-  # end
+  def self.from_mobile_omniauth(auth)
+    where(gid: auth.id).first_or_create do |giver|
+      giver.gid = auth.id
+      giver.email = auth.email
+      giver.first_name = auth.first_name
+      giver.last_name = auth.last_name
+      giver.password = Devise.friendly_token[0,20]
+      giver.username = giver.first_name.downcase + giver.last_name.downcase
+      giver.image_url = auth.picture.data.url
+    end
+  end
 end

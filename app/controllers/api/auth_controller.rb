@@ -41,15 +41,18 @@ class Api::AuthController < ApplicationController
     # render status: :forbidden unless params[:access_token]
     #
     # access_token = params[:access_token]
-    # response = HTTParty.get("https://graph.facebook.com/v2.8/#{fbid}?fields=first_name,last_name,email,image&access_token#{access_token}")
-    response = HTTParty.get("https://graph.facebook.com/v2.8/10210843918116483?fields=first_name,last_name,email&access_token=EAAZA1sMymaZCABAPvu1ebC69Swk3GdOVXXuadShlDtc9sTpIZAkr6WPaCUMu1mnCSEpkD7oHo10JAgQIUpnAzpMu9vxkVwnb2CWN7qobR9vXfQZAX1yhd8cZBukQHZAND4IczZAWMZBmIQrtEs0QfVSiahfMzRHavO7VgwFpgVG6RgZDZD")
+    # response = HTTParty.get("https://graph.facebook.com/v2.8/#{fbid}?fields=first_name,last_name,email,picture&access_token#{access_token}")
+    response = HTTParty.get("https://graph.facebook.com/v2.8/10210843918116483?fields=first_name,last_name,email,picture&access_token=EAAZA1sMymaZCABACsKWQzwU9ccEEZCxsAN6TJdCruUQN1WRCLxhwkBoymLNIZCcB6L2di4XtXcIPTtdRYIkTOlqqCHyVl78gBZBsCOZBiwy7xtM5frXPa8dSoTyaNAyLkw6egLeZCAGXbJEZAHpMxWM045IDZCIMBXFuoJGK7JZBRTagZDZD")
 
     if response.code == 200
       data = JSON.parse(response.body)
       # Login /register user
+      user = Giver.from_mobile_omniauth(data)
       # return generate_token(user)
+      return generate_token(user)
     end
-    response
+    p response.code, "********************"
+    JSON.pretty_generate(JSON.parse(response.body))
   end
 
   def generate_token(user)
