@@ -1,2 +1,6 @@
+<%= link_to "Home", root_path %>
+<% if current_giver %>
+  <%= link_to current_giver.username, "/users/#{current_giver.username}" %>
+<% end %>
 <%= link_to "Sign In(Giver)", new_giver_session_path %>
 <%= link_to "Sign Out(Giver)", destroy_giver_session_path, method: :delete %>
