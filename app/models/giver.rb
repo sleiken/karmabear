@@ -23,4 +23,8 @@ class Giver < ApplicationRecord
       giver.image_url = auth.info.image
     end
   end
+
+  # def self.from_mobile_omniauth(data)
+  #   where(gid:)
+  # end
 end

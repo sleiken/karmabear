@@ -16,8 +16,7 @@ class Api::AuthController < ApplicationController
   end
 
   def test
-    response = HTTParty.get("https://graph.facebook.com/me/?access_token=EAACEdEose0cBAK7ZBt4Qn38gsvyPG7zrPOaOAX4YSgfGiE1QXtMe6bw2gOSbpUShyGxPKM2hr46rEddN3VIZC6sxRQa8rsV1zI8kBiK4V9goW1ffEFL29dF43PTJNGeyd70L6TaeM0zZArpLLmPCQwiyZBtgT6KQPLPZCnVFDXQZDZD")
-    render :json => response
+    render :json => verify_access_token
   end
 
   private
@@ -37,11 +36,16 @@ class Api::AuthController < ApplicationController
 
   # Used to verify access token passed from FB OAuth server to iOS
   def verify_access_token
-    render status: :forbidden unless params[:token]
+    # render status: :forbidden unless params[:token]
+    #
+    # token = params[:token]
+    response = HTTParty.get("https://graph.facebook.com/me/?access_token=EAAZA1sMymaZCABAAHVzjORg1UkkrBhmDQyoBVZA5HVEBJmOWZANjDgT0EvqSkNEyu5U0WKq3IJ8WZBkni7jaxyOjx1nZBqvJiLQ05JztuaEZC6O0thRqgazm8hjPY0Fuj6z9GquZAeft86OKLEkBShuexmzzPfKByiZBeFC28WS5B7QZDZD")
 
-    token = params[:token]
-    response = HTTParty.get("https://www.facebook.com/v2.8/dialog/oauth?client_id=1818252068416496&response_type=token&redirect_uri=https://www.facebook.com/connect/login_success.html")
-
+    if response.code == 200
+      data = JSON.parse(response.body)
+      # User.
+    end
+    # user
   end
 
   def generate_token(user)
