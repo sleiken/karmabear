@@ -63,3 +63,4 @@ gem 'dotenv'
 gem 'geokit-rails'
 
 gem 'omniauth-facebook'
+gem 'bcrypt'
