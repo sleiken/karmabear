@@ -31,8 +31,12 @@ class Manager::NeedsController < Manager::ApplicationController
   end
 
   def update
-    @need.update(need_params)
-    redirect_to manager_charity_need_url(@charity, @need)
+    if @need.update(need_params)
+      redirect_to manager_charity_need_url(@charity, @need)
+    else
+      @errors = @need.errors.full_messages
+      render "manager/needs#edit"
+    end
   end
 
   def destroy
