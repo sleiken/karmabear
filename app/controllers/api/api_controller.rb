@@ -1,7 +1,8 @@
 class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_user
+  before_action :authorize_user, only: [:giver_profile]
   respond_to :json
+  Dotenv.load
 
   def search
     results = Charity.within(0.8, origin: params[:search])
@@ -32,10 +33,17 @@ class Api::ApiController < ApplicationController
   end
 
   def authorize_user
-    
+    token = generate_token(Giver.find_by(username: "samleiken"))
+    p token
+    p decode_token(token)
   end
 
-  def generate_token
+  def generate_token(user)
+    payload = { user: user.username }
+    JWT.encode payload, ENV['AUTH_SECRET'], 'HS256'
+  end
 
+  def decode_token(token)
+    JWT.decode token, ENV['AUTH_SECRET'], true, { :algorithm => 'HS256' }
   end
 end
