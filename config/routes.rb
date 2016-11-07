@@ -12,14 +12,22 @@ Rails.application.routes.draw do
 
     resources :charities, only: [:show, :edit, :update] do
       resources :givers, only: [:index, :show]
-      resources :events
-      resources :needs
+      resources :events do
+        resources :registrations
+      end
+      resources :needs do
+        resources :donations
+      end
     end
   end
 
   resources :charities, only: [:index, :show] do
-    resources :events, only: [:show]
-    resources :needs, only: [:show]
+    resources :events, only: [:show] do
+      resources :registrations
+    end
+    resources :needs, only: [:show] do
+      resources :donations
+    end
   end
 
   namespace :api, defaults: { format: :json } do
