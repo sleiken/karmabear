@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :charities, only: [:index, :show] do
+    resources :subscriptions, only: [:create, :destroy]
     resources :events, only: [:show] do
       resources :registrations
     end
