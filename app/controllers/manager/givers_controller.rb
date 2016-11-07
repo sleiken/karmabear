@@ -21,4 +21,5 @@ class Manager::GiversController < Manager::ApplicationController
   def find_manager
     @manager = @charity.manager
   end
+
 end
