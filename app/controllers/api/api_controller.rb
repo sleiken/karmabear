@@ -1,6 +1,5 @@
 class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_user, only: [:giver_profile]
   respond_to :json
 
   def search
