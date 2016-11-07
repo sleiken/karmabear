@@ -1,5 +1,6 @@
 class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authorize_user
   respond_to :json
 
   def search
@@ -28,5 +29,13 @@ class Api::ApiController < ApplicationController
   def geocode_address(address)
     geo = Geokit::Geocoders::MultiGeocoder.geocode(address)
     [geo.lat, geo.lng]
+  end
+
+  def authorize_user
+    
+  end
+
+  def generate_token
+
   end
 end
