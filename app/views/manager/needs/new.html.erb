@@ -1,0 +1,33 @@
+<h1>Manager Dashboard: Add New Need</h1>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [:manager, @charity, @need] do |f|%>
+  <div>
+    <%= f.label :item_name %>:
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>:
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :quantity_needed %>:
+    <%= f.text_field :quantity_needed %>
+  </div>
+
+  <div>
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select([["Active", "Active"], ["Inactive", "Inactive"]])%>
+  </div>
+
+  <%= f.submit %>
+<%end%>

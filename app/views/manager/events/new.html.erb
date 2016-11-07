@@ -1,32 +1,38 @@
-<div class="container">
+<h1>Manager Dashboard: Add New Event</h1>
 
-<a href="#" data-toggle="modal" data-target="#proposal-modal">Edit Details</a>
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<div class="modal fade" id="proposal-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Update Charity Details</h1><br>
+<%= form_for [:manager, @charity, @event] do |f|%>
+	<div>
+		<%= f.label :name %>:
+		<%= f.text_field :name %>
+	</div>
 
-						<%=form_for :event, url: manager_charity_events_path(@charity) do |f|%>
-							<%= f.label :name %>:
-			  				<%= f.text_field :name %><br>
+	<div>
+		<%= f.label :starts %>:
+		<%= f.datetime_field :start %>
+	</div>
 
-			  				<%= f.label :description %>:
-			  				<%= f.text_area :description %><br>
+	<div>
+		<%= f.label :ends %>:
+		<%= f.datetime_field :end %>
+	</div>
 
-			  				<%= f.label :start_time %>:
-			  				<%= f.text_area :start %><br>
+	<div>
+		<%= f.label :description %>:
+		<%= f.text_area :description %>
+	</div>
 
-			  				<%= f.label :end_time %>:
-			  				<%= f.text_area :end %><br>
+	<div>
+		<%= f.label :givers_needed %>:
+		<%= f.text_field :givers_needed %>
+	</div>
 
-			  				<%= f.label :givers_needed %>:
-			  				<%= f.text_area :givers_needed %><br>
-
-			  				<%= f.submit %>
-			  			<%end%>
-				</div>
-			</div>
-		  </div>
-	
-</div>
+	<%= f.submit %>
+<%end%>

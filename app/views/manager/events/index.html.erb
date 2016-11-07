@@ -1,0 +1,24 @@
+<h1>Manager Dashboard: Events for <%= @charity.name %></h1>
+
+<div>
+<%= link_to 'Add new event', new_manager_charity_event_path(@charity) %>
+</div>
+
+<% @events.each do |event| %>
+
+  <li>
+    <%= event.name %>
+      <%= link_to 'show', manager_charity_event_path(@charity, event) %>
+      <%= link_to 'update', edit_manager_charity_event_path(@charity, event) %>
+      <%= link_to 'destroy', manager_charity_event_path(@charity, event), method: 'delete' %>
+  </li>
+
+<% end %>
+
+<div>
+  <p> also good to show: # of total attendees? date, time, etc?</p>
+</div>
+
+<div>
+  <%= link_to '< back to dashboard', manager_charity_path(@charity) %>
+</div>
