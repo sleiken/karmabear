@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'users/:username', to: 'givers#show', as: :giver
 
   devise_for :managers
-  devise_for :givers
+  devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
   namespace :manager do
     root 'charities#show'
