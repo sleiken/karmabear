@@ -8,6 +8,8 @@ class CharitiesController < ApplicationController
     @charity = Charity.find(params[:id])
     @events = @charity.events
     @needs = @charity.needs
+    @giver = current_giver
+
   end
 
   private

@@ -5,3 +5,9 @@
 <p>Start:<%= @event.start %></p>
 <p>End:<%= @event.end %></p>
 <p>Givers Needed: <%= @event.givers_needed %></p>
+
+<div>
+  <p>register for this event:
+    <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
+  </p>
+</div>
