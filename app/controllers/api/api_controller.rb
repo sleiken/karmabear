@@ -1,15 +1,15 @@
 class Api::ApiController < ApplicationController
-  skip_before_filter  :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   respond_to :json
 
   def search
     results = Charity.within(0.8, origin: params[:search])
     # location = geocode_address(params[:search])
-    respond_with JSON.pretty_generate(JSON.parse(results.to_json))
+    render :json => JSON.pretty_generate(JSON.parse(results.to_json))
   end
 
   def charities
-    respond_with JSON.pretty_generate(JSON.parse(Charity.all.to_json))
+    render :json => JSON.pretty_generate(JSON.parse(Charity.all.to_json))
   end
 
   def giver_profile
@@ -20,7 +20,7 @@ class Api::ApiController < ApplicationController
 
     response_json = "[#{giver.to_json}, #{charities}, #{events}, #{needs}]"
 
-    respond_with JSON.pretty_generate(JSON.parse(response_json))
+    render :json => JSON.pretty_generate(JSON.parse(response_json))
   end
 
   private

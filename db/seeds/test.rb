@@ -28,7 +28,7 @@ Giver.create!(first_name: "James",
 Need.create!(name: "Blankets",
              description: "Heavy blankets for the fall season!",
              quantity_needed: 10,
-             status: "Active",
+             status: 1,
              charity_id: 1)
 
 
