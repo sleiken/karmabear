@@ -356,7 +356,7 @@ obj57.update_attributes(attributes57)
 attributes58 = {description: "We promote knowledge of the German language abroad and foster international cultural cooperation. We convey a comprehensive image of Germany by providing information about cultural, social and political life in our nation.", 
                 url: "https://www.goethe.de/ins/us/en/index.html", 
                 image_url: "https://pbs.twimg.com/profile_images/433691134708051969/ZQ__HUpz_400x400.png"}
-obj58 = Charity.find_by_id()
+obj58 = Charity.find_by_id(58)
 obj58.update_attributes(attributes58)
 
 #59
