@@ -26,7 +26,7 @@ class Api::AuthController < ApplicationController
     #   decode_token(params[:token])
     # rescue JWT::VerificationError
     #   # Handle Signature verification raised error
-        # return 
+        # return
     # rescue JWT::ExpiredSignature
     #   # Handle expired token, e.g. logout user or deny access
         # return
@@ -41,15 +41,15 @@ class Api::AuthController < ApplicationController
     # render status: :forbidden unless params[:access_token]
     #
     # access_token = params[:access_token]
-    # response = HTTParty.get("https://graph.facebook.com/v2.8/me/?access_token#{access_token}")
-    response = HTTParty.get("https://graph.facebook.com/v2.8/me/?access_token=EAAZA1sMymaZCABAPvu1ebC69Swk3GdOVXXuadShlDtc9sTpIZAkr6WPaCUMu1mnCSEpkD7oHo10JAgQIUpnAzpMu9vxkVwnb2CWN7qobR9vXfQZAX1yhd8cZBukQHZAND4IczZAWMZBmIQrtEs0QfVSiahfMzRHavO7VgwFpgVG6RgZDZD")
+    # response = HTTParty.get("https://graph.facebook.com/v2.8/#{fbid}?fields=first_name,last_name,email,image&access_token#{access_token}")
+    response = HTTParty.get("https://graph.facebook.com/v2.8/10210843918116483?fields=first_name,last_name,email&access_token=EAAZA1sMymaZCABAPvu1ebC69Swk3GdOVXXuadShlDtc9sTpIZAkr6WPaCUMu1mnCSEpkD7oHo10JAgQIUpnAzpMu9vxkVwnb2CWN7qobR9vXfQZAX1yhd8cZBukQHZAND4IczZAWMZBmIQrtEs0QfVSiahfMzRHavO7VgwFpgVG6RgZDZD")
 
     if response.code == 200
       data = JSON.parse(response.body)
       # Login /register user
       # return generate_token(user)
     end
-    response.headers
+    response
   end
 
   def generate_token(user)
