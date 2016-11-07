@@ -1,9 +1,10 @@
 class Api::ApiController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
   respond_to :json
 
   def search
     results = Charity.within(0.8, origin: params[:search])
-    location = geocode_address(request.body.search)
+    # location = geocode_address(params[:search])
     respond_with JSON.pretty_generate(JSON.parse(results.to_json))
   end
 

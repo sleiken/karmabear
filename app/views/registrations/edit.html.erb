@@ -1,0 +1,18 @@
+<h1>Giver View: Register Hours for <%= @event.name %></h1>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@charity, @event, @registration], method: 'put' do |f|%>
+  <div>
+    <%= f.label "How many hours will you give?" %>:
+    <%= f.text_field :pending_hours, value: @registration.pending_hours %>
+  </div>
+
+  <%= f.submit %>
+<%end%>

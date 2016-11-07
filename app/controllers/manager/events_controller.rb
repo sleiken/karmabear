@@ -1,6 +1,6 @@
 class Manager::EventsController < Manager::ApplicationController
-	before_action :charity
-	before_action :event, only: [:edit, :update, :destroy]
+	before_action :find_charity
+	before_action :find_event, only: [:edit, :update, :destroy]
 
 	def index
 		@events = charity.events
@@ -49,11 +49,11 @@ class Manager::EventsController < Manager::ApplicationController
 		params.require(:event).permit(:name, :description, :start, :end, :givers_needed)
 	end
 
-	def charity
+	def find_charity
 		@charity ||= Charity.find(params[:charity_id])
 	end
 
-	def event
+	def find_event
 		@event ||= Event.find(params[:id])
 	end
 end

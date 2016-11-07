@@ -1,5 +1,16 @@
 <h1>Show Page for <%= @charity.name %></h1>
 
+<div>
+  <% if @giver.followed_charities.include?(@charity) %>
+    <h2>You are following this charity:
+    </h2>
+  <% else %>
+    <h2>You are not following this charity:
+      <%= link_to 'follow', charity_subscriptions_path(@charity), method: 'post' %>
+    </h2>
+  <% end %>
+</div>
+
 <h2>Events:</h2>
 
 <% @events.each do |event| %>
