@@ -7,8 +7,7 @@ class Manager::NeedsController < Manager::ApplicationController
   end
 
   def show
-    #Display this charity from link
-    @need = @charity.needs.find(params[:id])
+    need
   end
 
   def new

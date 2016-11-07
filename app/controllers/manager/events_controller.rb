@@ -3,12 +3,11 @@ class Manager::EventsController < Manager::ApplicationController
 	before_action :event, only: [:edit, :update, :destroy]
 
 	def index
-		@events = @charity.events
+		@events = charity.events
 	end
 
 	def show
-		#Display this charity from link
-		@event = @charity.events.find(params[:id])
+		event
 	end
 
 	def new
