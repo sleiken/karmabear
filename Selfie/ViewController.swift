@@ -39,14 +39,14 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     cllocationManager.startUpdatingLocation()
     mapView.showsUserLocation = true
     
-    let httpRequest = httpHelper.buildRequest("charities", method: "GET")
-    
-    httpHelper.sendCharitySearchRequest(httpRequest, completion: {(response:[CLLocationCoordinate2D]!, error: NSError!) in
-        
-        guard error == nil else {
-            return
-        }
-    })
+//    let httpRequest = httpHelper.buildRequest("charities", method: "GET")
+//    
+//    httpHelper.sendCharitySearchRequest(httpRequest, completion: {(response:[CLLocationCoordinate2D]!, error: NSError!) in
+//        
+//        guard error == nil else {
+//            return
+//        }
+//    })
     
     }
     
@@ -130,6 +130,24 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         }
         
         return pinView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView{
+            
+            view.layer.cornerRadius = 0.5
+            view.backgroundColor = UIColor.grayColor()
+            
+            let linkUrl = view.annotation!.subtitle!
+//            if linkUrl!.rangeOfString("http") != nil{
+//                if let link = view.annotation?.subtitle!{
+//                    UIApplication.sharedApplication().openURL(NSURL(string: "\(link)")!)
+        }
+        else{
+                dispatch_async(dispatch_get_main_queue(),{
+//                    self.showAlert("Invalid", alertMessage: "This link is invalid", actionTitle: "Try Another")
+                })
+        }
     }
   
   func displaSigninView () {
@@ -222,11 +240,19 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                 
                 var charityLocations: [CLLocationCoordinate2D] = []
                 for coordinate in responseDict!{
+                    
+                    if !CharityModel.charityData.isEmpty{
+                        CharityModel.charityData.removeAll()
+                    }
+                    
+                    CharityModel.charityData.append(CharityStruct(dictionary: coordinate as! [String : AnyObject]))
+                    print(CharityModel.charityData)
+                    
                     let json = coordinate as? [String:AnyObject]
                     let coordinatesToAppend = CLLocationCoordinate2D(latitude: (json!["lat"]! as? Double)!, longitude: (json!["lng"]! as? Double)!)
                     charityLocations.append(coordinatesToAppend)
                 }
-                print(charityLocations)
+                print(responseDict)
                 self.populateMapData(charityLocations)
                 
             } catch let error as NSError {
