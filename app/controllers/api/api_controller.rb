@@ -3,7 +3,7 @@ class Api::ApiController < ApplicationController
 
   def search
     results = Charity.within(0.8, origin: params[:search])
-    location = geocode_address(request.body.search)
+    # location = geocode_address(params[:search])
     respond_with JSON.pretty_generate(JSON.parse(results.to_json))
   end
 
