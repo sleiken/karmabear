@@ -45,11 +45,11 @@ needs partial:
 
 </div>
 
-<!-- buttons! -->
+<!-- buttons! trigger modals: -->
 <div class="events-button-container">
   <h2>add event button</h2>
 
-	<li>
+	<li>(modal for: events#new)
     <%= link_to 'Add Event (events/new)', new_manager_charity_event_path(@charity) %>
   </li>
 </div>
@@ -57,7 +57,7 @@ needs partial:
 <div class="needs-container">
   <h2>add need button:</h2>
 
-  <li>
+  <li>(modal for: needs#new)
     <%= link_to 'Add Need (needs/index)', new_manager_charity_need_path(@charity) %>
   </li>
 </div>
@@ -65,7 +65,7 @@ needs partial:
 <div class="needs-container">
   <h2>view followers button</h2>
 
-  <li>
+  <li>(modal for: givers#index)
     <%= link_to 'View Followers (givers/index)', manager_charity_givers_path(@charity) %>
   </li>
 </div>
