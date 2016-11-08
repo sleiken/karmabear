@@ -1,16 +1,11 @@
 class Manager::DonationsController < Manager::ApplicationController
-  def index
-
-  end
+  before_action :find_charity
+  before_action :find_donation
 
   def show
-    @donation = Donation.find(params[:id])
-    @charity = Charity.find(params[:charity_id])
   end
 
   def update
-    @donation = Donation.find(params[:id])
-    @charity = Charity.find(params[:charity_id])
     @giver = @donation.giver
 
     # put this in a helper method!
@@ -25,12 +20,20 @@ class Manager::DonationsController < Manager::ApplicationController
   end
 
   def destroy
-    @donation = Donation.find(params[:id])
-    @charity = Charity.find(params[:charity_id])
     @donation.destroy
      # after manager clicks "deny":
      # destroy donation object
      # close modal with js
     redirect_to manager_charity_url(@charity)
+  end
+
+  private
+
+  def find_charity
+    @charity = Charity.find(params[:charity_id])
+  end
+
+  def find_donation
+    @donation = Donation.find(params[:id])
   end
 end
