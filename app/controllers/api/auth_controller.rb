@@ -119,10 +119,8 @@ class Api::AuthController < ApplicationController
     render nothing: :true, status: :forbidden unless params[:access_token]
     begin
       @token_payload = decode_token(params[:token])
-    rescue JWT::VerificationError
-      render status: :forbidden
-    rescue JWT::ExpiredSignature
-      render status: :forbidden
+    rescue
+      render nothing: :true, status: :forbidden
     end
   end
 
