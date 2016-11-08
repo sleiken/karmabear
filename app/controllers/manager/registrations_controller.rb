@@ -21,13 +21,16 @@ class Manager::RegistrationsController < Manager::ApplicationController
     # update user points
     # close modal with js
     # redirect for testing purposes:
-      redirect_to '/'
+    redirect_to manager_charity_url(@charity)
   end
 
   def destroy
+    @registration = Registration.find(params[:id])
+    @charity = Charity.find(params[:charity_id])
+    @registration.destroy
      # after manager clicks "deny":
      # destroy registration object
      # close modal with js
-     redirect_to '/'
+    redirect_to manager_charity_url(@charity)
   end
 end

@@ -21,13 +21,16 @@ class Manager::DonationsController < Manager::ApplicationController
     # after manager clicks "approve":
     # update user points on user object
     # close modal with js
-    redirect_to '/'
+    redirect_to manager_charity_url(@charity)
   end
 
   def destroy
+    @donation = Donation.find(params[:id])
+    @charity = Charity.find(params[:charity_id])
+    @donation.destroy
      # after manager clicks "deny":
      # destroy donation object
      # close modal with js
-    redirect_to '/'
+    redirect_to manager_charity_url(@charity)
   end
 end
