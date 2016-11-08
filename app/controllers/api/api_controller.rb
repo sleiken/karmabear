@@ -1,6 +1,7 @@
 class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token
   respond_to :json
+  Dotenv.load
 
   def search
     results = Charity.within(0.8, origin: params[:search])
@@ -14,7 +15,8 @@ class Api::ApiController < ApplicationController
   private
 
   def geocode_address(address)
-    geo = Geokit::Geocoders::MultiGeocoder.geocode(address)
+    Geokit::Geocoders::GoogleGeocoder.api_key = ENV['GOOGLE_GEOCODER_KEY']
+    geo = Geokit::Geocoders::GoogleGeocoder.geocode(address)
     [geo.lat, geo.lng]
   end
 end
