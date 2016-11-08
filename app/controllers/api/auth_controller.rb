@@ -18,8 +18,6 @@ class Api::AuthController < ApplicationController
   end
 
   def verify
-    render status: :forbidden unless params[:id]
-
     response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
 
     data = JSON.parse(response.body)
@@ -30,9 +28,6 @@ class Api::AuthController < ApplicationController
 
   def test
     params[:token] = generate_token(Giver.first)
-    # decoded = decode_token(token)
-    #"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiSkRlYW4iLCJleHAiOjE0Nzg2MDA1MzJ9.OsY7mJvG-LRKCaqBMZle2wLroFBeldfO80u2KDsC0Ho"
-    params[:token] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidHlkYW5pZWxzIiwiZXhwIjoxNDc4NjAwNDcxfQ.i4VMbPlYKwjvxHIgGLGu5qe2XAz4E0xMOa36fVFR6Sc"
     authenticate_token
     decoded = @token_payload[0]['user']
     render :json => "#{params[:token]}, #{Giver.find_by(username: decoded).email}"
@@ -41,6 +36,7 @@ class Api::AuthController < ApplicationController
   private
 
   def authenticate_token
+    render status: :forbidden unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError
