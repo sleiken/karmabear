@@ -22,12 +22,30 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def edit
+    @registration = Registration.find(params[:id])
+  end
+
   def update
-    #update pending hours
+    @registration = Registration.find(params[:id])
+    @registration.update(registration_params)
+
+    if @registration.save
+      redirect_to charity_event_url(@charity, @event)
+    else
+      @errors = @registration.errors.full_messages
+      render 'edit'
+    end
   end
 
   def destroy
-    # delete registration record
+    @registration = Registration.find(params[:id])
+    @registration.destroy!
+    @event.givers_needed += 1
+    @event.save!
+
+
+    redirect_to charity_event_url(@charity, @event)
   end
 
   private

@@ -16,8 +16,19 @@
  <!-- if user not signed in:
   display: participate button: trigger facebook oath
 -->
-<div>
-  <p>register for this event:
-    <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
-  </p>
-</div>
+
+<% if @giver %>
+  <% if @giver.registrations.include?(@registration) %>
+    <%= link_to 'edit registration', edit_charity_event_registration_path(@charity, @event, @registration) %> |
+    <%= link_to 'cancel registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete' %>
+    </h2>
+  <% else %>
+    <h2>Registered for this event:
+      <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
+    </h2>
+  <% end %>
+<% else %>
+  <h2>Follow:
+    <%= link_to "register", giver_facebook_omniauth_authorize_path %>
+  </h2>
+<% end %>
