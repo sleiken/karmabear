@@ -1,3 +1,5 @@
 class Location < ApplicationRecord
-  belongs_to :giver 
+  belongs_to :giver
+
+  validates :giver, presence: true
 end

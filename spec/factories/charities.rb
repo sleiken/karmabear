@@ -1,9 +1,12 @@
+require 'date'
+
 FactoryGirl.define do
   factory :charity do
     name { Faker::Name.name }
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
-    address { Faker::Address.street_address }
+    address { [Faker::Address.street_address] }
+    phone { Faker::PhoneNumber.phone_number }
 
     trait :in_the_future do
       published_at { 2.days.from_now }
@@ -19,7 +22,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |charity, evaluator|
-        FactoryGirl.create_list(:event, evaluator.events_count, charity: charity)
+        create_list(:event, evaluator.events_count, charity: charity, description: "Test", start: DateTime.now, end: 2.days.from_now, givers_needed: 1)
       end
     end
 
@@ -29,7 +32,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |charity, evaluator|
-        FactoryGirl.create_list(:need, evaluator.needs_count, charity: charity)
+        create_list(:need, evaluator.needs_count, charity: charity, description: "Test", quantity_needed: 1)
       end
     end
 

@@ -3,4 +3,5 @@ class Subscription < ApplicationRecord
   belongs_to :giver
 
   validates :giver, uniqueness: { scope: :charity }
+  validates :giver, :charity, presence: true
 end
