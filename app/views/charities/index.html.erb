@@ -4,19 +4,61 @@
 	<div id="map" style="height: 700px"></div>
 </div>
 
-<div class="col-md-2">
+<div class="col-md-4">
 	<%= render partial: 'partials/searchresults' %>
 </div>
 
-
 <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+		disableDefaultUI: true,
+    center: {lat: <%= @location[0] %>, lng: <%= @location[1] %>},
+    mapTypeControl: false,
+		panControl: false,
+		zoomControl: false,
+		streetViewControl: false
+  });
+
+	var marker = new google.maps.Marker({
+  	map: map,
+  	icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+  	position: {lat: <%= @location[0] %>, lng: <%= @location[1] %>},
+  	animation: google.maps.Animation.DROP
+  });
+
+  var markers = []
+
+  <%@results.each do |result|%>
+		var infoWindow = new google.maps.InfoWindow();
+
+		var location = {lat:<%=result.lat%>, lng:<%=result.lng%>}
+
+    var marker = new google.maps.Marker({
+    	map: map,
+    	// icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+    	position: location,
+    	animation: google.maps.Animation.DROP
+    });
+
+    markers.push(marker);
+
+    google.maps.event.addListener(marker, 'click', function() {
+      	infoWindow.setContent(
+      		"<%=result.name%> <br><%=result.description%><br><br><br><a>Follow</a><a href=<%=charity_path(result)%>>Details</a>"
+
+      		);
+      	infoWindow.open(map, this);
+    });
+  <%end%>
+
+  var markerCluster = new MarkerClusterer(map, markers,
+    {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+	);
+}
 </script>
-
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9UVAh5qbkBDuvYU8EMSwWR6L9uM9Nurg&callback=initMap">
-    </script>
-
-
-<!--add link to redirect to specific charity  -->
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9UVAh5qbkBDuvYU8EMSwWR6L9uM9Nurg&callback=initMap">
+</script>
