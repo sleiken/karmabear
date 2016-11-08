@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :need do
     name { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
+    quantity_needed { Faker::Number.number(3) }
 
     association :charity
 
