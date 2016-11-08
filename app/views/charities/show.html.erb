@@ -1,18 +1,27 @@
 <h1>Show Page for <%= @charity.name %></h1>
 
 <div>
+<!-- would probably be good to clean this up or make this a partial so can be used in the map pin info box: -->
+<% if @giver %>
   <% if @giver.followed_charities.include?(@charity) %>
     <h2>You are following this charity:
+      <%= link_to 'unfollow', charity_subscription_path(@charity, @subscription), method: 'delete' %>
     </h2>
   <% else %>
     <h2>You are not following this charity:
       <%= link_to 'follow', charity_subscriptions_path(@charity), method: 'post' %>
     </h2>
   <% end %>
+<% else %>
+  <h2>Follow:
+    <%= link_to "follow", giver_facebook_omniauth_authorize_path %>
+  </h2>
+<% end %>
 </div>
 
 <h2>Events:</h2>
 
+<!-- this will be an events list partial: -->
 <% @events.each do |event| %>
   <li>
     <%= event.name %>
@@ -21,7 +30,7 @@
 <% end %>
 
 
-
+<!-- this will be an needs list partial:  -->
 <h2>Needs:</h2>
 
 <% @needs.each do |need| %>

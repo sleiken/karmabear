@@ -10,8 +10,9 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription.find(params[:id])
+    @subscription = Subscription.find(params[:id])
     @subscription.destroy!
+    @charity = Charity.find(params[:charity_id])
 
     redirect_to charity_url(@charity)
   end
