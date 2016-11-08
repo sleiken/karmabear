@@ -66,7 +66,40 @@ class Api::AuthController < ApplicationController
   end
 
   def donate
-    
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    need = Need.find(params[:id])
+    quantity = params[:quantity] || 1
+
+    begin
+      Donation.create!(giver: giver, need: need, quantity_given: quantity)
+    rescue ActiveRecord::RecordInvalid
+      response = "error".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      response = "success".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    end
+  end
+
+  def register
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    event = Event.find(params[:id])
+    old_registration = Registration.find_by(giver: giver, event: event)
+
+    if old_registration
+      response = "already_registered".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      begin
+        Registration.create!(giver: giver, need: need)
+      rescue ActiveRecord::RecordInvalid
+        response = "error".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      else
+        response = "success".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      end
+    end
   end
 
   def test
