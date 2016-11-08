@@ -123,7 +123,7 @@ class Api::AuthController < ApplicationController
   private
 
   def verify_token
-    render nothing: :true, status: :forbidden unless params[:access_token]
+    render nothing: :true, status: :forbidden unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
     rescue
