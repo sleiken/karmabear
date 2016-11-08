@@ -10,30 +10,33 @@ Rails.application.routes.draw do
   namespace :manager do
     root 'charities#show'
 
-    resources :charities, only: [:show, :edit, :update] do
+    resources :charities, only: [:show] do
       resources :givers, only: [:index, :show]
       resources :events do
-        resources :registrations
+        resources :givers, only: [:index, :show]
+        resources :registrations, only: [:index, :show, :update, :destroy]
       end
       resources :needs do
-        resources :donations
+        resources :givers, only: [:index, :show]
+        resources :donations, only: [:index, :show, :update, :destroy]
       end
     end
   end
 
   resources :charities, only: [:index, :show] do
     resources :subscriptions, only: [:create, :destroy]
-    resources :events, only: [:show] do
-      resources :registrations
+    resources :events, only: [:index, :show] do
+      resources :registrations, except: :index
     end
-    resources :needs, only: [:show] do
-      resources :donations
+    resources :needs, only: [:index, :show] do
+      resources :donations, except: :index
     end
   end
 
   namespace :api, defaults: { format: :json } do
     post 'search', to: 'api#search'
     get 'charities', to: 'api#charities'
-    get 'giver_profile', to: 'api#giver_profile'
+    post 'auth/verify', to: 'auth#verify'
+    get 'auth/giver_profile', to: 'auth#giver_profile'
   end
 end

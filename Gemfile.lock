@@ -242,6 +242,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bcrypt
   better_errors
   binding_of_caller
   bootstrap (~> 4.0.0.alpha5)
@@ -257,6 +258,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.5)
   jquery-rails
+  jwt
   listen (~> 3.0.5)
   omniauth-facebook
   pg (~> 0.18)
