@@ -37,8 +37,10 @@ Rails.application.routes.draw do
     post 'search', to: 'api#search'
     get 'charities', to: 'api#charities'
     post 'auth/verify', to: 'auth#verify'
-    get 'auth/giver_profile', to: 'auth#giver_profile'
-    get 'auth/test', to: 'auth#test'
+    post 'auth/giver', to: 'auth#giver'
     post 'auth/follow', to: 'auth#follow'
+    post 'auth/charity', to:'auth#charity'
+    
+    get 'auth/test', to: 'auth#test'
   end
 end

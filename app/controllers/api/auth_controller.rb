@@ -1,10 +1,12 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :verify_token, only: [:giver_profile, :follow]
+  before_action :verify_token, only: [:giver, :follow, :charity]
   respond_to :json
   Dotenv.load
 
   def verify
+    render status: :forbidden unless params[:access_token] && params[:id]
+
     response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
 
     data = JSON.parse(response.body)
@@ -13,15 +15,24 @@ class Api::AuthController < ApplicationController
     render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
   end
 
-  def giver_profile
-    render status: :forbidden unless params[:token]
-
+  def giver
     giver = Giver.find_by(username: @token_payload[0]['user'])
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
 
     response_json = {giver: giver, charities: charities, events: events, needs: needs}.to_json
+
+    render :json => JSON.pretty_generate(JSON.parse(response_json))
+  end
+
+  def charity
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    charity = Charity.find(params[:id])
+    events = charity.events
+    needs = charity.needs
+
+    response_json = {charity: charity, events: events, needs: needs}.to_json
 
     render :json => JSON.pretty_generate(JSON.parse(response_json))
   end
