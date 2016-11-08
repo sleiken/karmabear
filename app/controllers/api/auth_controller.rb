@@ -16,7 +16,7 @@ class Api::AuthController < ApplicationController
   end
 
   def verify
-    render status: :forbidden unless params[:id]
+    # render status: :forbidden unless params[:id]
 
     user_data = { id: params[:id], email: params[:email], first_name: params[:first_name], last_name: params[:last_name] }
     user = Giver.from_mobile_omniauth(JSON.parse(user_data))
