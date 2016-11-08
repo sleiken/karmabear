@@ -14,8 +14,8 @@ class Giver < ApplicationRecord
   has_many :followed_charities, through: :subscriptions, source: :charity
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, gid: auth.uid).first_or_create do |giver|
-      giver.gid = auth.uid
+    where(provider: auth.provider, fbid: auth.uid).first_or_create do |giver|
+      giver.fbid = auth.uid
       giver.email = auth.info.email
       giver.first_name = /([^\s]+)/.match(auth.info.name)[0]
       giver.last_name = /(?:\S+ ){1}(\S+)/.match(auth.info.name)[1]
@@ -26,8 +26,8 @@ class Giver < ApplicationRecord
   end
 
   def self.from_mobile_omniauth(auth)
-    where(gid: auth['id']).first_or_create do |giver|
-      # giver.gid = auth['id']
+    where(fbid: auth['id']).first_or_create do |giver|
+      giver.fbid = auth['id']
       giver.email = auth['email']
       giver.first_name = auth['first_name']
       giver.last_name = auth['last_name']
