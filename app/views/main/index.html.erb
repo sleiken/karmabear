@@ -1,8 +1,33 @@
-<%= form_tag charities_path, method: :get, class: "" do %>
-  <%= text_field_tag(
-      :search,
-      params[:search],
-      placeholder: "Search",
-      class: ""
-  ) %>
-<% end %>
+<div class="jumbotron">
+	<div class="container">
+		<h1 class="text-center">Giving, but convenient.</h1>
+		<hr class="my-2">
+		<div class="col-sm-6 col-md-offset-3">
+			<%= form_tag charities_path, method: :get, class: "form-group" do %>
+			  <%= text_field_tag(
+		      :search,
+		      params[:search],
+		      placeholder: "Search",
+		      class: "form-control"
+			  ) %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<section class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h3 class="text-center">Heading</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis nesciunt error doloribus aliquam temporibus dicta quam odit sint sit autem laudantium neque modi nulla, delectus qui asperiores commodi, quaerat, eos molestiae velit. Inventore voluptates ratione vero nostrum reprehenderit exercitationem expedita magnam, incidunt assumenda libero necessitatibus tempore molestiae fugiat odio sit.</p>
+		</div>
+		<div class="col-md-4">
+			<h3 class="text-center">Heading</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dolore dicta dignissimos numquam suscipit quas a sequi, dolorum, in placeat voluptatem modi labore explicabo tempora eum asperiores. Optio ipsum reiciendis distinctio, iure sed ducimus, rem tempore voluptatibus, dicta quod quisquam aliquam, perferendis praesentium quaerat excepturi beatae? Non pariatur consectetur, reprehenderit.</p>
+		</div>
+		<div class="col-md-4">
+			<h3 class="text-center">Heading</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi quam aperiam animi dolorem autem perferendis itaque in quo laboriosam, sit, veritatis, optio sed laborum officia, quos atque fugit quidem inventore error. Culpa commodi enim quos facilis, quaerat molestias autem, hic laudantium veritatis ipsam dolorum libero distinctio nam eos totam laborum?</p>
+		</div>
+	</div>
+</section>

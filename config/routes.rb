@@ -12,34 +12,40 @@ Rails.application.routes.draw do
   namespace :manager do
     root 'charities#show'
 
-    resources :charities, only: [:show] do
-      resources :givers, only: [:index, :show]
+    resources :charities,         only: [:show] do
+      resources :givers,          only: [:index, :show]
       resources :events do
-        resources :givers, only: [:index, :show]
+        resources :givers,        only: [:index, :show]
         resources :registrations, only: [:index, :show, :update, :destroy]
       end
       resources :needs do
-        resources :givers, only: [:index, :show]
-        resources :donations, only: [:index, :show, :update, :destroy]
+        resources :givers,        only: [:index, :show]
+        resources :donations,     only: [:index, :show, :update, :destroy]
       end
     end
   end
 
-  resources :charities, only: [:index, :show] do
-    resources :subscriptions, only: [:create, :destroy]
-    resources :events, only: :show do
+  resources :charities,         only: [:index, :show] do
+    resources :subscriptions,   only: [:create, :destroy]
+    resources :events,          only: :show do
       resources :registrations, except: :index
     end
-    resources :needs, only: :show do
-      resources :donations, except: :index
+    resources :needs,           only: :show do
+      resources :donations,     except: :index
     end
   end
 
   namespace :api, defaults: { format: :json } do
-    post 'search', to: 'api#search'
-    get 'charities', to: 'api#charities'
-    post 'auth/verify', to: 'auth#verify'
-    get 'auth/giver_profile', to: 'auth#giver_profile'
+    get 'charities',      to: 'api#charities'
+    post 'search',        to: 'api#search'
+    post 'auth/verify',   to: 'auth#verify'
+    post 'auth/giver',    to: 'auth#giver'
+    post 'auth/charity',  to: 'auth#charity'
+    post 'auth/follow',   to: 'auth#follow'
+    #TODO:
+    post 'auth/donate',   to: 'auth#donate'
+    post 'auth/register', to: 'auth#register'
+
     get 'auth/test', to: 'auth#test'
   end
 end
