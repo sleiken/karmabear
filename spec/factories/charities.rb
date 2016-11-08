@@ -41,7 +41,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |charity, evaluator|
-        FactoryGirl.create_list(:subscription, evaluator.subscriptions_count, charity: charity)
+        create_list(:subscription, evaluator.subscriptions_count, charity: charity)
       end
     end
   end

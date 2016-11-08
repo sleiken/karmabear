@@ -23,7 +23,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |event, evaluator|
-        FactoryGirl.create_list(:registration, evaluator.registrations_count, event: event)
+        create_list(:registration, evaluator.registrations_count, event: event)
       end
     end
   end
