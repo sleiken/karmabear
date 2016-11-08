@@ -26,8 +26,8 @@ class Giver < ApplicationRecord
   end
 
   def self.from_mobile_omniauth(auth)
-    where(gid: auth['id'].to_i).first_or_create do |giver|
-      giver.gid = auth['id'].to_i
+    where(gid: auth['id']).first_or_create do |giver|
+      giver.gid = auth['id']
       giver.email = auth['email']
       giver.first_name = auth['first_name']
       giver.last_name = auth['last_name']
