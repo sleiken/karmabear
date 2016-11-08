@@ -1,6 +1,11 @@
 FactoryGirl.define do
   factory :event do
     name { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
+    start { DateTime.now }
+    add_attribute :end, 2.days.from_now
+    givers_needed { Faker::Number.number(3) }
+
 
     association :charity
 

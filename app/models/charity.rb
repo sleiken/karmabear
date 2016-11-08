@@ -15,5 +15,5 @@ class Charity < ApplicationRecord
   has_many   :volunteers,    through: :events,        source: :givers
   has_many   :donors,        through: :needs,         source: :givers
 
-  validates :name, :lat, :lng, :address, :phone, presence: true
+  validates :name, :lat, :lng, :address, presence: true
 end

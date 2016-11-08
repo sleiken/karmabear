@@ -6,7 +6,6 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     address { [Faker::Address.street_address] }
-    phone { Faker::PhoneNumber.phone_number }
 
     trait :in_the_future do
       published_at { 2.days.from_now }
