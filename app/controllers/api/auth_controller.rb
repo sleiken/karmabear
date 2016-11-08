@@ -65,6 +65,10 @@ class Api::AuthController < ApplicationController
     end
   end
 
+  def donate
+    
+  end
+
   def test
     params[:token] = generate_token(Giver.first)
     verify_token

@@ -38,8 +38,9 @@ Rails.application.routes.draw do
     post 'search',        to: 'api#search'
     post 'auth/verify',   to: 'auth#verify'
     post 'auth/giver',    to: 'auth#giver'
-    post 'auth/follow',   to: 'auth#follow'
     post 'auth/charity',  to: 'auth#charity'
+    post 'auth/follow',   to: 'auth#follow'
+    #TODO:
     post 'auth/donate',   to: 'auth#donate'
     post 'auth/register', to: 'auth#register'
 
