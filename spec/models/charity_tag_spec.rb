@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CharityTag do
+
   it "is valid with valid attributes" do
     expect(create(:charity_tag)).to be_valid
   end

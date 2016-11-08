@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :need do
     name { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
+    quantity_needed { Faker::Number.number(3) }
 
     association :charity
 
@@ -18,7 +20,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |need, evaluator|
-        FactoryGirl.create_list(:donation, evaluator.donations_count, need: need)
+        create_list(:donation, evaluator.donations_count, need: need)
       end
     end
   end

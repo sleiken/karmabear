@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :charity_tag do
+
     association :tag
     association :charity
 
