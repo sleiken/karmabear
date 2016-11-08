@@ -1,13 +1,13 @@
 class Manager::NeedsController < Manager::ApplicationController
   before_action :charity
-  before_action :need, only: [:edit, :update, :destroy]
+  before_action :need, only: [:show, :edit, :update, :destroy]
 
   def index
     @needs = @charity.needs
   end
 
   def show
-    need
+    @givers = @need.givers
   end
 
   def new

@@ -21,14 +21,14 @@ RSpec.describe Charity do
     expect(charity).to be_valid
   end
 
-  it "is valid with several subscriptions" do
-    subscriptions_count = 6
-    charity = create(:charity, :with_subscriptions, subscriptions_count: subscriptions_count)
-
-    expect(charity.subscriptions.length).to eq(subscriptions_count)
-    expect(charity.followers.length).to eq(subscriptions_count)
-    expect(charity).to be_valid
-  end
+  # it "is valid with several subscriptions" do
+  #   subscriptions_count = 6
+  #   charity = create(:charity, :with_subscriptions, subscriptions_count: subscriptions_count)
+  #
+  #   expect(charity.subscriptions.length).to eq(subscriptions_count)
+  #   expect(charity.followers.length).to eq(subscriptions_count)
+  #   expect(charity).to be_valid
+  # end
 
   it "is invalid with nil name" do
     charity = build(:charity, name: nil)

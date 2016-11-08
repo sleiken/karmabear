@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'users/:username', to: 'givers#show', as: :giver
 
+  get 'charities/apply', to: 'charities#verification'
+
   devise_for :managers
   devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
@@ -40,7 +42,6 @@ Rails.application.routes.draw do
     post 'auth/giver',    to: 'auth#giver'
     post 'auth/charity',  to: 'auth#charity'
     post 'auth/follow',   to: 'auth#follow'
-    #TODO:
     post 'auth/donate',   to: 'auth#donate'
     post 'auth/register', to: 'auth#register'
 

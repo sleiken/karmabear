@@ -1,0 +1,11 @@
+<% if @events.empty? %>
+  no events
+<% else %>
+  <ul>
+    <% @events.each do |event| %>
+      <li>
+        <%= event.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

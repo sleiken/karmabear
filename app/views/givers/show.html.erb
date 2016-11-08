@@ -26,6 +26,6 @@
 
 <ul>
 <% @needs.each do |need| %>
-  <li><%= need.name %> | Given: <%= need.donations.map { |d| d.quantity_given} %></li>
+  <li><%= need.name %> | Given: <%= need.donations.map { |d| d.quantity_pending} %></li>
 <% end %>
 </ul>
