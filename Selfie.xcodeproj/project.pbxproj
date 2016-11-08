@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100447C91DD263740086CB37 /* CharityDetailViewController.swift */; };
 		10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DB1DD000F10003CB87 /* MapKit.framework */; };
-		10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */; };
 		10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E11DD10E1B0003CB87 /* CharityModel.swift */; };
 		10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */; };
 		10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */; };
@@ -45,9 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		100447C91DD263740086CB37 /* CharityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityDetailViewController.swift; sourceTree = "<group>"; };
 		10FF59DB1DD000F10003CB87 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationConvenience.swift; sourceTree = "<group>"; };
 		10FF59E11DD10E1B0003CB87 /* CharityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityModel.swift; sourceTree = "<group>"; };
 		10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityStruct.swift; sourceTree = "<group>"; };
 		10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */,
 				D37383E619B07A75008C2DB6 /* ViewController.swift */,
 				10FF5A1B1DD18B5F0003CB87 /* CharityLocTableView.swift */,
-				10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */,
+				100447C91DD263740086CB37 /* CharityDetailViewController.swift */,
 				C1F59B1619E4084C0083F33B /* KeychainAccess.swift */,
 				D37383E419B07A75008C2DB6 /* AppDelegate.swift */,
 				10FF59E11DD10E1B0003CB87 /* CharityModel.swift */,
@@ -298,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C186CA1619EA92C600E3B500 /* DetailViewController.swift in Sources */,
+				100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */,
 				10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */,
 				C1B77A6C1A1B98DB0024857B /* HTTPHelper.swift in Sources */,
 				10FF5A1C1DD18B5F0003CB87 /* CharityLocTableView.swift in Sources */,
@@ -309,7 +310,6 @@
 				D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */,
 				10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */,
 				C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */,
-				10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */,
 				C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

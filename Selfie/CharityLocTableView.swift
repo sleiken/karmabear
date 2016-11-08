@@ -12,8 +12,9 @@ class CharityLocTableView: UITableView, UITableViewDelegate {
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         let hitView = super.hitTest(point, withEvent: event)
-        if (point.y<0){
-            return nil
+        if (point.y<0)
+        {
+            return hitView
         }
         return hitView
     }   

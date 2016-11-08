@@ -10,6 +10,7 @@ import Foundation
 
 struct CharityStruct {
     
+    var id: Int
     var name: String
     var address: NSArray
     var latitude: Double
@@ -20,6 +21,7 @@ struct CharityStruct {
     
     init(dictionary: [String : AnyObject]) {
 
+        self.id = (dictionary["id"] as? Int)!
         self.name = (dictionary["name"] as? String)!
         self.address = (dictionary["address"] as? NSArray)!
         self.latitude = (dictionary["lat"] as? Double)!

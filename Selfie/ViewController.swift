@@ -30,6 +30,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
   
 let cllocationManager: CLLocationManager = CLLocationManager()
   var httpHelper = HTTPHelper()
+    var LocArr: NSMutableArray = NSMutableArray()
+    var charityId: Int?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -220,6 +222,7 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                 }
                 
                 for coordinate in responseDict!{
+                    print(coordinate)
                     
                     CharityModel.charityData.append(CharityStruct(dictionary: coordinate as! [String : AnyObject]))
                     
@@ -232,12 +235,14 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                     self.populateMapData(charityLocations)
                 })
                 
-                self.tableView.reloadData()
-                
             } catch let error as NSError {
                 print(error)
             }
             
+        })
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.tableView.reloadData()
         })
     }
     
@@ -248,22 +253,54 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(CharityModel.charityData.count)
-        return CharityModel.charityData.count
+        var count = 0
+        if CharityModel.charityData.count <= 0 {
+            count = 5
+        }
+        else{
+            count = CharityModel.charityData.count
+        }
+        
+        return count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell? = self.tableView!.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?
         
-        print(CharityModel.charityData)
-        let charity = CharityModel.charityData[indexPath.row]
         
-        cell?.textLabel?.text = charity.name
+        if CharityModel.charityData.count == 0 {
+            cell?.textLabel?.text = "No Data"
+        }
+        else {
+            print("New Charity Data")
+            print(CharityModel.charityData[indexPath.row])
+            cell?.textLabel?.text = CharityModel.charityData[indexPath.row].name
+        }
         
         return cell!
-        
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        if CharityModel.charityData.count != 0 {
+            let selectedCharity = CharityModel.charityData[indexPath.row]
+            
+            charityId = indexPath.row
+            performSegueWithIdentifier("charityDetail", sender: self)
+        }else{
+            showAlert("Invalid", alertMessage: "It looks like this link is invalid", actionTitle: "Try Another")
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "charityDetail") {
+            let viewController = segue.destinationViewController as! CharityDetailViewController
+            viewController.passedId = charityId
+        }
+    }
+
 
   
   func updateUserLoggedInFlag() {
