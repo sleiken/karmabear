@@ -1,11 +1,26 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_user, only: [:giver_profile]
+  before_action :verify_token, except: [:verify, :test]
   respond_to :json
   Dotenv.load
 
-  def giver_profile
-    giver = Giver.find_by(1)
+  def verify
+    render nothing: :true, status: :forbidden unless params[:access_token] && params[:id]
+
+    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
+
+    if response.code == 200
+      data = JSON.parse(response.body)
+      user = Giver.from_mobile_omniauth(data)
+      token = generate_token(user).to_json
+      render :json => JSON.pretty_generate(JSON.parse(token))
+    else
+      render nothing: true, status: :bad_request
+    end
+  end
+
+  def giver
+    giver = Giver.find_by(username: @token_payload[0]['user'])
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
@@ -15,28 +30,93 @@ class Api::AuthController < ApplicationController
     render :json => JSON.pretty_generate(JSON.parse(response_json))
   end
 
-  def verify
-    render status: :forbidden unless params[:id]
+  def charity
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    charity = Charity.find(params[:id])
+    events = charity.events
+    needs = charity.needs
 
-    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
+    if Subscription.find_by(giver: giver, charity: charity)
+      followed = 'true'
+    else
+      followed = 'false'
+    end
 
-    data = JSON.parse(response.body)
-    user = Giver.from_mobile_omniauth(data)
+    response_json = {followed: followed, charity: charity, events: events, needs: needs}.to_json
 
-    render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
+    render :json => JSON.pretty_generate(JSON.parse(response_json))
+  end
+
+  def follow
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    charity = Charity.find(params[:id])
+    old_follow = Subscription.find_by(giver: giver, charity: charity)
+
+    if old_follow
+      old_follow.destroy
+      response = "unfollowed".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      begin
+        Subscription.create!(giver: giver, charity: charity)
+      rescue ActiveRecord::RecordInvalid
+        response = "error".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      else
+        response = "followed".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      end
+    end
+  end
+
+  def donate
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    need = Need.find(params[:id])
+    quantity = params[:quantity] || 1
+
+    begin
+      Donation.create!(giver: giver, need: need, quantity_given: quantity)
+    rescue ActiveRecord::RecordInvalid
+      response = "error".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      response = "success".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    end
+  end
+
+  def register
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    event = Event.find(params[:id])
+    old_registration = Registration.find_by(giver: giver, event: event)
+
+    if old_registration
+      response = "already_registered".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      begin
+        Registration.create!(giver: giver, event: event)
+      rescue ActiveRecord::RecordInvalid
+        response = "error".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      else
+        response = "success".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      end
+    end
   end
 
   def test
     params[:token] = generate_token(Giver.first)
-    decoded = decode_token(token)
-    p token
-    decoded = decoded[0]['user']
-    render :json => "#{Giver.find_by(username: decoded).email}"
+    verify_token
+    decoded = @token_payload[0]['user']
+    render :json => "#{params[:token]}, #{Giver.find_by(username: decoded).email}"
   end
 
   private
 
-  def authorize_user
+  def verify_token
+    render nothing: :true, status: :forbidden unless params[:access_token]
     begin
       @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError

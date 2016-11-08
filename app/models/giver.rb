@@ -13,8 +13,10 @@ class Giver < ApplicationRecord
   has_many :events,             through: :registrations
   has_many :followed_charities, through: :subscriptions, source: :charity
 
+  validates_uniqueness_of :username
+
   def self.from_omniauth(auth)
-    where(provider: auth.provider, fbid: auth.uid).first_or_create do |giver|
+    where(fbid: auth.uid).first_or_create do |giver|
       giver.fbid = auth.uid
       giver.email = auth.info.email
       giver.first_name = /([^\s]+)/.match(auth.info.name)[0]

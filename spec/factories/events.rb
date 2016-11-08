@@ -1,6 +1,11 @@
 FactoryGirl.define do
   factory :event do
     name { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
+    start { DateTime.now }
+    add_attribute :end, 2.days.from_now
+    givers_needed { Faker::Number.number(3) }
+
 
     association :charity
 
@@ -18,7 +23,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |event, evaluator|
-        FactoryGirl.create_list(:registration, evaluator.registrations_count, event: event)
+        create_list(:registration, evaluator.registrations_count, event: event)
       end
     end
   end
