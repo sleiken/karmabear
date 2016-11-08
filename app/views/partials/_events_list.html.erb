@@ -1,0 +1,9 @@
+<h2 class="text-center">Upcoming Events:</h2>
+<div class="col-xs-12">
+  <% @events.each do |event| %>
+	  <li>
+	    <%= event.name %>
+	      <%= link_to 'show', charity_event_path(@charity, event) %>
+	  </li>
+  <% end %>
+</div>
