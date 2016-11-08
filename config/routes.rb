@@ -39,5 +39,6 @@ Rails.application.routes.draw do
     post 'auth/verify', to: 'auth#verify'
     get 'auth/giver_profile', to: 'auth#giver_profile'
     get 'auth/test', to: 'auth#test'
+    post 'auth/follow', to: 'auth#follow'
   end
 end

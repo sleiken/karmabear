@@ -1,6 +1,6 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :verify_token, only: [:giver_profile]
+  before_action :verify_token, only: [:giver_profile, :follow]
   respond_to :json
   Dotenv.load
 
@@ -16,7 +16,7 @@ class Api::AuthController < ApplicationController
   def giver_profile
     render status: :forbidden unless params[:token]
 
-    giver = Giver.find_by(@token_payload[0]['user'])
+    giver = Giver.find_by(username: @token_payload[0]['user'])
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
@@ -24,6 +24,28 @@ class Api::AuthController < ApplicationController
     response_json = {giver: giver, charities: charities, events: events, needs: needs}.to_json
 
     render :json => JSON.pretty_generate(JSON.parse(response_json))
+  end
+
+  def follow
+    giver = Giver.find_by(username: @token_payload[0]['user'])
+    charity = Charity.find(params[:id])
+    old_follow = Subscription.find_by(giver: giver, charity: charity)
+
+    if old_follow
+      old_follow.destroy
+      response = "unfollowed".to_json
+      render :json => JSON.pretty_generate(JSON.parse(response))
+    else
+      begin
+        Subscription.create!(giver: giver, charity: charity)
+      rescue ActiveRecord::RecordInvalid
+        response = "error".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      else
+        response = "followed".to_json
+        render :json => JSON.pretty_generate(JSON.parse(response))
+      end
+    end
   end
 
   def test
