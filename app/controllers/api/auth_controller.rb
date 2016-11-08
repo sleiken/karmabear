@@ -5,7 +5,7 @@ class Api::AuthController < ApplicationController
   Dotenv.load
 
   def giver_profile
-    giver = Giver.find(1)
+    giver = Giver.find_by(1)
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
@@ -23,14 +23,22 @@ class Api::AuthController < ApplicationController
     data = JSON.parse(response.body)
     user = Giver.from_mobile_omniauth(data)
 
-    render :json => generate_token(user)
+    render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
+  end
+
+  def test
+    params[:token] = generate_token(Giver.first)
+    decoded = decode_token(token)
+    p token
+    decoded = decoded[0]['user']
+    render :json => "#{Giver.find_by(username: decoded).email}"
   end
 
   private
 
   def authorize_user
     begin
-      decode_token(params[:token])
+      @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError
       render status: :forbidden
     rescue JWT::ExpiredSignature
