@@ -18,8 +18,12 @@ class Api::AuthController < ApplicationController
   def verify
     render status: :forbidden unless params[:id]
 
-    user_data = { id: params[:id], email: params[:email], first_name: params[:first_name], last_name: params[:last_name] }.to_json
-    user = Giver.from_mobile_omniauth(JSON.parse(user_data))
+    # user_data = { id: params[:id], email: params[:email], first_name: params[:first_name], last_name: params[:last_name] }.to_json
+    # user = Giver.from_mobile_omniauth(JSON.parse(user_data))
+    access_token = params[:access_token]
+    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token#{access_token}")
+    data = JSON.parse(response.body)
+    user = Giver.from_mobile_omniauth(data)
 
     render :json => generate_token(user)
   end
