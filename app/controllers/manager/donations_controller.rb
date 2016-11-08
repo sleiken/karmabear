@@ -6,24 +6,19 @@ class Manager::DonationsController < Manager::ApplicationController
   end
 
   def update
-    @giver = @donation.giver
-
-    # put this in a helper method!
-    @donation.quantity_approved = @donation.quantity_pending
-    @donation.quantity_pending = 0
-
+    @donation.approve_quantity
     @donation.save!
-    # after manager clicks "approve":
+
     # update user points on user object
-    # close modal with js
+
+    # redirect for testing purposes:
     redirect_to manager_charity_url(@charity)
   end
 
   def destroy
     @donation.destroy
-     # after manager clicks "deny":
-     # destroy donation object
-     # close modal with js
+
+    # redirect for testing purposes:
     redirect_to manager_charity_url(@charity)
   end
 

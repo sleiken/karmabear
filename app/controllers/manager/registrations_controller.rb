@@ -6,24 +6,18 @@ class Manager::RegistrationsController < Manager::ApplicationController
   end
 
   def update
-    @giver = @registration.giver
-
-    # put this in a helper method!
-    @registration.approved_hours = @registration.pending_hours
-    @registration.pending_hours = 0
-
+    @registration.approve_hours
     @registration.save!
     # update user points
-    # close modal with js
+
     # redirect for testing purposes:
     redirect_to manager_charity_url(@charity)
   end
 
   def destroy
     @registration.destroy
-     # after manager clicks "deny":
-     # destroy registration object
-     # close modal with js
+
+    # redirect for testing purposes:
     redirect_to manager_charity_url(@charity)
   end
 
