@@ -4,6 +4,15 @@ class Api::AuthController < ApplicationController
   respond_to :json
   Dotenv.load
 
+  def verify
+    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
+
+    data = JSON.parse(response.body)
+    user = Giver.from_mobile_omniauth(data)
+
+    render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
+  end
+
   def giver_profile
     render status: :forbidden unless params[:token]
 
@@ -15,15 +24,6 @@ class Api::AuthController < ApplicationController
     response_json = {giver: giver, charities: charities, events: events, needs: needs}.to_json
 
     render :json => JSON.pretty_generate(JSON.parse(response_json))
-  end
-
-  def verify
-    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
-
-    data = JSON.parse(response.body)
-    user = Giver.from_mobile_omniauth(data)
-
-    render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
   end
 
   def test
