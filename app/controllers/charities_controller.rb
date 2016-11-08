@@ -11,9 +11,7 @@ class CharitiesController < ApplicationController
     @events = @charity.events
     @needs = @charity.needs
     @giver = current_giver
-    # check if current_giver has a subscription record
-    # active record association obj vs active record obj
-
+    @subscription = @charity.subscriptions.find_by(giver_id: @giver)
   end
 
   private

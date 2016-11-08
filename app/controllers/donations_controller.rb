@@ -16,7 +16,7 @@ class DonationsController < ApplicationController
 
     if @donation.save
       # decrement the quantity needed on the needs show page
-      @need.quantity_needed -= 1
+      @need.quantity_needed -= @donation.quantity_given
       @need.save!
 
       redirect_to charity_need_path(@charity, @need)
@@ -26,12 +26,29 @@ class DonationsController < ApplicationController
     end
   end
 
+def edit
+    @donation = donation.find(params[:id])
+  end
+
   def update
-    #update quantity given
+    @donation = Donation.find(params[:id])
+    @donation.update(donation_params)
+
+    if @donation.save
+      redirect_to charity_need_url(@charity, @need)
+    else
+      @errors = @donation.errors.full_messages
+      render 'edit'
+    end
   end
 
   def destroy
-    #delete donation given
+    @donation = Donation.find(params[:id])
+    @donation.destroy!
+    @need.quantity_needed += @donation.quantity_given
+    @need.save!
+
+    redirect_to charity_need_url(@charity, @need)
   end
 
   private

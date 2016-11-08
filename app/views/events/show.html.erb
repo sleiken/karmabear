@@ -6,8 +6,29 @@
 <p>End:<%= @event.end %></p>
 <p>Givers Needed: <%= @event.givers_needed %></p>
 
-<div>
-  <p>register for this event:
-    <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
-  </p>
-</div>
+<!-- if user signed in and registered:
+  display: update: trigger modal for registration edit form
+  display: cancel button: hit destroy route
+-->
+ <!-- if user signed in and not registered:
+  display: participate button: trigger modal for registration form
+-->
+ <!-- if user not signed in:
+  display: participate button: trigger facebook oath
+-->
+
+<% if @giver %>
+  <% if @giver.registrations.include?(@registration) %>
+    <%= link_to 'edit registration', edit_charity_event_registration_path(@charity, @event, @registration) %> |
+    <%= link_to 'cancel registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete' %>
+    </h2>
+  <% else %>
+    <h2>Registered for this event:
+      <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
+    </h2>
+  <% end %>
+<% else %>
+  <h2>Follow:
+    <%= link_to "register", giver_facebook_omniauth_authorize_path %>
+  </h2>
+<% end %>

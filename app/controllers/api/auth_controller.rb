@@ -18,10 +18,8 @@ class Api::AuthController < ApplicationController
   def verify
     render status: :forbidden unless params[:id]
 
-    # user_data = { id: params[:id], email: params[:email], first_name: params[:first_name], last_name: params[:last_name] }.to_json
-    # user = Giver.from_mobile_omniauth(JSON.parse(user_data))
-    access_token = params[:access_token]
-    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token#{access_token}")
+    response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
+
     data = JSON.parse(response.body)
     user = Giver.from_mobile_omniauth(data)
 
@@ -50,21 +48,3 @@ class Api::AuthController < ApplicationController
     JWT.decode token, ENV['AUTH_SECRET'], true, { :algorithm => 'HS256' }
   end
 end
-
-# # Used to verify access token passed from FB OAuth server to iOS
-# def verify_access_token
-#   # render status: :forbidden unless params[:access_token]
-#   #
-#   # access_token = params[:access_token]
-#   # response = HTTParty.get("https://graph.facebook.com/v2.8/#{fbid}?fields=first_name,last_name,email,picture&access_token#{access_token}")
-#   # response = HTTParty.get("https://graph.facebook.com/v2.8/10210843918116483?fields=first_name,last_name,email,picture&access_token=EAAZA1sMymaZCABACsKWQzwU9ccEEZCxsAN6TJdCruUQN1WRCLxhwkBoymLNIZCcB6L2di4XtXcIPTtdRYIkTOlqqCHyVl78gBZBsCOZBiwy7xtM5frXPa8dSoTyaNAyLkw6egLeZCAGXbJEZAHpMxWM045IDZCIMBXFuoJGK7JZBRTagZDZD")
-#   # if response.code == 200
-#   #   data = JSON.parse(response.body)
-#   #   # Login /register user
-#   #   user = Giver.from_mobile_omniauth(data)
-#   #   # return generate_token(user)
-#   #   return generate_token(user)
-#   # end
-#   # p response.code, "********************"
-#   # JSON.pretty_generate(JSON.parse(response.body))
-# end
