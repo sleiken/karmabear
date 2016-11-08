@@ -1,0 +1,11 @@
+<% if @registrations.empty? %>
+  no registrations
+<% else %>
+  <ul>
+    <% @registrations.each do |registration| %>
+      <li>
+        <%= registration.giver.username %> volunteered for <%= registration.event.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

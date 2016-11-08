@@ -5,8 +5,14 @@ RSpec.describe Donation do
     expect(create(:donation)).to be_valid
   end
 
-  it "is invalid with nil quantity_given" do
-    donation = build(:donation, quantity_given: nil)
+  it "is invalid with nil quantity_pending" do
+    donation = build(:donation, quantity_pending: nil)
+
+    expect(donation).to be_invalid
+  end
+
+  it "is invalid with nil quantity_pending" do
+    donation = build(:donation, quantity_approved: nil)
 
     expect(donation).to be_invalid
   end

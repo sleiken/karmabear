@@ -1,13 +1,13 @@
 class Manager::EventsController < Manager::ApplicationController
 	before_action :find_charity
-	before_action :find_event, only: [:edit, :update, :destroy]
+	before_action :find_event, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@events = charity.events
 	end
 
 	def show
-		event
+		@givers = @event.givers
 	end
 
 	def new
