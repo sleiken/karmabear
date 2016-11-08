@@ -49,7 +49,8 @@ Subscription.create!(charity_id: 1,
 
 Donation.create!(need_id: 1,
                  giver_id: 1,
-                 quantity_given: 5)
+                 quantity_pending: 5,
+                 quantity_approved: 0)
 
 Location.create!(name: "Work",
                  lat: "37.7983818054199",
