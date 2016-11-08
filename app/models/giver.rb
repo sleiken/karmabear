@@ -26,14 +26,14 @@ class Giver < ApplicationRecord
   end
 
   def self.from_mobile_omniauth(auth)
-    where(gid: auth.id).first_or_create do |giver|
-      giver.gid = auth.id
-      giver.email = auth.email
-      giver.first_name = auth.first_name
-      giver.last_name = auth.last_name
+    where(gid: auth['id'].to_i).first_or_create do |giver|
+      giver.gid = auth['id'].to_i
+      giver.email = auth['email']
+      giver.first_name = auth['first_name']
+      giver.last_name = auth['last_name']
       giver.password = Devise.friendly_token[0,20]
       giver.username = giver.first_name.downcase + giver.last_name.downcase
-      giver.image_url = auth.picture.data.url
+      # giver.image_url = auth['picture']['data']['url']
     end
   end
 end
