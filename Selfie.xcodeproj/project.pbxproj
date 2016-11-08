@@ -8,21 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DB1DD000F10003CB87 /* MapKit.framework */; };
-		10FF59DE1DD000FA0003CB87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */; };
 		10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */; };
 		10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E11DD10E1B0003CB87 /* CharityModel.swift */; };
 		10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */; };
+		10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */; };
+		10FF59F81DD1378F0003CB87 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59F71DD1378F0003CB87 /* libsqlite3.0.tbd */; };
+		10FF59FB1DD137C20003CB87 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */; };
+		10FF5A071DD13D810003CB87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF5A061DD13D810003CB87 /* Foundation.framework */; };
+		10FF5A091DD13D8B0003CB87 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF5A081DD13D8B0003CB87 /* AVFoundation.framework */; };
+		10FF5A171DD13FAB0003CB87 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF5A141DD13FAB0003CB87 /* Bolts.framework */; };
+		10FF5A181DD13FAB0003CB87 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF5A151DD13FAB0003CB87 /* FBSDKCoreKit.framework */; };
+		10FF5A191DD13FAB0003CB87 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF5A161DD13FAB0003CB87 /* FBSDKLoginKit.framework */; };
+		10FF5A1C1DD18B5F0003CB87 /* CharityLocTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF5A1B1DD18B5F0003CB87 /* CharityLocTableView.swift */; };
 		C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA0D19EA299B00E3B500 /* SelfieCollectionViewCell.swift */; };
 		C186CA1019EA34DF00E3B500 /* SelfieImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */; };
 		C186CA1219EA80DB00E3B500 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA1119EA80DB00E3B500 /* ComposeViewController.swift */; };
 		C186CA1619EA92C600E3B500 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186CA1519EA92C600E3B500 /* DetailViewController.swift */; };
-		C1A1877419B619EE003D119F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A1877319B619EE003D119F /* Security.framework */; };
 		C1B77A6C1A1B98DB0024857B /* HTTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B77A6B1A1B98DB0024857B /* HTTPHelper.swift */; };
 		C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F59B1619E4084C0083F33B /* KeychainAccess.swift */; };
-		D308C7FA19B4768300AE6BE5 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = D308C7F319B4768300AE6BE5 /* AESCrypt.m */; };
-		D308C7FB19B4768300AE6BE5 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D308C7F519B4768300AE6BE5 /* NSData+Base64.m */; };
-		D308C7FC19B4768300AE6BE5 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = D308C7F719B4768300AE6BE5 /* NSData+CommonCrypto.m */; };
-		D308C7FD19B4768300AE6BE5 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D308C7F919B4768300AE6BE5 /* NSString+Base64.m */; };
 		D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37383E419B07A75008C2DB6 /* AppDelegate.swift */; };
 		D37383E719B07A75008C2DB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37383E619B07A75008C2DB6 /* ViewController.swift */; };
 		D37383EA19B07A75008C2DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37383E819B07A75008C2DB6 /* Main.storyboard */; };
@@ -47,22 +50,22 @@
 		10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationConvenience.swift; sourceTree = "<group>"; };
 		10FF59E11DD10E1B0003CB87 /* CharityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityModel.swift; sourceTree = "<group>"; };
 		10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityStruct.swift; sourceTree = "<group>"; };
+		10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticateViewController.swift; sourceTree = "<group>"; };
+		10FF59F71DD1378F0003CB87 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		10FF5A061DD13D810003CB87 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		10FF5A081DD13D8B0003CB87 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		10FF5A0A1DD13E070003CB87 /* Selfie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Selfie-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		10FF5A141DD13FAB0003CB87 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		10FF5A151DD13FAB0003CB87 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		10FF5A161DD13FAB0003CB87 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		10FF5A1A1DD1473F0003CB87 /* Selfie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Selfie.entitlements; sourceTree = "<group>"; };
+		10FF5A1B1DD18B5F0003CB87 /* CharityLocTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityLocTableView.swift; sourceTree = "<group>"; };
 		C186CA0D19EA299B00E3B500 /* SelfieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieCollectionViewCell.swift; sourceTree = "<group>"; };
 		C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieImage.swift; sourceTree = "<group>"; };
 		C186CA1119EA80DB00E3B500 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		C186CA1519EA92C600E3B500 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		C1A1877319B619EE003D119F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C1B77A6B1A1B98DB0024857B /* HTTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHelper.swift; sourceTree = "<group>"; };
 		C1F59B1619E4084C0083F33B /* KeychainAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
-		D308C7AB19B44C0A00AE6BE5 /* Selfie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Selfie-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		D308C7F219B4768300AE6BE5 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
-		D308C7F319B4768300AE6BE5 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
-		D308C7F419B4768300AE6BE5 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		D308C7F519B4768300AE6BE5 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		D308C7F619B4768300AE6BE5 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
-		D308C7F719B4768300AE6BE5 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
-		D308C7F819B4768300AE6BE5 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
-		D308C7F919B4768300AE6BE5 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 		D37383DF19B07A75008C2DB6 /* Selfie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37383E319B07A75008C2DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37383E419B07A75008C2DB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,9 +83,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10FF59DE1DD000FA0003CB87 /* CoreLocation.framework in Frameworks */,
+				10FF5A091DD13D8B0003CB87 /* AVFoundation.framework in Frameworks */,
+				10FF5A071DD13D810003CB87 /* Foundation.framework in Frameworks */,
+				10FF59F81DD1378F0003CB87 /* libsqlite3.0.tbd in Frameworks */,
+				10FF5A171DD13FAB0003CB87 /* Bolts.framework in Frameworks */,
+				10FF5A181DD13FAB0003CB87 /* FBSDKCoreKit.framework in Frameworks */,
+				10FF59FB1DD137C20003CB87 /* CoreLocation.framework in Frameworks */,
+				10FF5A191DD13FAB0003CB87 /* FBSDKLoginKit.framework in Frameworks */,
 				10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */,
-				C1A1877419B619EE003D119F /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,31 +107,18 @@
 		10FF59DA1DD000F00003CB87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				10FF5A081DD13D8B0003CB87 /* AVFoundation.framework */,
+				10FF5A061DD13D810003CB87 /* Foundation.framework */,
+				10FF59F71DD1378F0003CB87 /* libsqlite3.0.tbd */,
 				10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */,
 				10FF59DB1DD000F10003CB87 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D308C7F119B4768300AE6BE5 /* AESCrypt */ = {
-			isa = PBXGroup;
-			children = (
-				D308C7F219B4768300AE6BE5 /* AESCrypt.h */,
-				D308C7F319B4768300AE6BE5 /* AESCrypt.m */,
-				D308C7F419B4768300AE6BE5 /* NSData+Base64.h */,
-				D308C7F519B4768300AE6BE5 /* NSData+Base64.m */,
-				D308C7F619B4768300AE6BE5 /* NSData+CommonCrypto.h */,
-				D308C7F719B4768300AE6BE5 /* NSData+CommonCrypto.m */,
-				D308C7F819B4768300AE6BE5 /* NSString+Base64.h */,
-				D308C7F919B4768300AE6BE5 /* NSString+Base64.m */,
-			);
-			path = AESCrypt;
-			sourceTree = "<group>";
-		};
 		D37383D619B07A75008C2DB6 = {
 			isa = PBXGroup;
 			children = (
-				C1A1877319B619EE003D119F /* Security.framework */,
 				D37383E119B07A75008C2DB6 /* Selfie */,
 				D37383F419B07A75008C2DB6 /* SelfieTests */,
 				D37383E019B07A75008C2DB6 /* Products */,
@@ -143,12 +138,17 @@
 		D37383E119B07A75008C2DB6 /* Selfie */ = {
 			isa = PBXGroup;
 			children = (
-				D308C7F119B4768300AE6BE5 /* AESCrypt */,
+				10FF5A1A1DD1473F0003CB87 /* Selfie.entitlements */,
+				10FF5A141DD13FAB0003CB87 /* Bolts.framework */,
+				10FF5A151DD13FAB0003CB87 /* FBSDKCoreKit.framework */,
+				10FF5A161DD13FAB0003CB87 /* FBSDKLoginKit.framework */,
 				C1B77A6B1A1B98DB0024857B /* HTTPHelper.swift */,
+				10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */,
+				D37383E619B07A75008C2DB6 /* ViewController.swift */,
+				10FF5A1B1DD18B5F0003CB87 /* CharityLocTableView.swift */,
 				10FF59DF1DD008FF0003CB87 /* locationConvenience.swift */,
 				C1F59B1619E4084C0083F33B /* KeychainAccess.swift */,
 				D37383E419B07A75008C2DB6 /* AppDelegate.swift */,
-				D37383E619B07A75008C2DB6 /* ViewController.swift */,
 				10FF59E11DD10E1B0003CB87 /* CharityModel.swift */,
 				10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */,
 				D373840119B07C3B008C2DB6 /* SelfieCollectionViewController.swift */,
@@ -166,8 +166,8 @@
 		D37383E219B07A75008C2DB6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D308C7AB19B44C0A00AE6BE5 /* Selfie-Bridging-Header.h */,
 				D37383E319B07A75008C2DB6 /* Info.plist */,
+				10FF5A0A1DD13E070003CB87 /* Selfie-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,6 +241,11 @@
 						DevelopmentTeam = QEZ57R9UKD;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					D37383F019B07A75008C2DB6 = {
 						CreatedOnToolsVersion = 6.0;
@@ -293,18 +298,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C186CA1619EA92C600E3B500 /* DetailViewController.swift in Sources */,
+				10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */,
 				C1B77A6C1A1B98DB0024857B /* HTTPHelper.swift in Sources */,
+				10FF5A1C1DD18B5F0003CB87 /* CharityLocTableView.swift in Sources */,
 				D373840219B07C3B008C2DB6 /* SelfieCollectionViewController.swift in Sources */,
 				D37383E719B07A75008C2DB6 /* ViewController.swift in Sources */,
-				D308C7FA19B4768300AE6BE5 /* AESCrypt.m in Sources */,
 				C186CA1219EA80DB00E3B500 /* ComposeViewController.swift in Sources */,
 				C186CA1019EA34DF00E3B500 /* SelfieImage.swift in Sources */,
 				10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */,
 				D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */,
 				10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */,
-				D308C7FD19B4768300AE6BE5 /* NSString+Base64.m in Sources */,
-				D308C7FB19B4768300AE6BE5 /* NSData+Base64.m in Sources */,
-				D308C7FC19B4768300AE6BE5 /* NSData+CommonCrypto.m in Sources */,
 				C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */,
 				10FF59E01DD008FF0003CB87 /* locationConvenience.swift in Sources */,
 				C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */,
@@ -375,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -411,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -423,12 +426,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Selfie/Selfie.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QEZ57R9UKD;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Selfie",
+				);
 				INFOPLIST_FILE = Selfie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bundle.karma-bear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Selfie-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Selfie-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -438,12 +451,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Selfie/Selfie.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = QEZ57R9UKD;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Selfie",
+				);
 				INFOPLIST_FILE = Selfie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bundle.karma-bear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Selfie-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Selfie-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Release;

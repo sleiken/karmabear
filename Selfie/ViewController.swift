@@ -8,8 +8,11 @@
 
 import UIKit
 import MapKit
+import Foundation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+var tableView: UITableView!
+
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
   @IBOutlet weak var signinBackgroundView: UIView!
   @IBOutlet weak var signupBackgroundView: UIView!
@@ -20,18 +23,21 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
   @IBOutlet weak var signupPasswordTextField: UITextField!
   @IBOutlet weak var activityIndicatorView: UIView!
   @IBOutlet weak var passwordRevealBtn: UIButton!
+  @IBOutlet weak var tableView: CharityLocTableView!
+    
   @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchField: UITextField!
+  @IBOutlet weak var searchField: UITextField!
   
 let cllocationManager: CLLocationManager = CLLocationManager()
   var httpHelper = HTTPHelper()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
     
-//    self.activityIndicatorView.layer.cornerRadius = 10
-    mapView.delegate = self
+    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    self.tableView.backgroundColor = UIColor.clearColor()
+    self.tableView.delegate = self
+    self.tableView.dataSource = self
     
     self.cllocationManager.requestAlwaysAuthorization()
     self.cllocationManager.requestWhenInUseAuthorization()
@@ -39,19 +45,16 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     cllocationManager.startUpdatingLocation()
     mapView.showsUserLocation = true
     
-//    let httpRequest = httpHelper.buildRequest("charities", method: "GET")
-//    
-//    httpHelper.sendCharitySearchRequest(httpRequest, completion: {(response:[CLLocationCoordinate2D]!, error: NSError!) in
-//        
-//        guard error == nil else {
-//            return
-//        }
-//    })
-    
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView!.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height-40, 0, 0, 0);
     }
   
   override func didReceiveMemoryWarning() {
@@ -59,19 +62,6 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     // Dispose of any resources that can be recreated.
   }
   
-  @IBAction func passwordRevealBtnTapped(sender: AnyObject) {
-    self.passwordRevealBtn.selected = !self.passwordRevealBtn.selected
-    
-    if self.passwordRevealBtn.selected {
-      self.signupPasswordTextField.secureTextEntry = false
-    }
-      
-    else {
-      self.signupPasswordTextField.secureTextEntry = true
-    }
-  }
-    
-    
     func populateMapData(newCoordArr:[CLLocationCoordinate2D]) {
         
         if !mapView.annotations.isEmpty{
@@ -99,22 +89,22 @@ let cllocationManager: CLLocationManager = CLLocationManager()
             /* Add the annotation to the array */
             annotations.append(annotation)
             /*Append cllocations to represent overlay connections between annotations*/
-            
+            self.mapView.delegate = self
             /*Load annotations/overlay to map view once data is completely loaded*/
             dispatch_async(dispatch_get_main_queue(), {
                 self.mapView.addAnnotations(annotations)
                 self.mapView.showAnnotations(annotations, animated: true)
             })
         }
+        
+        tableView.reloadData()
     }
 
     
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            
+ 
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             if #available(iOS 9.0, *) {
@@ -123,11 +113,8 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                 // Fallback on earlier versions
             }
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-            pinView?.enabled = true
-            
-        }else {
+        
             pinView!.annotation = annotation
-        }
         
         return pinView
     }
@@ -139,14 +126,15 @@ let cllocationManager: CLLocationManager = CLLocationManager()
             view.backgroundColor = UIColor.grayColor()
             
             let linkUrl = view.annotation!.subtitle!
-//            if linkUrl!.rangeOfString("http") != nil{
-//                if let link = view.annotation?.subtitle!{
-//                    UIApplication.sharedApplication().openURL(NSURL(string: "\(link)")!)
-        }
-        else{
-                dispatch_async(dispatch_get_main_queue(),{
+////            if linkUrl!.rangeOfString("http") != nil{
+////                if let link = view.annotation?.subtitle!{
+////                    UIApplication.sharedApplication().openURL(NSURL(string: "\(link)")!)
+////                }
+//            }else{
+//                dispatch_async(dispatch_get_main_queue(),{
 //                    self.showAlert("Invalid", alertMessage: "This link is invalid", actionTitle: "Try Another")
-                })
+//                })
+//            }
         }
     }
   
@@ -178,28 +166,15 @@ let cllocationManager: CLLocationManager = CLLocationManager()
   }
   
   func displaySignupView () {
-    self.signupNameTextField.text = nil
-    self.signupEmailTextField.text = nil
-    self.signupPasswordTextField.text = nil
     
-    if self.signinEmailTextField.isFirstResponder() {
-      self.signinEmailTextField.resignFirstResponder()
-    }
-    
-    if self.signinPasswordTextField.isFirstResponder() {
-      self.signinPasswordTextField.resignFirstResponder()
-    }
-    
-    if self.signupBackgroundView.frame.origin.x != 0 {
       UIView.animateWithDuration(0.8, animations: { () -> Void in
-        self.signinBackgroundView.frame = CGRectMake(-320, 134, 320, 284)
-        self.signinBackgroundView.alpha = 0.3;
+        self.mapView.frame = CGRectMake(-320, 134, 320, 284)
+        self.mapView.alpha = 0.3;
         
-        self.signupBackgroundView.frame = CGRectMake(0, 134, 320, 284)
-        self.signupBackgroundView.alpha = 1.0
+        self.mapView.frame = CGRectMake(0, 134, 320, 284)
+        self.mapView.alpha = 1.0
         
         }, completion: nil)
-    }
   }
   
   func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
@@ -239,154 +214,71 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                 let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? NSArray
                 
                 var charityLocations: [CLLocationCoordinate2D] = []
+                
+                if !CharityModel.charityData.isEmpty{
+                    CharityModel.charityData.removeAll()
+                }
+                
                 for coordinate in responseDict!{
                     
-                    if !CharityModel.charityData.isEmpty{
-                        CharityModel.charityData.removeAll()
-                    }
-                    
                     CharityModel.charityData.append(CharityStruct(dictionary: coordinate as! [String : AnyObject]))
-                    print(CharityModel.charityData)
                     
                     let json = coordinate as? [String:AnyObject]
                     let coordinatesToAppend = CLLocationCoordinate2D(latitude: (json!["lat"]! as? Double)!, longitude: (json!["lng"]! as? Double)!)
                     charityLocations.append(coordinatesToAppend)
                 }
-                print(responseDict)
-                self.populateMapData(charityLocations)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.populateMapData(charityLocations)
+                })
+                
+                self.tableView.reloadData()
                 
             } catch let error as NSError {
                 print(error)
             }
             
         })
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y > self.mapView.frame.size.height * 1 ) {
+            scrollView .setContentOffset(CGPointMake(scrollView.contentOffset.x, self.mapView.frame.size.height * 1), animated: true)
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(CharityModel.charityData.count)
+        return CharityModel.charityData.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:UITableViewCell? = self.tableView!.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?
+        
+        print(CharityModel.charityData)
+        let charity = CharityModel.charityData[indexPath.row]
+        
+        cell?.textLabel?.text = charity.name
+        
+        return cell!
         
     }
-  
-  
-//  @IBAction func signupBtnTapped(sender: AnyObject) {
-//    // Code to hide the keyboards for text fields
-//    if self.signupNameTextField.isFirstResponder() {
-//      self.signupNameTextField.resignFirstResponder()
-//    }
-//    
-//    if self.signupEmailTextField.isFirstResponder() {
-//      self.signupEmailTextField.resignFirstResponder()
-//    }
-//    
-//    if self.signupPasswordTextField.isFirstResponder() {
-//      self.signupPasswordTextField.resignFirstResponder()
-//    }
-//    
-//    self.activityIndicatorView.hidden = false
-//    
-//    if self.signupNameTextField.text != "" && self.signupEmailTextField.text != ""
-//        && self.signupPasswordTextField.text != ""{
-//        makeSignUpRequest(self.signupNameTextField.text!, userEmail: self.signupEmailTextField.text!,
-//                          userPassword: self.signupPasswordTextField.text!)
-//    } else {
-//        self.displayAlertMessage("Parameters Required", alertDescription:
-//            "Some of the required parameters are missing")
-//    }
-//  }
-  
-//  @IBAction func signinBtnTapped(sender: AnyObject) {
-//    // resign the keyboard for text fields
-//    if self.signinEmailTextField.isFirstResponder() {
-//      self.signinEmailTextField.resignFirstResponder()
-//    }
-//    
-//    if self.signinPasswordTextField.isFirstResponder() {
-//      self.signinPasswordTextField.resignFirstResponder()
-//    }
-//    
-//    self.activityIndicatorView.hidden = false
-//    
-//    if self.signinEmailTextField.text != "" && self.signinPasswordTextField != "" {
-//        makeSignInRequest(self.signinEmailTextField.text!, userPassword: self.signinPasswordTextField.text!)
-//    }else {
-//        self.displayAlertMessage("Parameters Required", alertDescription:
-//            "Some of the required parameters are missing")
-//    }
-//  }
+
   
   func updateUserLoggedInFlag() {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject("loggedIn", forKey: "userLoggedIn")
     defaults.synchronize()
   }
-  
-  func saveApiTokenInKeychain(tokenDict:NSDictionary) {
-    tokenDict.enumerateKeysAndObjectsUsingBlock({(dictKey, dictObj, stopBool) -> Void in
-        var key = dictKey as! String
-        var obj = dictObj as! String
-        
-        if key == "api_authtoken" {
-//            KeyChainAccess.setPassword(obj, account: "Auth_Token", service: "KeyChainService")
-            puts(key)
-        }
-        
-        if key == "authtoken_expiry" {
-//            KeyChainAccess.setPassword(obj, account: "Auth_Token_Expiry", service: "KeyChainService")
-            puts(obj)
-        }
-        })
     
-//    self.dismissViewControllerAnimated(true, completion: nil)
-    puts("Login Successful")
-  }
-  
-//  func makeSignUpRequest(userName:String, userEmail:String, userPassword:String) {
-//    let httpRequest = httpHelper.buildRequest("signup", method: "POST", authType: HTTPRequestAuthType.HTTPBasicAuth)
-//    
-//    let encrypted_password = AESCrypt.encrypt(userPassword, password: HTTPHelper.API_AUTH_PASSWORD)
-//    
-//    httpRequest.HTTPBody = "{\"full_name\":\"\(userName)\",\"email\":\"\(userEmail)\",\"password\":\"\(encrypted_password)\"}".dataUsingEncoding(NSUTF8StringEncoding)
-//    
-//    httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
-//        
-//        guard error == nil else {
-//            let errorMessage = self.httpHelper.getErrorMessage(error)
-//            self.displayAlertMessage("Error", alertDescription: errorMessage as String)
-//            return
-//        }
-//        
-//        self.displaSigninView()
-//        self.displayAlertMessage("Success", alertDescription: "Acount successfully created!")
-//        
-//        })
-//  }
-//  
-//    func makeSignInRequest(userEmail:String, userPassword:String) {
-//        let httpRequest = httpHelper.buildRequest("signin", method: "POST", authType: HTTPRequestAuthType.HTTPBasicAuth)
-//        
-//        let encrypted_password = AESCrypt.encrypt(userPassword, password: HTTPHelper.API_AUTH_PASSWORD)
-//        
-//        httpRequest.HTTPBody = "{\"email\":\"\(userEmail)\",\"password\":\"\(encrypted_password)\"}".dataUsingEncoding(NSUTF8StringEncoding)
-//        
-//        httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) -> Void in
-//            
-//            guard error == nil else {
-//                let errorMessage = self.httpHelper.getErrorMessage(error)
-//                self.displayAlertMessage("Error", alertDescription: errorMessage as String)
-//                return
-//            }
-//            
-//            do {
-//            
-//            self.activityIndicatorView.hidden = true
-//            self.updateUserLoggedInFlag()
-//        
-//            let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-//                
-//            self.saveApiTokenInKeychain(responseDict)
-//            }
-//            
-//            catch let completionError as NSError {
-//                print(completionError)
-//            }
-//        })
-//}
+    func showAlert(alertTitle: String, alertMessage: String, actionTitle: String){
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     static func sharedInstance() -> ViewController {
         
