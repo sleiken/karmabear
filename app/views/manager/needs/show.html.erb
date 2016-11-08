@@ -6,6 +6,20 @@
 
 <li>Quantity Needed: <%= @need.quantity_needed %></li>
 
+<div class="donors">
+  <h1>Donors: </h1>
+  <% if @givers.empty? %>
+    no volunteers yet
+    <% else %>
+      <ul>
+        <% @givers.each do |giver| %>
+          <li> <%= giver.username %></li>
+
+        <% end %>
+      </ul>
+    <% end %>
+</div>
+
 <div>
   <%= link_to '< back to needs index', manager_charity_needs_path(@charity) %>
 </div>

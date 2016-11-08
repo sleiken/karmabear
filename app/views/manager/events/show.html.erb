@@ -7,6 +7,20 @@
 
 <li><%= @event.givers_needed %> givers needed</li>
 
+<div class="registered-volunteers">
+  <h1>Givers Registered: </h1>
+
+  <% if @givers.empty? %>
+    no volunteers yet
+  <% else %>
+    <ul>
+      <% @givers.each do |giver| %>
+        <li> <%= giver.username %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <div>
   <%= link_to '< back to events index', manager_charity_events_path(@charity) %>
 </div>

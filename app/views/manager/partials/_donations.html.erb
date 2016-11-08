@@ -1,0 +1,11 @@
+<% if @donations.empty? %>
+  no donations
+<% else %>
+  <ul>
+    <% @donations.each do |donation| %>
+      <li>
+        <%= donation.need.name %> Given By <%= donation.giver.username %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
