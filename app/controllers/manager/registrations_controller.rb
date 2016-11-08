@@ -11,11 +11,17 @@ class Manager::RegistrationsController < Manager::ApplicationController
   def update
     @registration = Registration.find(params[:id])
     @charity = Charity.find(params[:charity_id])
-    # after manager clicks "approve":
-    # add pending_hours to approved_hours
+    @giver = @registration.giver
+
+    # put this in a helper method!
+    @registration.approved_hours = @registration.pending_hours
+    @registration.pending_hours = 0
+
+    @registration.save!
     # update user points
     # close modal with js
-    redirect_to '/'
+    # redirect for testing purposes:
+      redirect_to '/'
   end
 
   def destroy

@@ -11,6 +11,13 @@ class Manager::DonationsController < Manager::ApplicationController
   def update
     @donation = Donation.find(params[:id])
     @charity = Charity.find(params[:charity_id])
+    @giver = @donation.giver
+
+    # put this in a helper method!
+    @donation.quantity_approved = @donation.quantity_pending
+    @donation.quantity_pending = 0
+
+    @donation.save!
     # after manager clicks "approve":
     # update user points on user object
     # close modal with js
