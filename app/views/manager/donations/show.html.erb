@@ -1,0 +1,16 @@
+<h1><%= @donation.need.name %></h1>
+
+<%= @donation.quantity_pending %> pending
+
+<%= form_for [:manager, @charity, @donation.need, @donation], method: 'put' do |f| %>
+
+  <%= f.submit :approve %>
+
+<% end %>
+
+
+<%= form_for [:manager, @charity, @donation.need, @donation], method: 'delete' do |f| %>
+
+  <%= f.submit :deny %>
+
+<% end %>
