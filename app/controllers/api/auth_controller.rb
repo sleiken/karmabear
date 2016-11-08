@@ -1,18 +1,22 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :verify_token, only: [:giver, :follow, :charity]
+  before_action :verify_token, except: [:verify, :test]
   respond_to :json
   Dotenv.load
 
   def verify
-    render status: :forbidden unless params[:access_token] && params[:id]
+    render nothing: :true, status: :forbidden unless params[:access_token] && params[:id]
 
     response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
 
-    data = JSON.parse(response.body)
-    user = Giver.from_mobile_omniauth(data)
-
-    render :json => JSON.pretty_generate(JSON.parse(generate_token(user).to_json))
+    if response.code == 200
+      data = JSON.parse(response.body)
+      user = Giver.from_mobile_omniauth(data)
+      token = generate_token(user).to_json
+      render :json => JSON.pretty_generate(JSON.parse(token))
+    else
+      render nothing: true, status: :bad_request
+    end
   end
 
   def giver
@@ -91,7 +95,7 @@ class Api::AuthController < ApplicationController
       render :json => JSON.pretty_generate(JSON.parse(response))
     else
       begin
-        Registration.create!(giver: giver, need: need)
+        Registration.create!(giver: giver, event: event)
       rescue ActiveRecord::RecordInvalid
         response = "error".to_json
         render :json => JSON.pretty_generate(JSON.parse(response))
@@ -112,7 +116,7 @@ class Api::AuthController < ApplicationController
   private
 
   def verify_token
-    render status: :forbidden unless params[:token]
+    render nothing: :true, status: :forbidden unless params[:access_token]
     begin
       @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError
