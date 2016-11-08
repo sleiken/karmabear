@@ -32,7 +32,13 @@ class Api::AuthController < ApplicationController
     events = charity.events
     needs = charity.needs
 
-    response_json = {charity: charity, events: events, needs: needs}.to_json
+    if Subscription.find_by(giver: giver, charity: charity)
+      followed = 'true'
+    else
+      followed = 'false'
+    end
+
+    response_json = {followed: followed, charity: charity, events: events, needs: needs}.to_json
 
     render :json => JSON.pretty_generate(JSON.parse(response_json))
   end
