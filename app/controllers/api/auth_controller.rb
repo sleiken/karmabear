@@ -1,6 +1,6 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_token, only: [:giver_profile]
+  before_action :verify_token, only: [:giver_profile]
   respond_to :json
   Dotenv.load
 
@@ -28,14 +28,14 @@ class Api::AuthController < ApplicationController
 
   def test
     params[:token] = generate_token(Giver.first)
-    authenticate_token
+    verify_token
     decoded = @token_payload[0]['user']
     render :json => "#{params[:token]}, #{Giver.find_by(username: decoded).email}"
   end
 
   private
 
-  def authenticate_token
+  def verify_token
     render status: :forbidden unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
