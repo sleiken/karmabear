@@ -1,9 +1,9 @@
 <h2 class="text-center">Needs:</h2>
 <div class="col-xs-12">
-  <% @needs.each do |need| %>
+  <% charity.needs.each do |need| %>
     <li>
       <%= need.name %>
-        <%= link_to 'show', charity_need_path(@charity, need) %>
+        <%= link_to 'show', charity_need_path(charity, need) %>
     </li>
   <% end %>
 </div>
