@@ -1,0 +1,11 @@
+<% if @needs.empty? %>
+  no needs
+<% else %>
+  <ul>
+    <% @needs.each do |need| %>
+      <li>
+        <%= need.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

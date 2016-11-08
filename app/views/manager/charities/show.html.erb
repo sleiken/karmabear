@@ -1,6 +1,11 @@
 
 <h1>Dashboard for <%=@charity.name%></h1>
-<p>Managed by <%=@charity.manager.username%></p>
+
+<div class="charity-info">
+  <p><%= @charity.address[0] %> <%= @charity.address[1] %></p>
+  <p><%= @charity.address[2] %></p>
+  <p>Managed by <%=@charity.manager.username%></p>
+</div>
 
 <div class="metrics-container">
 	<h2>fancy shmancy interactive charts</h2>
@@ -9,44 +14,58 @@
   <li>450 givers</li>
 </div>
 
-<div class="givers-container">
-	<h2>givers activity feed in real time</h2>
-    <li>
-      click on givers in activity feed to trigger a modal for denying/approving a giver's request:
-        <%= link_to 'givers index page', manager_charity_givers_path(@charity) %>
-    </li>
+<!-- click on givers in activity feed to trigger a modal for denying/approving a giver's request: -->
+<div class="registrations-container">
+  <h2>current registrations activities</h2>
+    click this - trigger modal of registration#show:
+      <%= render partial: 'manager/partials/registrations' %>
 </div>
 
-<div class="events-container">
-  <h2>list Events</h2>
+<div class="registrations-container">
+  <h2>current donations activities</h2>
+    click this - trigger modal of donation#show:
+      <%= render partial: 'manager/partials/donations' %>
+</div>
 
-	<li>maybe render an events#index partial?:
-    <%= link_to 'events/index', manager_charity_events_path(@charity) %>
+
+<!-- click on event/need to trigger a modal with event or need #show page -->
+<div class="planned-events-container">
+  <h2>Planned Events</h2>
+
+events partial:
+    <%= render partial: 'manager/partials/events' %>
+
+</div>
+
+<div class="planned-needs-container">
+  <h2>Planned Needs</h2>
+
+needs partial:
+    <%= render partial: 'manager/partials/needs' %>
+
+</div>
+
+<!-- buttons! -->
+<div class="events-button-container">
+  <h2>add event button</h2>
+
+	<li>
+    <%= link_to 'Add Event (events/new)', new_manager_charity_event_path(@charity) %>
   </li>
 </div>
 
 <div class="needs-container">
-  <h2>list Needs</h2>
+  <h2>add need button:</h2>
 
-  <li>maybe render a needs#index partial?:
-    <%= link_to 'needs/index', manager_charity_needs_path(@charity) %>
+  <li>
+    <%= link_to 'Add Need (needs/index)', new_manager_charity_need_path(@charity) %>
   </li>
 </div>
 
-<div class="misc-container">
-	<h2>other things to show:</h2>
-
-  <li>list of followers</li>
+<div class="needs-container">
+  <h2>view followers button</h2>
 
   <li>
-    post new event button:
-      <%= link_to 'add new event', new_manager_charity_event_path(@charity) %>
+    <%= link_to 'View Followers (givers/index)', manager_charity_givers_path(@charity) %>
   </li>
-
-  <li>
-    post new need button:
-      <%= link_to 'add new need', new_manager_charity_need_path(@charity) %>
-  </li>
-
-  <li>History?</li>
 </div>
