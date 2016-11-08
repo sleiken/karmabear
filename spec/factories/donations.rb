@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :donation do
     quantity_pending { Faker::Number.number(5) }
-    quantity_given { Faker::Number.number(0) }
+    quantity_approved{ Faker::Number.number(0) }
 
     association :need
     association :giver
