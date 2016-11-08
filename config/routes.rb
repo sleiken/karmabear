@@ -42,7 +42,6 @@ Rails.application.routes.draw do
     post 'auth/giver',    to: 'auth#giver'
     post 'auth/charity',  to: 'auth#charity'
     post 'auth/follow',   to: 'auth#follow'
-    #TODO:
     post 'auth/donate',   to: 'auth#donate'
     post 'auth/register', to: 'auth#register'
 
