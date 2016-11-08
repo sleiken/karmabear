@@ -13,11 +13,11 @@
   </div>
 
   <div class="row">
-    <%= render partial: 'partials/events_list' %>
+    <%= render partial: 'partials/events_list', locals: { charity: @charity } %>
   </div>
 
   <div class="row">
-    <%= render partial: 'partials/needs_list' %>
+    <%= render partial: 'partials/needs_list', locals: { charity: @charity } %>
   </div>
 
 </section>
