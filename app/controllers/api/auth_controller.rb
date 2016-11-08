@@ -1,11 +1,13 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_user, only: [:giver_profile]
+  before_action :authenticate_token, only: [:giver_profile]
   respond_to :json
   Dotenv.load
 
   def giver_profile
-    giver = Giver.find_by(1)
+    render status: :forbidden unless params[:token]
+
+    giver = Giver.find_by(@token_payload[0]['user'])
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
@@ -28,15 +30,17 @@ class Api::AuthController < ApplicationController
 
   def test
     params[:token] = generate_token(Giver.first)
-    decoded = decode_token(token)
-    p token
-    decoded = decoded[0]['user']
-    render :json => "#{Giver.find_by(username: decoded).email}"
+    # decoded = decode_token(token)
+    #"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiSkRlYW4iLCJleHAiOjE0Nzg2MDA1MzJ9.OsY7mJvG-LRKCaqBMZle2wLroFBeldfO80u2KDsC0Ho"
+    params[:token] = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidHlkYW5pZWxzIiwiZXhwIjoxNDc4NjAwNDcxfQ.i4VMbPlYKwjvxHIgGLGu5qe2XAz4E0xMOa36fVFR6Sc"
+    authenticate_token
+    decoded = @token_payload[0]['user']
+    render :json => "#{params[:token]}, #{Giver.find_by(username: decoded).email}"
   end
 
   private
 
-  def authorize_user
+  def authenticate_token
     begin
       @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError
