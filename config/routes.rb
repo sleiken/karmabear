@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'users/:username', to: 'givers#show', as: :giver
 
+  get 'charities/apply', to: 'charities#verification'
+
   devise_for :managers
   devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
