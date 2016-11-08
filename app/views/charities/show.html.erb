@@ -1,6 +1,7 @@
 <h1>Show Page for <%= @charity.name %></h1>
 
 <div>
+<!-- would probably be good to clean this up or make this a partial so can be used in the map pin info box: -->
 <% if @giver %>
   <% if @giver.followed_charities.include?(@charity) %>
     <h2>You are following this charity:
@@ -29,7 +30,7 @@
 <% end %>
 
 
-<!-- this will be an event  -->
+<!-- this will be an needs list partial:  -->
 <h2>Needs:</h2>
 
 <% @needs.each do |need| %>
