@@ -1,11 +1,13 @@
 class Api::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_user, only: [:giver_profile]
+  before_action :authenticate_token, only: [:giver_profile]
   respond_to :json
   Dotenv.load
 
   def giver_profile
-    giver = Giver.find_by(1)
+    render status: :forbidden unless params[:token]
+
+    giver = Giver.find_by(@token_payload[0]['user'])
     charities = giver.followed_charities
     events = giver.events
     needs = giver.needs
@@ -16,8 +18,6 @@ class Api::AuthController < ApplicationController
   end
 
   def verify
-    render status: :forbidden unless params[:id]
-
     response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
 
     data = JSON.parse(response.body)
@@ -28,15 +28,15 @@ class Api::AuthController < ApplicationController
 
   def test
     params[:token] = generate_token(Giver.first)
-    decoded = decode_token(token)
-    p token
-    decoded = decoded[0]['user']
-    render :json => "#{Giver.find_by(username: decoded).email}"
+    authenticate_token
+    decoded = @token_payload[0]['user']
+    render :json => "#{params[:token]}, #{Giver.find_by(username: decoded).email}"
   end
 
   private
 
-  def authorize_user
+  def authenticate_token
+    render status: :forbidden unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
     rescue JWT::VerificationError
