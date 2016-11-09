@@ -4,7 +4,9 @@ module ApplicationCable
 
     def connect
       self.current_manager = find_verified_manager
-      logger.add_tags 'ActionCable', current_manager.id, current_manager.email
+      logger.add_tags('ActionCable',
+                      current_manager.id,
+                      current_manager.email)
     end
 
     protected

@@ -1,5 +1,5 @@
 class Subscription < ApplicationRecord
-  after_create_commit { create_notification }
+  after_create_commit { create_notification(self) }
 
   belongs_to :charity
   belongs_to :giver
@@ -9,7 +9,10 @@ class Subscription < ApplicationRecord
 
   private
 
-  def create_notification
-    Notification.create!(manager_id: 1, giver_id: 1, content: "cheese")
+  def create_notification(subscription)
+    manager = subscription.charity.manager
+    Notification.create!(manager_id: (manager.id if manager) || 1,
+                         giver_id: subscription.giver.id,
+                         content: "YOU GOT FOLLOWED YOU IDIOT.")
   end
 end

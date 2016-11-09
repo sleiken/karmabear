@@ -8,7 +8,11 @@ class Notification < ApplicationRecord
   private
 
   def broadcast_notification(notification)
-    ActionCable.server.broadcast "dash_channel_#{notification.manager_id}", message: render_notification(notification)
+    DashChannel.broadcast_to(notification.manager,
+                             manager: notification.manager.email,
+                             message: render_notification(notification))
+
+    # ActionCable.server.broadcast("dash_channel:#{notification.manager_id}", message: render_notification(notification))
   end
 
   def render_notification(notification)
