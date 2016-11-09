@@ -23,88 +23,95 @@ a1 = {name: "The Sanctuary",
 Charity.create(a1)
 
 # Info for Glide:
+c1 = Charity.find_by(name: "Glide")
 
 Manager.create!(first_name: "Laurie",
                 email: "manager@.com",
                 last_name: "MacKenzie",
                 username: "LMacKenzie",
                 password: "123456",
-                charity_id: 13
+                charity_id: c1.id
                )
+manager = Manager.find_by(first_name: "Laurie")
+
+c1.update_attributes(manager_id: manager.id)
+
 
 Need.create!(name: "Heavy Blankets",
              description: "Many low-income people don't have enough money to buy warm blankets -- especially the homeless, who often suffer from the cold during the winter months.",
              quantity_needed: 45,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Toys",
              description: "We accept new, unwrapped toys, for the annual Toy Giveaway during and up to the holiday months. Please avoid toy guns and war toys and when purchasing dolls, please remember diversity.",
              quantity_needed: 100,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Tooth Brush-Tooth Paste-Dental Floss",
              description: "Love you to put these kits together and donate them",
              quantity_needed: 100,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Board Games",
              description: "Homeless children in shelters often have few personal possessions, including toys and board games. Please bring board games so the children have something to play with while they're staying in the shelter!",
              quantity_needed: 25,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Canned Meats",
              description: "Meat items act as the foundation to many meals, and constitute an important source of protein which gives us energy for everyday tasks. Canned items like tuna and chicken make for easy donations and add variety to the dinner table.",
              quantity_needed: 50,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Peanut Butter",
              description: "Jarred nut butters also make a reliable source of protein, and you can donate them with little fuss. Children particularly enjoy items like peanut butter which make it a good choice for families.",
              quantity_needed: 25,
              status: 1,
-             charity_id: 13)
+             charity_id: c1.id)
 
 Need.create!(name: "Instant Oatmeal",
-             description: "Breakfast constitutes a key meal for the day, so providing cereal options like instant oatmeal makes a reliable donation. Choose a multi-flavor pack to provide recipients with options and consider low-sugar varieties as well."
+             description: "Breakfast constitutes a key meal for the day, so providing cereal options like instant oatmeal makes a reliable donation. Choose a multi-flavor pack to provide recipients with options and consider low-sugar varieties as well.",
+             quantity_needed: 50,
              status: 1,
-             charity_id: 45)
+             charity_id: c1.id)
 
 Need.create!(name: "Thick Socks(wool)",
-             description: "Many low-income people don't have enough money to buy warm socks -- especially the homeless, who often suffer from the cold during the winter months."
+             description: "Many low-income people don't have enough money to buy warm socks -- especially the homeless, who often suffer from the cold during the winter months.",
+             quantity_needed: 100,
              status: 1,
-             charity_id: 45)
+             charity_id: c1.id)
 
 Event.create!(name: "Holiday Toy Drive",
               start: "2016-10-01 04:10:12",
               end: "2016-12-24 06:10:12",
               description: "We accept new, unwrapped toys, for the annual Toy Giveaway during and up to the holiday months. Please avoid toy guns and war toys and when purchasing dolls, please remember diversity.",
               givers_needed: 10,
-              charity_id: 13)
+              charity_id: c1.id)
 
 Event.create!(name: "Halloween Candy Drive",
               start: "2016-11-01 12:00:00",
-              end: "2016-12-01 12:00:00"
+              end: "2016-12-01 12:00:00",
               description: "Got leftover candy lying around? Donate it to Glide! We use it to make candy packs that we hand out on the streets to our clients, homeless youth and young adults in San Francisco.",
               givers_needed: 10,
-              charity_id: 13)
+              charity_id: c1.id)
 
-Event.create!(name: "Nightly Meal Service"
+Event.create!(name: "Nightly Meal Service",
               start: "2016-01-01 00:00:00",
               end: "20016-12-31 12:00:00",
               description: "Serving a meal in the Daily Free Meals Program is a transformative experience. This program requires 85 volunteers each day to fill prep and dinner shifts, 364 days a year. With your help we can serve up to 2,400 meals per day to our community.",
               givers_needed: 200,
-              charity_id: 13)
+              charity_id: c1.id)
 
 Event.create!(name: "Weekly tutoring",
               start: "2016-01-01 00:00:00",
               end: "20016-12-31 12:00:00",
               description: "A tutor can make all the difference. Just having adult attention can spur children to do their best. It takes nothing more than a little time. Weekly tutoring volunteers are needed every Tuesday, Wednesday, and Thursday!",
               givers_needed: 35,
-              charity_id: 13)
+              charity_id: c1.id)
 
 
 Event.create!(name: "Trip to the Museum!",
@@ -112,54 +119,56 @@ Event.create!(name: "Trip to the Museum!",
               end: "20016-12-01 09:00:00",
               description: "Frequently, the only environment a homeless child knows is that of the street, shelters, or other transitory housing. Outside of school -- if they attend -- these children have little exposure to many of the simple pleasures that most kids have. Volunteer take children to the Exploratorium on the weekend.",
               givers_needed: 5,
-              charity_id: 13)
+              charity_id: c1.id)
 
 
 # Info for CounterPulse
+c2 = Charity.find_by(name: "CounterPulse")
+
 Need.create!(name: "Costumes",
              description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have costumes that may fit our performance, bring them by!",
              quantity_needed: 25,
              status: 1,
-             charity_id: 12)
+             charity_id: c2.id)
 
 Need.create!(name: "Props",
              description:"CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have props that may fit our performance, bring them by!",
              quantity_needed: 25,
              status: 1,
-             charity_id: 12)
+             charity_id: c2.id)
 
 Need.create!(name: "Instruments",
              description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have instruments that may fit our performance, bring them by!",
              quantity_needed: 10,
              status: 1,
-             charity_id: 12)
+             charity_id: c2.id)
 
 Need.create!(name: "Lighting Equipment",
              description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have ligting equipment that you would like to donate, bring them by!",
              quantity_needed: 5,
              status: 1,
-             charity_id: 12)
+             charity_id: c2.id)
 
 Event.create!(name: "Production Ushers",
               start: "2016-12-04 00:00:00",
               end: "20016-12-04 12:00:00",
               description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to be an Usher for an upcoming production!",
               givers_needed: 35,
-              charity_id: 12)
+              charity_id: c2.id)
 
 Event.create!(name: "Production Box Office Staff",
               start: "2016-12-11 00:00:00",
               end: "20016-12-11 12:00:00",
-              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to be Box Office staff for an upcoming production!"
+              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to be Box Office staff for an upcoming production!",
               givers_needed: 35,
-              charity_id: 12)
+              charity_id: c2.id)
 
 Event.create!(name: "Host an Improv Class!",
               start: "2016-01-01 00:00:00",
               end: "20016-12-31 12:00:00",
-              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to host an improv night!"
+              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to host an improv night!",
               givers_needed: 35,
-              charity_id: 12)
+              charity_id: c2.id)
 
 # ************************************************************
 
@@ -196,9 +205,9 @@ Giver.create!(first_name: "Christopher",
               points: 12)
 
 Giver.create!(first_name: "Sarah",
-              last_name: "Lee",
-              username: "Slee43",
-              email: "SLee@123.com",
+              last_name: "Birch",
+              username: "SBirch43",
+              email: "SBirch@123.com",
               password: "password",
               points: 15)
 
@@ -251,17 +260,17 @@ Giver.create!(first_name: "Melanie",
               password: "password",
               points: 18)
 
-Giver.create!(first_name: "Chloe",
+Giver.create!(first_name: "John",
               last_name: "Fitz",
               username: "FitzyLoe21",
-              email: "Fitz@123.com",
+              email: "JFitz@123.com",
               password: "password",
               points: 18)
 
 Giver.create!(first_name: "Peter",
               last_name: "Lopez",
               username: "PeterLo12",
-              email: "Lopez@123.com",
+              email: "Lopez2@123.com",
               password: "password",
               points: 18)
 

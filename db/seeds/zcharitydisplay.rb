@@ -250,8 +250,8 @@ obj36.update_attributes(attributes36)
 #37
 attributes37 = {description: "Our Lab Rescue team saves purebred Labrador Retrievers and Lab mixes from shelters, as well as assists people giving up their dogs for adoption.  We provide foster homes, veterinary care, and rehabilitation when needed, and place them with loving, forever families.", 
               url: "http://www.labrescue.org/index.html", 
-              image_url: "https://s-media-cache-ak0.pinimg.com/236x/23/aa/78/23aa78dc17a30788c7fe52c8a4d100a9.jpg"}
-              phone: "+1-415-487-0691"
+              image_url: "https://s-media-cache-ak0.pinimg.com/236x/23/aa/78/23aa78dc17a30788c7fe52c8a4d100a9.jpg",
+              phone: "+1-415-487-0691"}
 obj37 = Charity.find_by(name: "Golden Gate Labrador Retriever Rescue")
 obj37.update_attributes(attributes37)
 
@@ -399,7 +399,7 @@ obj65.update_attributes(attributes65)
 
 # Destory
 c = Charity.find_by(name: "SPCA & Macy's Holiday Windows")
-c.destory
+c.destroy
 
 
 
