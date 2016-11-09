@@ -1,22 +1,33 @@
 class Manager::RegistrationsController < Manager::ApplicationController
-  def index
-
-  end
+  before_action :find_charity
+  before_action :find_registration
 
   def show
-
   end
 
   def update
-    # after manager clicks "approve":
-    # add pending_hours to approved_hours
+    @registration.approve_hours
+    @registration.save!
     # update user points
-    # close modal with js
+
+    # redirect for testing purposes:
+    redirect_to manager_charity_url(@charity)
   end
 
   def destroy
-     # after manager clicks "deny":
-     # destroy registration object
-     # close modal with js
+    @registration.destroy
+
+    # redirect for testing purposes:
+    redirect_to manager_charity_url(@charity)
+  end
+
+  private
+
+  def find_charity
+    @charity = Charity.find(params[:charity_id])
+  end
+
+  def find_registration
+    @registration = Registration.find(params[:id])
   end
 end

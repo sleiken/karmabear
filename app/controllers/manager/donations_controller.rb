@@ -1,21 +1,34 @@
 class Manager::DonationsController < Manager::ApplicationController
-  def index
-
-  end
+  before_action :find_charity
+  before_action :find_donation
 
   def show
-
   end
 
   def update
-    # after manager clicks "approve":
+    @donation.approve_quantity
+    @donation.save!
+
     # update user points on user object
-    # close modal with js
+
+    # redirect for testing purposes:
+    redirect_to manager_charity_url(@charity)
   end
 
   def destroy
-     # after manager clicks "deny":
-     # destroy donation object
-     # close modal with js
+    @donation.destroy
+
+    # redirect for testing purposes:
+    redirect_to manager_charity_url(@charity)
+  end
+
+  private
+
+  def find_charity
+    @charity = Charity.find(params[:charity_id])
+  end
+
+  def find_donation
+    @donation = Donation.find(params[:id])
   end
 end

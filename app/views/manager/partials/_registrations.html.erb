@@ -4,7 +4,8 @@
   <ul>
     <% @registrations.each do |registration| %>
       <li>
-        <%= registration.giver.username %> volunteered for <%= registration.event.name %>
+        <%= registration.giver.username %> volunteered for <%= registration.event.name %> |
+        <%= link_to 'trigger registration#show modal', manager_charity_event_registration_path(@charity, registration.event, registration) %>
       </li>
     <% end %>
   </ul>

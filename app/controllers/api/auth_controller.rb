@@ -126,7 +126,8 @@ class Api::AuthController < ApplicationController
     render nothing: :true, status: :forbidden unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
-    rescue
+    rescue => error
+      puts error.inspect
       render nothing: :true, status: :forbidden
     end
   end
