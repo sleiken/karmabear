@@ -397,6 +397,13 @@ obj65.update_attributes(attributes65)
 
 
 
+# Destory
+c = Charity.find_by(name: "SPCA & Macy's Holiday Windows")
+c.destory
+
+
+
+
 
 
 

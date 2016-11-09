@@ -20,12 +20,17 @@ a1 = {name: "The Sanctuary",
      image_url: "http://www.thecross-photo.com/images/The-Episcopal-Sanctuary.jpg"
    }
 
+Charity.create(a1)
+
+# Info for Glide:
+
 Manager.create!(first_name: "Laurie",
                 email: "manager@.com",
                 last_name: "MacKenzie",
                 username: "LMacKenzie",
                 password: "123456",
-                charity_id: 13)
+                charity_id: 13
+               )
 
 Need.create!(name: "Heavy Blankets",
              description: "Many low-income people don't have enough money to buy warm blankets -- especially the homeless, who often suffer from the cold during the winter months.",
@@ -47,7 +52,7 @@ Need.create!(name: "Tooth Brush-Tooth Paste-Dental Floss",
 
 Need.create!(name: "Board Games",
              description: "Homeless children in shelters often have few personal possessions, including toys and board games. Please bring board games so the children have something to play with while they're staying in the shelter!",
-             quantity_needed: 100,
+             quantity_needed: 25,
              status: 1,
              charity_id: 13)
 
@@ -80,7 +85,6 @@ Event.create!(name: "Holiday Toy Drive",
               givers_needed: 10,
               charity_id: 13)
 
-
 Event.create!(name: "Halloween Candy Drive",
               start: "2016-11-01 12:00:00",
               end: "2016-12-01 12:00:00"
@@ -98,7 +102,7 @@ Event.create!(name: "Nightly Meal Service"
 Event.create!(name: "Weekly tutoring",
               start: "2016-01-01 00:00:00",
               end: "20016-12-31 12:00:00",
-              description: "A tutor can make all the difference. Just having adult attention can spur children to do their best. It takes nothing more than a little time. Weekly tutoring volunteers are needed every Tuesday, Wednesday, and Thursday!,"
+              description: "A tutor can make all the difference. Just having adult attention can spur children to do their best. It takes nothing more than a little time. Weekly tutoring volunteers are needed every Tuesday, Wednesday, and Thursday!",
               givers_needed: 35,
               charity_id: 13)
 
@@ -111,10 +115,55 @@ Event.create!(name: "Trip to the Museum!",
               charity_id: 13)
 
 
-Need.create!(name: "Instant Oatmeal",
-             description: "Breakfast constitutes a key meal for the day, so providing cereal options like instant oatmeal makes a reliable donation. Choose a multi-flavor pack to provide recipients with options and consider low-sugar varieties as well."
+# Info for CounterPulse
+Need.create!(name: "Costumes",
+             description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have costumes that may fit our performance, bring them by!",
+             quantity_needed: 25,
              status: 1,
-             charity_id: 45)
+             charity_id: 12)
+
+Need.create!(name: "Props",
+             description:"CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have props that may fit our performance, bring them by!",
+             quantity_needed: 25,
+             status: 1,
+             charity_id: 12)
+
+Need.create!(name: "Instruments",
+             description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have instruments that may fit our performance, bring them by!",
+             quantity_needed: 10,
+             status: 1,
+             charity_id: 12)
+
+Need.create!(name: "Lighting Equipment",
+             description: "CounterPulse is proud to present Performing Diaspora a multimedia dance theatre piece that reflects on personal experiences of first-generation Pilipina-American daughters. If you have ligting equipment that you would like to donate, bring them by!",
+             quantity_needed: 5,
+             status: 1,
+             charity_id: 12)
+
+Event.create!(name: "Production Ushers",
+              start: "2016-12-04 00:00:00",
+              end: "20016-12-04 12:00:00",
+              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to be an Usher for an upcoming production!",
+              givers_needed: 35,
+              charity_id: 12)
+
+Event.create!(name: "Production Box Office Staff",
+              start: "2016-12-11 00:00:00",
+              end: "20016-12-11 12:00:00",
+              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to be Box Office staff for an upcoming production!"
+              givers_needed: 35,
+              charity_id: 12)
+
+Event.create!(name: "Host an Improv Class!",
+              start: "2016-01-01 00:00:00",
+              end: "20016-12-31 12:00:00",
+              description: "Gain experience supporting artist productions, meet folks in your creative community, and make a difference by giving back to a thriving and dynamic arts community. Join us and volunteer to host an improv night!"
+              givers_needed: 35,
+              charity_id: 12)
+
+# ************************************************************
+
+
 
 
 
@@ -209,9 +258,19 @@ Giver.create!(first_name: "Chloe",
               password: "password",
               points: 18)
 
+Giver.create!(first_name: "Peter",
+              last_name: "Lopez",
+              username: "PeterLo12",
+              email: "Lopez@123.com",
+              password: "password",
+              points: 18)
 
-
-
+Giver.create!(first_name: "Nick",
+              last_name: "Roberts",
+              username: "Roberts2134",
+              email: "Roberts@123.com",
+              password: "password",
+              points: 18)
 
 
 
