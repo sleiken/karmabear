@@ -1,10 +1,8 @@
 class Notification < ApplicationRecord
-  enum type: [:follow, :unfollow]
+  enum action: [:unfollow, :follow]
 
   belongs_to :giver
   belongs_to :manager
-
-  validates :content, presence: true
 
   scope :for_display, -> { order('created_at DESC').first(10) }
 
