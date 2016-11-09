@@ -12,11 +12,14 @@ class Notification < ApplicationRecord
 
   def broadcast_notification(notification)
     DashChannel.broadcast_to(notification.manager,
-                             manager: notification.manager.email,
                              message: render_notification(notification))
   end
 
   def render_notification(notification)
-    ApplicationController.renderer.render(partial: 'notifications/notification', locals: { notification: notification })
+    if notification.action == "follow"
+      ApplicationController.renderer.render(partial: 'notifications/follow', locals: { notification: notification })
+    elsif notification.action == "unfollow"
+      ApplicationController.renderer.render(partial: 'notifications/unfollow', locals: { notification: notification })
+    end
   end
 end

@@ -7,4 +7,4 @@ App.activity = App.cable.subscriptions.create "DashChannel",
 
   received: (event) ->
     # Called when there's incoming data on the websocket for this channel
-    $('.notifications').prepend "#{event.manager}: #{event.message}"
+    $('.notifications').prepend "#{event.message}"
