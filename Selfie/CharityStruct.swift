@@ -18,6 +18,7 @@ struct CharityStruct {
     var description: String?
     var phone: String?
     var url: String?
+    var imageUrl: String?
     
     init(dictionary: [String : AnyObject]) {
 
@@ -28,6 +29,7 @@ struct CharityStruct {
         self.longitude = (dictionary["lng"] as? Double)!
         self.description = dictionary["description"]! as? String
         self.phone = dictionary["phone"]! as? String
+        self.imageUrl = dictionary["image_url"]! as? String
         self.url = (dictionary["url"]! as? String)!
     }
 }

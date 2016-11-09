@@ -32,6 +32,8 @@ let cllocationManager: CLLocationManager = CLLocationManager()
   var httpHelper = HTTPHelper()
     var LocArr: NSMutableArray = NSMutableArray()
     var charityId: Int?
+    var passImageUrl: String!
+    var descString: String!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -274,7 +276,6 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         }
         else {
             print("New Charity Data")
-            print(CharityModel.charityData[indexPath.row])
             cell?.textLabel?.text = CharityModel.charityData[indexPath.row].name
         }
         
@@ -286,6 +287,10 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         if CharityModel.charityData.count != 0 {
             let selectedCharity = CharityModel.charityData[indexPath.row]
             
+            
+            passImageUrl = selectedCharity.imageUrl
+            descString = selectedCharity.description
+   
             charityId = indexPath.row
             performSegueWithIdentifier("charityDetail", sender: self)
         }else{
@@ -298,6 +303,8 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         if (segue.identifier == "charityDetail") {
             let viewController = segue.destinationViewController as! CharityDetailViewController
             viewController.passedId = charityId
+            viewController.imageUrl = passImageUrl
+            viewController.descString = descString
         }
     }
 
