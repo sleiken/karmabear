@@ -123,37 +123,91 @@ Giver.create!(first_name: "Sarah",
               username: "Slee43",
               email: "SLee@123.com",
               password: "password",
-              points: 0)
+              points: 35)
 
 Giver.create!(first_name: "Jacob",
               last_name: "Ramos",
               username: "JR2525",
               email: "Jacob@123.com",
               password: "password",
-              points: 0)
+              points: 72)
 
 Giver.create!(first_name: "Cassie",
               last_name: "Strong",
               username: "StrongCass21",
               email: "Strong@123.com",
               password: "password",
-              points: 0)
+              points: 20)
 
 Giver.create!(first_name: "Christopher",
               last_name: "Branch",
               username: "ChrisBranch15",
               email: "Branch@123.com",
               password: "password",
-              points: 0)
+              points: 12)
 
 Giver.create!(first_name: "Sarah",
               last_name: "Lee",
               username: "Slee43",
               email: "SLee@123.com",
               password: "password",
-              points: 0)
+              points: 15)
 
+Giver.create!(first_name: "Maxwell",
+              last_name: "Mathis",
+              username: "MaxMathis42",
+              email: "Mathis@123.com",
+              password: "password",
+              points: 16)
 
+Giver.create!(first_name: "Jessica",
+              last_name: "Montez",
+              username: "Jessie65",
+              email: "Montez@123.com",
+              password: "password",
+              points: 21)
+
+Giver.create!(first_name: "Ben",
+              last_name: "Fisher",
+              username: "FisherRails2323",
+              email: "Fisher@123.com",
+              password: "password",
+              points: 5)
+
+Giver.create!(first_name: "Chloe",
+              last_name: "Fitz",
+              username: "FitzyLoe21",
+              email: "Fitz@123.com",
+              password: "password",
+              points: 18)
+
+Giver.create!(first_name: "Philp",
+              last_name: "Smith",
+              username: "Phil_22",
+              email: "Smith@123.com",
+              password: "password",
+              points: 18)
+
+Giver.create!(first_name: "Angelica",
+              last_name: "Castro",
+              username: "AngieCastro_45",
+              email: "Castro@123.com",
+              password: "password",
+              points: 18)
+
+Giver.create!(first_name: "Melanie",
+              last_name: "Stoval",
+              username: "Melanie_rose13",
+              email: "Stovall@123.com",
+              password: "password",
+              points: 18)
+
+Giver.create!(first_name: "Chloe",
+              last_name: "Fitz",
+              username: "FitzyLoe21",
+              email: "Fitz@123.com",
+              password: "password",
+              points: 18)
 
 
 

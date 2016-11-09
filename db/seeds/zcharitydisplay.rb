@@ -29,14 +29,14 @@ obj2.update_attributes(attributes2)
 attributes3 = {description: "One Brick provides support to local non-profit and community organizations by creating a unique, social and flexible volunteer environment for those interested in making a concrete difference in the community. We enable people to get involved, have an impact and have fun, without the requirements of individual long-term commitments.", 
               url: "http://www.onebrick.org/", 
               image_url: "https://s3-media2.fl.yelpcdn.com/bphoto/gA_Z6iEBU2wJKZFXS7QW1Q/o.jpg"}
-obj3 = Charity.find_by_id(4)
+obj3 = Charity.find_by(name: "One Brick")
 obj3.update_attributes(attributes)
 
 #5
 attributes4 = {description: "Kiva is an international nonprofit, founded in 2005 and based in San Francisco, with a mission to connect people through lending to alleviate poverty. We celebrate and support people looking to create a better future for themselves, their families and their communities.", 
               url: "https://www.kiva.org/", 
               image_url: "https://www-kiva-org.global.ssl.fastly.net/cms/styles/fellows_blog_excerpt/s3/sites/default/files/kivablog/philippines_update_blog.jpg?itok=aNOGL0m5"}
-obj4 = Charity.find_by_id(5)
+obj4 = Charity.find_by(name: "Kiva")
 obj4.update_attributes(attributes4)
 
 #5
@@ -86,14 +86,14 @@ obj10.update_attributes(attributes10)
 attributes11 = {description: "CounterPulse is building a movement of risk-taking art that shatters assumptions and builds community. We provide space and resources for emerging artists and cultural innovators, serving as an incubator for the creation of socially relevant, community-based art and culture. CounterPulse acts as a catalyst for art and action; creating a forum for the open exchange of art and ideas, sparking transformation in our communities and our society.", 
                 url: "http://www.counterpulse.org/", 
                 image_url: "http://www.counterpulse.org/wp-content/uploads/2016/03/CP-Red.png"}
-obj11 = Charity.find_by_id(12)
+obj11 = Charity.find_by(name: "CounterPulse")
 obj11.update_attributes(attributes11)
 
 #12
 attributes12 = {description: "GLIDE's mission is to create a radically inclusive, just and loving community mobilized to alleviate suffering and break the cycles of poverty and marginalization.", 
                 url: "http://www.glide.org/", 
                 image_url: "https://haasundergrad.files.wordpress.com/2013/11/locations_glide.jpg"}
-obj12 = Charity.find_by_id(13)
+obj12 = Charity.find_by(name: "Glide")
 obj12.update_attributes(attributes12)
 
 
@@ -101,14 +101,14 @@ obj12.update_attributes(attributes12)
 attributes14 = {description: "UniversalGiving helps people give and volunteer with the top-performing projects all over the world.  All projects are vetted through UniversalGiving's trademarked, proprietary Quality Model. 100%\ of each donation goes directly to the cause.", 
                 url: "http://www.universalgiving.org/", 
                 image_url: "https://pbs.twimg.com/profile_images/635948942493007872/DyEKuO1t.jpg"}
-obj14 = Charity.find_by_id(15)
+obj14 = Charity.find_by(name: "UniversalGiving")
 obj14.update_attributes(attributes14)
 
 #15
 attributes15 = {description: "Delancey Street is the country's leading residential self-help organization for former substance abusers, ex-convicts, homeless and others who have hit bottom.During their time at Delancey Street, residents receive a high school equivalency degree (GED) and are trained in 3 different marketable skills. Beyond academic and vocational training, residents learn important values, and the social and interpersonal skills that allow them to live successfully in the mainstream of society.", 
                 url: "http://www.delanceystreetfoundation.org/", 
                 image_url: "http://www.delanceystreetfoundation.org/images/logoleft.gif"}
-obj15 = Charity.find_by_id(16)
+obj15 = Charity.find_by(name: "Delancey Street Foundation")
 obj15.update_attributes(attributes15)
 
 
@@ -137,7 +137,7 @@ obj18.update_attributes(attributes18)
 attributes19 = {description: "For over 45 years, the San Francisco Bicycle Coalition has been transforming San Francisco streets and neighborhoods into more livable and safe places by promoting the bicycle for everyday transportation. We are one of the largest and most effective bicycle advocacy groups in the country.", 
               url: "http://www.sfbike.org/", 
               image_url: "https://nationalbikechallenge.s3.amazonaws.com/lc_logos/1553/medium/SF_Bicycle_Coalition.png"}
-obj19 = Charity.find_by_id(20)
+obj19 = Charity.find_by(name: "At The Crossroads")
 obj19.update_attributes(attributes19)
 
 #20
@@ -251,7 +251,8 @@ obj36.update_attributes(attributes36)
 attributes37 = {description: "Our Lab Rescue team saves purebred Labrador Retrievers and Lab mixes from shelters, as well as assists people giving up their dogs for adoption.  We provide foster homes, veterinary care, and rehabilitation when needed, and place them with loving, forever families.", 
               url: "http://www.labrescue.org/index.html", 
               image_url: "https://s-media-cache-ak0.pinimg.com/236x/23/aa/78/23aa78dc17a30788c7fe52c8a4d100a9.jpg"}
-obj37 = Charity.find_by_id(38)
+              phone: "+1-415-487-0691"
+obj37 = Charity.find_by(name: "Golden Gate Labrador Retriever Rescue")
 obj37.update_attributes(attributes37)
 
 #38
@@ -321,7 +322,7 @@ obj51.update_attributes(attributes51)
 attributes52 = {description: "YBCA is a new kind of art center. One that expands and extends its impact beyond its walls. A center that convenes creative souls from all walks of life to instigate actions and spur movement that transform our cities and our lives.", 
                 url: "https://www.ybca.org/", 
                 image_url: "http://interaction15.ixda.org/wp-content/uploads/i15-partner-ybca-340x340.png"}
-obj52 = Charity.find_by_id(52)
+obj52 = Charity.find_by(name: "Yerba Buena Center For the Arts")
 obj52.update_attributes(attributes52)
 
 #53
@@ -356,14 +357,14 @@ obj57.update_attributes(attributes57)
 attributes58 = {description: "We promote knowledge of the German language abroad and foster international cultural cooperation. We convey a comprehensive image of Germany by providing information about cultural, social and political life in our nation.", 
                 url: "https://www.goethe.de/ins/us/en/index.html", 
                 image_url: "https://pbs.twimg.com/profile_images/433691134708051969/ZQ__HUpz_400x400.png"}
-obj58 = Charity.find_by_id(58)
+obj58 = Charity.find_by(name: "Goethe Institut")
 obj58.update_attributes(attributes58)
 
 #59
 attributes59 = {description: "The Filipino American Development Foundation exists to strengthen the social, physical, and economic well being of the Filipino American community and the South of Market community with special attention to the underserved segments of the community.", 
                 url: "http://bayanihancc.org/", 
                 image_url: "http://ppie.ae/wp-content/uploads/2016/07/bayanihan-council.jpg"}
-obj59 = Charity.find_by_id(59)
+obj59 = Charity.find_by(name: "Bayanihan Community Center")
 obj59.update_attributes(attributes59)
 
 #61
@@ -384,7 +385,7 @@ obj63.update_attributes(attributes63)
 attributes64 = {description: "The Book Club of California is a non-profit membership organization founded in 1912. It supports the art of fine printing related to the history and literature of California and the western states of America through research, publishing, public programs, and exhibitions.", 
               url: "http://www.bccbooks.org/", 
               image_url: "http://www.bccbooks.org/wp-content/themes/bookclub_child_theme/images/BCC_PressMark.png"}
-obj64 = Charity.find_by_id(64)
+obj64 = Charity.find_by(name: "Book Club of California")
 obj64.update_attributes(attributes64)
 
 #65
