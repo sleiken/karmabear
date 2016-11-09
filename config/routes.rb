@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'main#index'
   get 'home', to: 'main#index'
 
+  mount ActionCable.server => '/cable'
+
   get 'users/:username', to: 'givers#show', as: :giver
 
   get 'charities/apply', to: 'charities#verification'
