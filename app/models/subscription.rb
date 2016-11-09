@@ -13,6 +13,6 @@ class Subscription < ApplicationRecord
     manager = subscription.charity.manager
     Notification.create!(manager_id: (manager.id if manager) || 1,
                          giver_id: subscription.giver.id,
-                         content: "YOU GOT FOLLOWED YOU IDIOT.")
+                         content: "")
   end
 end
