@@ -1,9 +1,6 @@
 class NotificationsController < ApplicationController
-  def create
-    ActionCable.server.broadcast 'dash_channel',
-                                 content: message.content,
-                                 user: message.giver.username
-    head :ok
+  def index
+    @notifications = Notification.all 
   end
   # before_action :get_notifications
   # def create
