@@ -1,8 +1,13 @@
 class Notification < ApplicationRecord
+  enum type: [:follow, :unfollow]
+
   belongs_to :giver
   belongs_to :manager
+
   validates :content, presence: true
-  scope :for_display, -> { order(:created_at).last(50) }
+
+  scope :for_display, -> { order('created_at DESC').first(10) }
+
   after_create_commit { broadcast_notification(self) }
 
   private

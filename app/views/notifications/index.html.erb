@@ -1,5 +1,7 @@
 <h1>Activity</h1>
 
 <div class="notifications">
-  <%= @notifications %>
+  <% @notifications.each do |notification| %>
+    <%= "#{notification.created_at.to_formatted_s(:short)}: #{notification.giver.username}, #{notification.manager.email}" %></br>
+  <% end %>
 </div>
