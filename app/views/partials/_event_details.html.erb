@@ -17,7 +17,6 @@
       <% if giver.registrations.include?(registration) %>
 
         <%= link_to 'Edit Registration', edit_charity_event_registration_path(charity, event, registration), class: 'btn btn-primary btn-block' %> |
-
         <%= link_to 'Cancel Registration', charity_event_registration_path(charity, event, registration), method: 'delete', class: 'btn btn-danger btn-block' %>
 
       <% else %>
@@ -25,7 +24,7 @@
       <% end %>
 
     <% else %>
-      <%= link_to 'Foolow', giver_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' %>
+      <%= link_to 'Register', giver_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' %>
     <% end %>
 
   </div>
