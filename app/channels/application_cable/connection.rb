@@ -9,10 +9,10 @@ module ApplicationCable
     protected
 
     def find_verified_manager
-      if verified_manager = Manager.find(1)
-        verified_manager
+      if Manager.find($current_manager[:id])
+        Manager.find($current_manager[:id])
       else
-        reject_unauthorized_connection
+        Manager.first
       end
     end
   end
