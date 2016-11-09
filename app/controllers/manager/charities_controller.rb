@@ -11,6 +11,7 @@ class Manager::CharitiesController < Manager::ApplicationController
     @registrations = @charity.registrations
     @registration = Registration.find_by(id: params[:id])
     @donations = @charity.donations
+    @need = Need.new
 	end
 
 end

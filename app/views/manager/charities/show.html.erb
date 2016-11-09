@@ -30,6 +30,7 @@
 </div>
 
 <!-- click on event/need to trigger a modal with event or need #show page -->
+
 <div class="planned-events-container">
   <h2>planned Events</h2>
     <%= render partial: 'manager/partials/events' %>
@@ -52,13 +53,23 @@ needs partial:
   </li>
 </div>
 
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
+
 <div class="needs-container">
   <h2>add need button:</h2>
-
-  <li>(modal for: needs#new)
-    <%= link_to 'Add Need (needs/index)', new_manager_charity_need_path(@charity) %>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
   </li>
 </div>
+
+  <%= render partial: 'manager/modals/new_need' %>
+
+
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
 
 <div class="givers-container">
   <h2>view givers button</h2>

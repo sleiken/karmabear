@@ -18,7 +18,7 @@ class Manager::NeedsController < Manager::ApplicationController
     @need = @charity.needs.new(need_params)
 
     if @need.save
-      redirect_to manager_charity_need_path(@charity, @need)
+      redirect_to manager_charity_path(@charity)
     else
       @errors = @need.errors.full_messages
       render "manager/needs#show"
