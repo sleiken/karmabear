@@ -1,3 +1,5 @@
+require 'faker'
+
 a = {name: "Project Homeless Connect",
      lat: 37.775632,
      lng: -122.419881,
@@ -172,10 +174,6 @@ Event.create!(name: "Host an Improv Class!",
 
 # ************************************************************
 
-
-
-
-
 Giver.create!(first_name: "Sarah",
               last_name: "Lee",
               username: "Slee43",
@@ -281,6 +279,21 @@ Giver.create!(first_name: "Nick",
               password: "password",
               points: 18)
 
+1000.times do 
+  Giver.create!(first_name: Faker::Name.first_name,
+                last_name: Faker::Name.last_name,
+                username: Faker::Internet.user_name,
+                email: Faker::Internet.email,
+                password: "password",
+                points: rand(1..100)
+end
+
+num = 1
+276.times do
+  Subscription.create!(charity_id: c1.id,
+                       giver_id: num)
+  num +=1
+end
 
 
 
