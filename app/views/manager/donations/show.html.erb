@@ -1,6 +1,6 @@
-<h1><%= @donation.need.name %> given by <%= @donation.giver.username %></h1>
+<h1><%= @donation.need.name %></h1>
 
-<%= @donation.quantity_pending %> pending
+<%= @donation.quantity_pending %> pending for <%= @donation.giver.username %>
 
 <%= form_for [:manager, @charity, @donation.need, @donation], method: 'put' do |f| %>
 
