@@ -44,13 +44,20 @@ needs partial:
 
 </div>
 
+
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
+
+
 <!-- buttons! trigger modals: -->
 <div class="events-button-container">
   <h2>add event button</h2>
 
-	<li>(modal for: events#new)
-    <%= link_to 'Add Event (events/new)', new_manager_charity_event_path(@charity) %>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEventModal">Add Event</button>
   </li>
+  <%= render partial: 'manager/modals/new_event' %>
 </div>
 
 <!-- ############################################### -->
@@ -59,17 +66,13 @@ needs partial:
 
 <div class="needs-container">
   <h2>add need button:</h2>
+
   <li>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
   </li>
+  <%= render partial: 'manager/modals/new_need' %>
 </div>
 
-  <%= render partial: 'manager/modals/new_need' %>
-
-
-<!-- ############################################### -->
-<!-- ######             WORK HERE             ######-->
-<!-- ############################################### -->
 
 <div class="givers-container">
   <h2>view givers button</h2>
