@@ -2,7 +2,7 @@
   <% if @giver %>
 
     <% if @giver.followed_charities.include?(@charity) %>
-        <%= link_to 'Unfollow Charity', charity_subscription_path(@charity, subscription), method: 'delete', class: 'btn btn-danger btn-block' %>
+        <%= link_to 'Unfollow Charity', charity_subscription_path(@charity, @subscription), method: 'delete', class: 'btn btn-danger btn-block' %>
     <% else %>
       <%= link_to 'Follow Charity', charity_subscriptions_path(@charity), method: 'post', class: 'btn btn-primary btn-block' %>
     <% end %>
