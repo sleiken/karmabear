@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   root 'main#index'
-  get 'home', to: 'main#index'
+  get  'home', to: 'main#index'
 
   get 'users/:username', to: 'givers#show', as: :giver
 
   get 'charities/apply', to: 'charities#verification'
 
-  devise_for :managers
+  devise_for :managers, :controllers => { sessions: "managers_sessions" }
   devise_for :givers, :controllers => { :omniauth_callbacks => "givers_omniauth_callbacks" }
 
   namespace :manager do
@@ -47,4 +47,8 @@ Rails.application.routes.draw do
 
     get 'auth/test', to: 'auth#test'
   end
+
+  get 'notifications', to: 'notifications#index'
+
+  mount ActionCable.server => '/cable'
 end
