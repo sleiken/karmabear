@@ -1,10 +1,10 @@
-<h1><%= @charity.name %></h1>
+<%= render partial: 'partials/charity_hero', locals: { charity: @charity } %>
 
-<h2><%= @event.name %></h2>
-<p>Description:<%= @event.description %></p>
-<p>Start:<%= @event.start %></p>
-<p>End:<%= @event.end %></p>
-<p>Givers Needed: <%= @event.givers_needed %></p>
+<div class="container">
+
+  <%= render partial: 'partials/event_details', locals: { charity: @charity, event: @event, giver: @giver, registration: @registration } %>
+
+</div>
 
 <!-- if user signed in and registered:
   display: update: trigger modal for registration edit form
@@ -16,19 +16,3 @@
  <!-- if user not signed in:
   display: participate button: trigger facebook oath
 -->
-
-<% if @giver %>
-  <% if @giver.registrations.include?(@registration) %>
-    <%= link_to 'edit registration', edit_charity_event_registration_path(@charity, @event, @registration) %> |
-    <%= link_to 'cancel registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete' %>
-    </h2>
-  <% else %>
-    <h2>Registered for this event:
-      <%= link_to 'register', new_charity_event_registration_path(@charity, @event) %>
-    </h2>
-  <% end %>
-<% else %>
-  <h2>Follow:
-    <%= link_to "register", giver_facebook_omniauth_authorize_path %>
-  </h2>
-<% end %>
