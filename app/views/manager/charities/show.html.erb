@@ -1,4 +1,3 @@
-
 <h1>Dashboard for <%=@charity.name%></h1>
 
 <div class="charity-info">
@@ -14,12 +13,51 @@
   <li>450 givers</li>
 </div>
 
+<div class="followers-live">
+<!-- sam's magical web socket stuff -->
+</div>
+
+
+
+
 <!-- click on givers in activity feed to trigger a modal for denying/approving a giver's request: -->
 <div class="registrations-container">
   <h2>current registrations activities</h2>
-    click this - trigger modal of registration#show:
-      <%= render partial: 'manager/partials/registrations' %>
+
+  <% if @registrations.empty? %>
+    no registrations
+  <% else %>
+    <ul>
+      <% @registrations.each do |registration| %>
+        <li>
+          <%= registration.giver.username %> volunteered for <%= registration.event.name %>
+             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regisApprovalModal">Approve/Deny</button>
+
+          <%= render partial: 'manager/modals/approve_registration', locals: { registration: registration} %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
+
+<!-- registration modal -->
+
+<!-- registration modal -->
+
+
+<!-- work above this line -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="registrations-container">
   <h2>current donations activities</h2>

@@ -9,6 +9,7 @@ class Manager::CharitiesController < Manager::ApplicationController
     @events = @charity.events
     @needs = @charity.needs
     @registrations = @charity.registrations
+    @registration = Registration.find_by(id: params[:id])
     @donations = @charity.donations
 	end
 

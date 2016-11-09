@@ -1,0 +1,16 @@
+<h1><%= registration.event.name %></h1>
+
+<%= registration.pending_hours %> hours pending for <%= registration.giver.username %>
+
+<%= form_for [:manager, @charity, registration.event, registration], method: 'put' do |f| %>
+
+  <%= f.submit :approve %>
+
+<% end %>
+
+
+<%= form_for [:manager, @charity, registration.event, registration], method: 'delete' do |f| %>
+
+  <%= f.submit :deny %>
+
+<% end %>

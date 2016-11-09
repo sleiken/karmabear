@@ -4,8 +4,8 @@
   <ul>
     <% @registrations.each do |registration| %>
       <li>
-        <%= registration.giver.username %> volunteered for <%= registration.event.name %> |
-        <%= link_to 'trigger registration#show modal', manager_charity_event_registration_path(@charity, registration.event, registration) %>
+        <%= registration.giver.username %> volunteered for <%= registration.event.name %>
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regisApprovalModal">Approve/Deny</button>
       </li>
     <% end %>
   </ul>
