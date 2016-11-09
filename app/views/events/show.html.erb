@@ -2,10 +2,10 @@
 
 <div class="container">
 
-  <%= render partial: 'partials/event_details', locals: { charity: @charity, event: @event, giver: @giver, registration: @registration } %>
+  <%= render partial: 'partials/event_details' %>
 
 </div>
 
-<!-- modals/edit_reg -->
-
-<!-- modals/new_reg -->
+<!-- render modal partials -->
+<%= render partial: 'modals/edit_registration' %>
+<%= render partial: 'modals/new_registration' %>
