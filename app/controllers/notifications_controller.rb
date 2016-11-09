@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.all 
+    @notifications = Notification.all.reverse
   end
   # before_action :get_notifications
   # def create
