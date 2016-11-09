@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100447C91DD263740086CB37 /* CharityDetailViewController.swift */; };
+		10769D7D1DD2A0CA005BB037 /* EventStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7C1DD2A0CA005BB037 /* EventStruct.swift */; };
+		10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */; };
 		10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DB1DD000F10003CB87 /* MapKit.framework */; };
 		10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E11DD10E1B0003CB87 /* CharityModel.swift */; };
 		10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		100447C91DD263740086CB37 /* CharityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityDetailViewController.swift; sourceTree = "<group>"; };
+		10769D7C1DD2A0CA005BB037 /* EventStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStruct.swift; sourceTree = "<group>"; };
+		10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedStruct.swift; sourceTree = "<group>"; };
 		10FF59DB1DD000F10003CB87 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10FF59E11DD10E1B0003CB87 /* CharityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityModel.swift; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 				D37383E419B07A75008C2DB6 /* AppDelegate.swift */,
 				10FF59E11DD10E1B0003CB87 /* CharityModel.swift */,
 				10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */,
+				10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */,
+				10769D7C1DD2A0CA005BB037 /* EventStruct.swift */,
 				D373840119B07C3B008C2DB6 /* SelfieCollectionViewController.swift */,
 				C186CA0D19EA299B00E3B500 /* SelfieCollectionViewCell.swift */,
 				C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */,
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C186CA1619EA92C600E3B500 /* DetailViewController.swift in Sources */,
+				10769D7D1DD2A0CA005BB037 /* EventStruct.swift in Sources */,
 				100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */,
 				10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */,
 				C1B77A6C1A1B98DB0024857B /* HTTPHelper.swift in Sources */,
@@ -308,6 +315,7 @@
 				C186CA1019EA34DF00E3B500 /* SelfieImage.swift in Sources */,
 				10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */,
 				D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */,
+				10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */,
 				10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */,
 				C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */,
 				C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */,

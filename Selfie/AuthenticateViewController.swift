@@ -31,6 +31,9 @@ class AuthenticateViewController: UIViewController, FBSDKLoginButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
+        print(currentUserToken)
+        
         if (FBSDKAccessToken.currentAccessToken() != nil){
             print("A user is already logged in!")
             
@@ -64,7 +67,12 @@ class AuthenticateViewController: UIViewController, FBSDKLoginButtonDelegate{
                         {
                             print(data!)
                             let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                            print(responseDict)
+                            
+                            NSUserDefaults.standardUserDefaults().setValue("\(responseDict)", forKey: "FBToken")
+                            NSUserDefaults.standardUserDefaults().synchronize()
+                            
+                            let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
+                            print(currentUserToken)
                             
                         } catch let error as NSError {
                             print(error)

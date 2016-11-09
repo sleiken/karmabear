@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B709E8A3-B90A-483B-A414-D841B65B3EDB" id="5tq-mF-1gw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ECB9883F-FD5B-45FC-909C-70A1A8755A03" id="5tq-mF-1gw">
                                 <frame key="frameInset" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -110,11 +110,11 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="S9K-Ru-t5i">
                                         <frame key="frameInset" minX="272" minY="84" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="30D1782B-01A7-4690-AE33-550DEA678FED">
+                                        <state key="normal" image="10DDF21F-0BC7-4DC1-A8FF-66BF1A153187">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <state key="selected" image="78E91804-FB38-4F62-99FC-02D8D02F6D50"/>
-                                        <state key="highlighted" image="78E91804-FB38-4F62-99FC-02D8D02F6D50"/>
+                                        <state key="selected" image="1739018B-32B2-4774-A128-13BEBDDDF6C7"/>
+                                        <state key="highlighted" image="1739018B-32B2-4774-A128-13BEBDDDF6C7"/>
                                         <connections>
                                             <action selector="passwordRevealBtnTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sHO-6y-ALl"/>
                                         </connections>
@@ -401,19 +401,35 @@
                                             <action selector="closeDetailView:" destination="j1u-Xv-Mln" eventType="touchUpInside" id="YVc-w9-Nid"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZI0-En-WUI">
+                                        <frame key="frameInset" minY="81" width="319" height="153"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="j1u-Xv-Mln" id="P5C-Kf-Wpx"/>
+                                            <outlet property="delegate" destination="j1u-Xv-Mln" id="AGh-h0-PPB"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0ld-Af-flv">
+                                        <frame key="frameInset" minY="233" width="319" height="153"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="j1u-Xv-Mln" id="wYl-3v-h4h"/>
+                                            <outlet property="delegate" destination="j1u-Xv-Mln" id="pBT-fz-f2J"/>
+                                        </connections>
+                                    </tableView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="YUd-Pd-fMr">
-                                        <frame key="frameInset" height="44" maxX="56" maxY="195"/>
+                                        <frame key="frameInset" height="44" maxX="56" maxY="237"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="y9H-cl-KVN"/>
                                             <barButtonItem title="Follow" width="65" id="wct-ef-DgN">
                                                 <connections>
-                                                    <action selector="followCharity:" destination="j1u-Xv-Mln" id="TA4-jT-G9s"/>
+                                                    <action selector="followCharityWithSender:" destination="j1u-Xv-Mln" id="KzY-b3-u2g"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="Zyi-4D-cLd"/>
-                                            <barButtonItem title="Donate" width="64" id="9kk-x7-xhC"/>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="ER0-w0-9cq"/>
                                         </items>
                                     </toolbar>
                                 </subviews>
@@ -422,6 +438,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="eventsTableView" destination="0ld-Af-flv" id="qcS-Gb-NvV"/>
+                        <outlet property="needsTableView" destination="ZI0-En-WUI" id="5F7-Tc-eqY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFO-cC-Tj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -444,7 +464,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="30D1782B-01A7-4690-AE33-550DEA678FED" width="32" height="32">
+        <image name="10DDF21F-0BC7-4DC1-A8FF-66BF1A153187" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -563,7 +583,7 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdGX8ZhBmPGZgZqxmvGboZwxnIGdAZ0xnYGecZ6xnyGfoaBxoM
 Gg4aEBoVGh0aIBolGi0aMBpCGkUaSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABpMA
 </mutableData>
         </image>
-        <image name="78E91804-FB38-4F62-99FC-02D8D02F6D50" width="32" height="32">
+        <image name="1739018B-32B2-4774-A128-13BEBDDDF6C7" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -682,7 +702,7 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdGX8ZhBmPGZgZqxmvGboZwxnIGdAZ0xnYGecZ6xnyGfoaBxoM
 Gg4aEBoVGh0aIBolGi0aMBpCGkUaSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABpMA
 </mutableData>
         </image>
-        <image name="B709E8A3-B90A-483B-A414-D841B65B3EDB" width="320" height="568">
+        <image name="ECB9883F-FD5B-45FC-909C-70A1A8755A03" width="320" height="568">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
