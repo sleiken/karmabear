@@ -2,6 +2,6 @@
 
 <div class="notifications">
   <% @notifications.each do |notification| %>
-    <%= "#{notification.created_at.to_formatted_s(:short)}: #{notification.giver.username}, #{notification.manager.email}" %></br>
+    <%= render_notification(notification) %>
   <% end %>
 </div>
