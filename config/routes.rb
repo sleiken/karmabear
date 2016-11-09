@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'main#index'
-  get 'home', to: 'main#index'
+  get  'home', to: 'main#index'
 
   get 'users/:username', to: 'givers#show', as: :giver
 
@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
     get 'auth/test', to: 'auth#test'
   end
+
   get 'notifications', to: 'notifications#index'
+
   mount ActionCable.server => '/cable'
 end
