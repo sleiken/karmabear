@@ -12,6 +12,6 @@ class Notification < ApplicationRecord
   end
 
   def render_notification(notification)
-    ApplicationController.renderer.render(partial: 'notifications/event', locals: { notification: notification })
+    ApplicationController.renderer.render(partial: 'notifications/notification', locals: { notification: notification })
   end
 end
