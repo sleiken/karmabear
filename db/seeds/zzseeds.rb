@@ -279,23 +279,64 @@ Giver.create!(first_name: "Nick",
               password: "password",
               points: 18)
 
-1000.times do 
+300.times do 
   Giver.create!(first_name: Faker::Name.first_name,
                 last_name: Faker::Name.last_name,
                 username: Faker::Internet.user_name,
                 email: Faker::Internet.email,
                 password: "password",
-                points: rand(1..100)
+                points: rand(1..100))
 end
 
-num = 1
+num = 2
 276.times do
   Subscription.create!(charity_id: c1.id,
                        giver_id: num)
   num +=1
 end
 
+m1 = Event.find_by(name: "Nightly Meal Service")
+m2 = Event.find_by(name: "Trip to the Museum!")
 
+
+n = 5
+40.times do 
+  Registration.create!(event_id: m1.id,
+                     giver_id: n,
+                     pending_hours: rand(1..4),
+                     approved_hours: 0)
+  n+=1
+end
+
+
+n1 = 45
+3.times do
+  Registration.create!(event_id: m2.id,
+                     giver_id: n,
+                     pending_hours: rand(1..6),
+                     approved_hours: 0)
+  n1+=1
+end
+
+
+b = Need.find_by(name: "Board Games")
+
+d = 34
+5.times do 
+  Donation.create!(need_id: b.id,
+                   giver_id: d,
+                   quantity_given: rand(1..4))
+  d += 1
+end
+
+b1 = Need.find_by(name: "Peanut Butter")
+d1 = 50
+5.times do 
+  Donation.create!(need_id: b1.id,
+                   giver_id: d1,
+                   quantity_given: rand(1..6))
+  d += 1
+end
 
 
 
