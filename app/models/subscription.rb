@@ -10,6 +10,6 @@ class Subscription < ApplicationRecord
   private
 
   def create_notification
-    Notification.create(content: Subscription.last.giver.username)
+    Notification.create!(manager_id: 1, giver_id: 1, content: "cheese")
   end
 end
