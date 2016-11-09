@@ -1,0 +1,31 @@
+<div class="card text-center">
+
+  <div class="card-block">
+    <h2 class="card-title"><%= @event.name %></h2>
+    <p class="card-text"><%= @event.description %></p>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Start Date: <%= @event.start.to_date %></li>
+    <li class="list-group-item">End Date: <%= @event.end.to_date %></li>
+    <li class="list-group-item">Givers Needed: <%= @event.givers_needed %></li>
+  </ul>
+
+  <div class="card-block">
+    <% if @giver %>
+
+      <% if @giver.registrations.include?(@registration) %>
+
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editRegisModal">Edit Registration</button>
+        <%= link_to 'Cancel Registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete', class: 'btn btn-danger btn-block' %>
+
+      <% else %>
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal">Register</button>
+      <% end %>
+
+    <% else %>
+      <%= link_to 'Register', giver_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' %>
+    <% end %>
+
+  </div>
+</div>

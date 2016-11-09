@@ -20,6 +20,8 @@
     		<% if current_giver %>
 				  <li><%= link_to current_giver.username, "/users/#{current_giver.username}" %></li>
 				<% end %>
+        <li><%= link_to "Sign In(M)", new_manager_session_path %></li>
+				<li><%= link_to "Sign Out(M)", destroy_manager_session_path, method: :delete %></li>
 				<li><%= link_to "Sign In(Giver)", new_giver_session_path %></li>
 				<li><%= link_to "Sign Out(Giver)", destroy_giver_session_path, method: :delete %></li>
 				<li><%= link_to "Sign in with Facebook", giver_facebook_omniauth_authorize_path %></li>
@@ -28,4 +30,3 @@
 
   </div>
 </nav>
-

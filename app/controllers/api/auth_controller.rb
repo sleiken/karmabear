@@ -5,7 +5,7 @@ class Api::AuthController < ApplicationController
   Dotenv.load
 
   def verify
-    render nothing: :true, status: :forbidden unless params[:access_token] && params[:id]
+    render body: nil, status: :forbidden and return unless params[:access_token] && params[:id]
 
     response = HTTParty.get("https://graph.facebook.com/v2.8/#{params[:id]}?fields=first_name,last_name,email,picture&access_token=#{params[:access_token]}")
 
@@ -15,7 +15,7 @@ class Api::AuthController < ApplicationController
       token = generate_token(user).to_json
       render :json => JSON.pretty_generate(JSON.parse(token))
     else
-      render nothing: true, status: :bad_request
+      render body: nil, status: :bad_request
     end
   end
 
@@ -123,12 +123,12 @@ class Api::AuthController < ApplicationController
   private
 
   def verify_token
-    render nothing: :true, status: :forbidden unless params[:token]
+    render body: nil, status: :forbidden and return unless params[:token]
     begin
       @token_payload = decode_token(params[:token])
     rescue => error
       puts error.inspect
-      render nothing: :true, status: :forbidden
+      render body: nil, status: :forbidden and return
     end
   end
 
