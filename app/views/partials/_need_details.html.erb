@@ -1,0 +1,39 @@
+<div class="card text-center">
+
+  <div class="card-block">
+    <h2 class="card-title"><%= need.name %></h2>
+    <p class="card-text"><%= need.description %></p>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Quantity Needed: <%= need.quantity_needed %></li>
+  </ul>
+
+  <!-- if user signed in and donation has already been created:
+    display: update: trigger modal for donation edit form
+    display: cancel button: hit destroy route
+  -->
+   <!-- if user signed in and donation has not been created:
+    display: donate button: trigger modal for donation form
+  -->
+   <!-- if user not signed in:
+    display: donate button: trigger facebook oath
+  -->
+  <div class="card-block">
+    <% if giver %>
+      <% if giver.donations.include?(donation) %>
+        <%= link_to 'Edit Donation', edit_charity_need_donation_path(charity, need, donation), class: 'btn btn-primary btn-block' %> |
+
+        <%= link_to 'Cancel Donation', charity_need_donation_path(charity, need, donation), method: 'delete', class: 'btn btn-danger btn-block' %>
+
+      <% else %>
+        <%= link_to 'Register Your Donation', new_charity_need_donation_path(charity, need), class: 'btn btn-primary btn-block' %>
+      <% end %>
+
+    <% else %>
+      <%= link_to 'Follow', giver_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+
+</div>
+

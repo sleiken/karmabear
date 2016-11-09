@@ -1,34 +1,5 @@
-<h1><%= @charity.name %></h1>
+<%= render partial: 'partials/charity_hero', locals: { charity: @charity } %>
 
-<h2>Needed:</h2>
-
-<p><%= @need.name %></p>
-<p>Description:<%= @need.description %></p>
-<p>Quantity Needed:<%= @need.quantity_needed %></p>
-<p>Status:<%= @need.status %></p>
-
-<!-- if user signed in and donation has already been created:
-  display: update: trigger modal for donation edit form
-  display: cancel button: hit destroy route
--->
- <!-- if user signed in and donation has not been created:
-  display: donate button: trigger modal for donation form
--->
- <!-- if user not signed in:
-  display: donate button: trigger facebook oath
--->
-<% if @giver %>
-  <% if @giver.donations.include?(@donation) %>
-    <%= link_to 'edit donation', edit_charity_need_donation_path(@charity, @need, @donation) %> |
-    <%= link_to 'cancel donation', charity_need_donation_path(@charity, @need, @donation), method: 'delete' %>
-    </h2>
-  <% else %>
-    <h2>Registered for this need:
-      <%= link_to 'register', new_charity_need_donation_path(@charity, @need) %>
-    </h2>
-  <% end %>
-<% else %>
-  <h2>Follow:
-    <%= link_to "register", giver_facebook_omniauth_authorize_path %>
-  </h2>
-<% end %>
+<div class="container">
+  <%= render partial: 'partials/need_details', locals: { charity: @charity, donation: @donation, need: @need, giver: @giver, registration: @registration } %>
+</div>

@@ -1,48 +1,17 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-3 text-center"><%= @charity.name %></h1>
-    <p class="lead text-center"><%= @charity.address[0] %></p>
-    <%= image_tag("https://theafterhoursflowers.com/wp-content/uploads/2013/10/Teddy-Bear-300x300.jpg", size: "100x100", alt: "cute teddy bear waving", class: 'img-circle center-block') %>
-  </div>
-</div>
+<%= render partial: 'partials/charity_hero', locals: { charity: @charity } %>
 
 <section class="container">
 
   <div class="row">
-    <div class="col-xs-12">
-      <%= render partial: 'partials/follow_charity' %>
-    </div>
+    <%= render partial: 'partials/follow_charity' %>
   </div>
 
-  <hr class="my-2">
-
   <div class="row">
-    <div class="col-xs-12">
-      <h2 class="text-center">Upcoming Events:</h2>
-      <!-- this will be an events list partial: -->
-      <% @events.each do |event| %>
-        <li>
-          <%= event.name %>
-            <%= link_to 'show', charity_event_path(@charity, event) %>
-        </li>
-      <% end %>
-    </div>
+    <%= render partial: 'partials/events_list', locals: { charity: @charity } %>
   </div>
 
-  <hr class="my-2">
-
   <div class="row">
-    <div class="col-xs-12">
-      <!-- this will be an needs list partial:  -->
-      <h2 class="text-center">Needs:</h2>
-
-      <% @needs.each do |need| %>
-        <li>
-          <%= need.name %>
-            <%= link_to 'show', charity_need_path(@charity, need) %>
-        </li>
-      <% end %>
-    </div>
+    <%= render partial: 'partials/needs_list', locals: { charity: @charity } %>
   </div>
 
 </section>
