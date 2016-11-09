@@ -1,6 +1,16 @@
 .follow {
-  color: green;
+  color: #6AAF6A;
 }
 .unfollow {
-  color: red;
+  color: salmon;
+}
+.notification {
+  border-top: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  height: 30px;
+}
+.notifications {
+  width: 350px;
+  height: 250px;
+  overflow: scroll;
 }
