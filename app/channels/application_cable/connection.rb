@@ -4,13 +4,14 @@ module ApplicationCable
 
     def connect
       self.current_manager = find_verified_manager
+      logger.add_tags 'ActionCable', current_manager.id, current_manager.email
     end
 
     protected
 
     def find_verified_manager
-      if Manager.find_by(id: $current_manager[:id])
-        Manager.find($current_manager[:id])
+      if $current_manager
+        Manager.find_by(id: $current_manager[:id])
       else
         reject_unauthorized_connection
       end
