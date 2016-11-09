@@ -1,9 +1,6 @@
 <h2 class="text-center">Upcoming Events:</h2>
 <div class="col-xs-12">
   <% charity.events.each do |event| %>
-	  <li>
-	    <%= event.name %>
-      <%= link_to 'show', charity_event_path(charity, event) %>
-	  </li>
+    <%= link_to event.name, charity_event_path(charity, event), class: 'btn btn-info btn-block' %>
   <% end %>
 </div>
