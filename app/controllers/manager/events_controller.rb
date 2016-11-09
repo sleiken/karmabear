@@ -30,7 +30,7 @@ class Manager::EventsController < Manager::ApplicationController
 
 	def update
 		if @event.update(event_params)
-			redirect_to manager_charity_event_url(@charity, @event)
+			redirect_to manager_charity_url(@charity)
 		else
 			@errors = @event.errors.full_messages
 			render "manager/events#edit"
