@@ -23,41 +23,8 @@
 <!-- click on givers in activity feed to trigger a modal for denying/approving a giver's request: -->
 <div class="registrations-container">
   <h2>current registrations activities</h2>
-
-  <% if @registrations.empty? %>
-    no registrations
-  <% else %>
-    <ul>
-      <% @registrations.each do |registration| %>
-        <li>
-          <%= registration.giver.username %> volunteered for <%= registration.event.name %>
-             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#regisApprovalModal">Approve/Deny</button>
-
-          <%= render partial: 'manager/modals/approve_registration', locals: { registration: registration} %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+      <%= render partial: 'manager/partials/registrations' %>
 </div>
-
-<!-- registration modal -->
-
-<!-- registration modal -->
-
-
-<!-- work above this line -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="registrations-container">
   <h2>current donations activities</h2>
