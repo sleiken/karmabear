@@ -5,7 +5,9 @@
     <% @needs.each do |need| %>
       <li>
         <%= need.name %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#viewNeedModal#{need.id}" %>>View Need</button>
       </li>
+        <%= render partial: 'manager/modals/view_need', locals: { need: need } %>
     <% end %>
   </ul>
 <% end %>
