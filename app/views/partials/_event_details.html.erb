@@ -16,11 +16,11 @@
 
       <% if giver.registrations.include?(registration) %>
 
-        <%= link_to 'Edit Registration', edit_charity_event_registration_path(charity, event, registration), class: 'btn btn-primary btn-block' %> |
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editRegisModal">Edit Registration</button>
         <%= link_to 'Cancel Registration', charity_event_registration_path(charity, event, registration), method: 'delete', class: 'btn btn-danger btn-block' %>
 
       <% else %>
-        <%= link_to 'Register', new_charity_event_registration_path(charity, event), class: 'btn btn-primary btn-block' %>
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal">Register</button>
       <% end %>
 
     <% else %>
@@ -28,5 +28,89 @@
     <% end %>
 
   </div>
+</div>
 
+<!-- Edit Registration Modal -->
+<div class="modal fade" id="editRegisModal" tabindex="-1" role="dialog" aria-labelledby="editRegisModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="editRegisModalLabel">Edit Hours for <%= @event.name %></h4>
+      </div>
+
+      <% if @registration %>
+
+        <div class="modal-body">
+          <% if @errors %>
+            <ul>
+              <% @errors.each do |error| %>
+              <li><%= error %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <%= form_for [@charity, @event, @registration], method: 'put' do |f|%>
+            <div class="form-group row">
+              <%= f.label "How many hours will you give?", class: "col-xs-6 col-form-label"%>
+
+              <div class="col-xs-3">
+                <%= f.text_field :pending_hours, value: @registration.pending_hours, class: 'form-control'%>
+              </div>
+            </div>
+          </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= f.submit 'Update', class: "btn btn-primary btn-secondary"%>
+            </div>
+          <%end%>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- New Registration Modal -->
+<div class="modal fade" id="newRegisModal" tabindex="-1" role="dialog" aria-labelledby="newRegisModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="newRegisModalLabel">Register Hours for <%= @event.name %></h4>
+      </div>
+
+        <div class="modal-body">
+          <% if @errors %>
+            <ul>
+              <% @errors.each do |error| %>
+              <li><%= error %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <%= form_for [@charity, @event, @registration] do |f|%>
+            <div class="form-group row">
+              <%= f.label "How many hours will you give?", class: "col-xs-6 col-form-label"%>
+
+              <div class="col-xs-3">
+                <%= f.text_field :pending_hours, class: 'form-control'%>
+              </div>
+            </div>
+          </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= f.submit 'Register', class: "btn btn-primary btn-secondary"%>
+            </div>
+          <%end%>
+
+    </div>
+  </div>
 </div>
