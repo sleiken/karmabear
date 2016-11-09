@@ -9,6 +9,6 @@ class ManagersSessionsController < Devise::SessionsController
   end
 
   def reset_manager
-    $current_manager[:id] = nil
+    $current_manager = { id: nil }
   end
 end
