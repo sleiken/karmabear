@@ -8,6 +8,6 @@ class EventBroadcastJob < ApplicationJob
   private
 
   def render_event(event)
-    ApplicationController.renderer.render(partial: 'notifications/event', locals: { event: event })
+    ApplicationController.renderer.render(partial: 'notifications/event', locals: { notification: event })
   end
 end
