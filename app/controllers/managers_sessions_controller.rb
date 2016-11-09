@@ -5,7 +5,7 @@ class ManagersSessionsController < Devise::SessionsController
   private
 
   def set_current_manager
-    $current_manager = { id: current_manager.id } if current_manager
+    $current_manager = current_manager if current_manager
   end
 
   def reset_manager
