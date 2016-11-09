@@ -1,5 +1,9 @@
 <%= render partial: 'partials/charity_hero', locals: { charity: @charity } %>
 
 <div class="container">
-  <%= render partial: 'partials/need_details', locals: { charity: @charity, donation: @donation, need: @need, giver: @giver, registration: @registration } %>
+  <%= render partial: 'partials/need_details' %>
 </div>
+
+<!-- render modal partials -->
+<%= render partial: 'modals/edit_donation' %>
+<%= render partial: 'modals/new_donation' %>
