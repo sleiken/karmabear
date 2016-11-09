@@ -4,10 +4,9 @@
 	<div id="map" style="height: 700px"></div>
 </div>
 
-<div class="col-md-2">
+<div class="col-md-4">
 	<%= render partial: 'partials/searchresults' %>
 </div>
-
 
 <script>
 function initMap() {
@@ -58,12 +57,8 @@ function initMap() {
 	);
 }
 </script>
-
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9UVAh5qbkBDuvYU8EMSwWR6L9uM9Nurg&callback=initMap">
-    </script>
-
-
-<!--add link to redirect to specific charity  -->
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9UVAh5qbkBDuvYU8EMSwWR6L9uM9Nurg&callback=initMap">
+</script>
