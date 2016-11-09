@@ -34,12 +34,10 @@
       </div>
 
       <div class="modal-footer">
-        <%= form_for [:manager, @charity, event], method: 'put' do |f| %>
-          <%= f.submit :approve, class: "btn btn-primary" %>
-        <% end %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editEventModal#{event.id}" %>>edit</button>
 
         <%= form_for [:manager, @charity, event], method: 'delete' do |f| %>
-          <%= f.submit :deny, class: "btn btn-primary" %>
+          <%= f.submit :delete, class: "btn btn-primary" %>
         <% end %>
       </div>
 
