@@ -2,17 +2,10 @@
 
 <div class="container">
 
-  <%= render partial: 'partials/event_details', locals: { charity: @charity, event: @event, giver: @giver, registration: @registration } %>
+  <%= render partial: 'partials/event_details' %>
 
 </div>
 
-<!-- if user signed in and registered:
-  display: update: trigger modal for registration edit form
-  display: cancel button: hit destroy route
--->
- <!-- if user signed in and not registered:
-  display: participate button: trigger modal for registration form
--->
- <!-- if user not signed in:
-  display: participate button: trigger facebook oath
--->
+<!-- render modal partials -->
+<%= render partial: 'modals/edit_registration' %>
+<%= render partial: 'modals/new_registration' %>
