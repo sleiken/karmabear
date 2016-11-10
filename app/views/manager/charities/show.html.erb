@@ -30,7 +30,31 @@
 
   <div class="row">
     <!-- left side -->
-    <div class="col-md-5">
+    <div class="col-md-7 col-md-push-5 text-center">
+      <!-- Interactive Charts -->
+      <div class="row">
+        <h2>Interactive Charts</h2>
+        <p>2000 hours</p>
+        <p>1300 donations</p>
+        <p>450 givers</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Planned Events</h2>
+          <%= render partial: 'manager/partials/events' %>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Planned Needs</h2>
+          <%= render partial: 'manager/partials/needs' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- right side -->
+    <div class="col-md-5 col-md-pull-7">
       <!-- live activity feed -->
       <div class="row">
         <div class="col-xs-12 text-center">
@@ -57,30 +81,6 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- right side -->
-    <div class="col-md-7 text-center">
-      <!-- Interactive Charts -->
-      <div class="row">
-        <h2>Interactive Charts</h2>
-        <p>2000 hours</p>
-        <p>1300 donations</p>
-        <p>450 givers</p>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>Planned Events</h2>
-          <%= render partial: 'manager/partials/events' %>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>Planned Needs</h2>
-          <%= render partial: 'manager/partials/needs' %>
-        </div>
-      </div>
     </div>
   </div>
 </div>
