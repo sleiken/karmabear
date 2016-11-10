@@ -4,6 +4,6 @@ class Manager::MailController < ApplicationController
   end
 
   def followers
-
+    
   end
 end
