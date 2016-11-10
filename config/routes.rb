@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   namespace :manager do
     root 'charities#show'
 
+    get 'mail', to: 'mail#show'
+    post 'mail/followers', to: 'mail#followers'
+
     resources :charities,         only: [:show] do
       resources :givers,          only: [:index, :show]
       resources :events do
