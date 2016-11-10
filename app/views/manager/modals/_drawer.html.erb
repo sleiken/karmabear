@@ -1,0 +1,23 @@
+<div id="drawerExample" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold" aria-labelledby="drawerExample" >
+	<div class="drawer-controls">
+		<a href="#drawerExample" data-toggle="drawer" aria-foldedopen="false" aria-controls="drawerExample" class="btn btn-primary btn-sm">Menu</a>
+	</div>
+	<div class="drawer-contents">
+		<div class="drawer-heading" >
+			<h2 class="drawer-title"><%= image_tag(@charity.image_url, size: "50x50", class: 'img-circle')%> <%= @charity.name %>'s Dashboard</h2>
+		</div>
+		<div class="drawer-body">
+			<p>Managed by <em><%=@charity.manager.username%></em></p>
+		</div>
+		<ul class="drawer-nav">
+			<p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newEventModal">Create An Event</button></p>
+			<p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newNeedModal">Add A Need</button></p>
+			<p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#allGiversModal">View Givers</button></p>
+		</ul>
+		<div class="drawer-footer">
+		</div>
+	</div>
+</div>
+<%= render partial: 'manager/modals/new_event' %>
+<%= render partial: 'manager/modals/new_need' %>
+<%= render partial: 'manager/modals/all_givers'%>

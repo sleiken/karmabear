@@ -2,7 +2,7 @@
   no needs
 <% else %>
   <% @needs.each do |need| %>
-    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=<%= "#viewNeedModal#{need.id}" %>><%= need.name %></button>
-  <%= render partial: 'manager/modals/view_need', locals: { need: need } %>
+    <p><button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=<%= "#viewNeedModal#{need.id}" %>><%= need.name %></button></p>
+	  <%= render partial: 'manager/modals/view_need', locals: { need: need } %>
    <% end %>
 <% end %>
