@@ -1,14 +1,10 @@
   <% if @registrations.empty? %>
     no registrations
   <% else %>
-    <ul>
-      <% @registrations.each do |registration| %>
-        <li>
-          <%= registration.giver.username %> volunteered for <%= registration.event.name %>
-             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#regisApprovalModal#{registration.id}" %>>Approve/Deny</button>
-
-          <%= render partial: 'manager/modals/approve_registration', locals: { registration: registration} %>
-        </li>
-      <% end %>
-    </ul>
+    <% @registrations.each do |registration| %>
+      <p>
+        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target=<%= "#regisApprovalModal#{registration.id}" %>><strong>Approve</strong> - <em><%= registration.giver.username %> volunteered for <%= registration.event.name %></em></button>
+      </p>
+      <%= render partial: 'manager/modals/approve_registration', locals: { registration: registration} %>
+    <% end %>
   <% end %>
