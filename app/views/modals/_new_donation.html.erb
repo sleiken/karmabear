@@ -1,37 +1,40 @@
 <div class="modal fade" id="newDonationModal" tabindex="-1" role="dialog" aria-labelledby="newDonationModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="newDonationModalLabel">Add Donation Quantity for <%= @need.name %></h4>
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="newDonationModalLabel">Add Donation Quantity for <%= @need.name %></h4>
+    </div>
+
+    <div class="modal-body">
+      <% if @errors %>
+        <ul>
+          <% @errors.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <!-- begin form -->
+      <%= form_for [@charity, @need, @donation] do |f|%>
+        <div class="form-group row">
+          <%= f.label "How many you givin'?", class: "col-xs-6 col-form-label"%>
+
+          <div class="col-xs-3">
+            <%= f.text_field :quantity_pending, class: 'form-control'%>
+          </div>
+        </div>
       </div>
 
-        <div class="modal-body">
-          <% if @errors %>
-            <ul>
-              <% @errors.each do |error| %>
-              <li><%= error %></li>
-              <% end %>
-            </ul>
-          <% end %>
-
-          <%= form_for [@charity, @need, @donation] do |f|%>
-            <div class="form-group row">
-              <%= f.label "How many you givin'?", class: "col-xs-6 col-form-label"%>
-
-              <div class="col-xs-3">
-                <%= f.text_field :quantity_pending, class: 'form-control'%>
-              </div>
-            </div>
-          </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <%= f.submit 'Donate', class: "btn btn-primary btn-secondary"%>
-            </div>
-          <%end%>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit 'Donate', class: "btn btn-primary btn-secondary"%>
+      </div>
+        <%end%>
+        <!-- end form -->
 
     </div>
   </div>

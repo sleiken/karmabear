@@ -1,0 +1,45 @@
+<div class="modal fade" id=<%= "viewNeedModal#{need.id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "viewNeedModalLabel#{need.id}" %> aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id=<%= "viewNeedModalLabel#{need.id}" %>>Show <%=@need.name%> Need Page</h4>
+      </div>
+
+      <div class="modal-body">
+        <li>Status: <%= need.status %></li>
+
+        <li>Description: <%= need.description %></li>
+
+        <li>Quantity Needed: <%= need.quantity_needed %></li>
+
+        <div class="donors">
+          <h1>Donors: </h1>
+          <% if need.givers.empty? %>
+            no volunteers yet
+            <% else %>
+              <ul>
+                <% need.givers.each do |giver| %>
+                  <li> <%= giver.username %></li>
+
+                <% end %>
+              </ul>
+            <% end %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editNeedModal#{need.id}" %>>edit</button>
+          <%= render partial: 'manager/modals/edit_need', locals: { need: need } %>
+
+        <%= form_for [:manager, @charity, need], method: 'delete' do |f| %>
+          <%= f.submit :delete, class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="modal fade" id="newEventModal" tabindex="-1" role="dialog" aria-labelledby="newEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="newEventModalLabel">Add New Event</h4>
+      </div>
+
+      <div class="modal-body">
+        <% if @errors %>
+          <ul>
+            <% @errors.each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <!-- begin form -->
+        <%= form_for [:manager, @charity, @event] do |f|%>
+          <div>
+            <%= f.label :name %>:
+            <%= f.text_field :name %>
+          </div>
+
+          <div>
+            <%= f.label :starts %>:
+            <%= f.datetime_field :start %>
+          </div>
+
+          <div>
+            <%= f.label :ends %>:
+            <%= f.datetime_field :end %>
+          </div>
+
+          <div>
+            <%= f.label :description %>:
+            <%= f.text_area :description %>
+          </div>
+
+          <div>
+            <%= f.label :givers_needed %>:
+            <%= f.text_field :givers_needed %>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.submit class: "btn btn-primary btn-secondary"%>
+      </div>
+        <%end%>
+        <!-- end form -->
+
+    </div>
+  </div>
+</div>

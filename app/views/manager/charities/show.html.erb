@@ -1,4 +1,3 @@
-
 <h1>Dashboard for <%=@charity.name%></h1>
 
 <div class="charity-info">
@@ -14,28 +13,37 @@
   <li>450 givers</li>
 </div>
 
-<!-- click on givers in activity feed to trigger a modal for denying/approving a giver's request: -->
+<div class="followers-live">
+<!-- sam's magical web socket stuff -->
+</div>
+
+<!-- registrations modal implementation complete -->
 <div class="registrations-container">
   <h2>current registrations activities</h2>
-    click this - trigger modal of registration#show:
       <%= render partial: 'manager/partials/registrations' %>
 </div>
 
-<div class="registrations-container">
+<!-- donations modal implementation complete -->
+<div class="donations-container">
   <h2>current donations activities</h2>
-    click this - trigger modal of donation#show:
       <%= render partial: 'manager/partials/donations' %>
 </div>
 
-
 <!-- click on event/need to trigger a modal with event or need #show page -->
+
+
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
+
 <div class="planned-events-container">
-  <h2>Planned Events</h2>
-
-events partial:
+  <h2>planned Events</h2>
     <%= render partial: 'manager/partials/events' %>
-
 </div>
+
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
 
 <div class="planned-needs-container">
   <h2>Planned Needs</h2>
@@ -45,22 +53,30 @@ needs partial:
 
 </div>
 
-<!-- buttons! trigger modals: -->
+<!-- ############################################### -->
+<!-- ######             WORK HERE             ######-->
+<!-- ############################################### -->
+
+<!-- add event modal implementation complete -->
 <div class="events-button-container">
   <h2>add event button</h2>
 
-	<li>(modal for: events#new)
-    <%= link_to 'Add Event (events/new)', new_manager_charity_event_path(@charity) %>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEventModal">Add Event</button>
   </li>
+  <%= render partial: 'manager/modals/new_event' %>
 </div>
 
+<!-- add need modal implementation complete -->
 <div class="needs-container">
   <h2>add need button:</h2>
 
-  <li>(modal for: needs#new)
-    <%= link_to 'Add Need (needs/index)', new_manager_charity_need_path(@charity) %>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
   </li>
+  <%= render partial: 'manager/modals/new_need' %>
 </div>
+
 
 <div class="givers-container">
   <h2>view givers button</h2>

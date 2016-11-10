@@ -1,0 +1,47 @@
+<div class="modal fade" id=<%= "editEventModal#{event.id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "editEventModalLabel#{event.id}" %> aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id=<%= "editEventModal#{event.id}" %>>Edit <%= event.name %> Event</h4>
+      </div>
+
+      <div class="modal-body">
+        <%= form_for [:manager, @charity, event], method: 'put' do |f|%>
+          <div>
+            <%= f.label :name %>:
+            <%= f.text_field :name, value: event.name %>
+          </div>
+
+          <div>
+            <%= f.label :starts %>:
+            <%= f.datetime_field :start %>
+          </div>
+
+          <div>
+            <%= f.label :ends %>:
+            <%= f.datetime_field :end %>
+          </div>
+
+          <div>
+            <%= f.label :description %>:
+            <%= f.text_area :description, value: event.description %>
+          </div>
+
+          <div>
+            <%= f.label :givers_needed %>:
+            <%= f.text_field :givers_needed, value: event.givers_needed %>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+          <%= f.submit :update, class: "btn btn-primary" %>
+      </div>
+        <%end%>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="modal fade" id=<%= "viewEventModal#{event.id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "viewEventModalLabel#{event.id}" %> aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id=<%= "viewEventModalLabel#{event.id}" %>>Event Page</h4>
+      </div>
+
+      <div class="modal-body">
+        <li>Starts: <%= event.start %></li>
+        <li>Starts: <%= event.end %></li>
+
+        <li>Description: <%= event.description %></li>
+
+        <li><%= event.givers_needed %> givers needed</li>
+
+        <div class="registered-volunteers">
+          <h1>Givers Registered: </h1>
+
+          <% if event.givers.empty? %>
+            no volunteers yet
+          <% else %>
+            <ul>
+              <% event.givers.each do |giver| %>
+                <li> <%= giver.username %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editEventModal#{event.id}" %>>edit</button>
+          <%= render partial: 'manager/modals/edit_event', locals: { event: event } %>
+
+        <%= form_for [:manager, @charity, event], method: 'delete' do |f| %>
+          <%= f.submit :delete, class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
