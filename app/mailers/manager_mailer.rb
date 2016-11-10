@@ -7,7 +7,8 @@ class ManagerMailer < ApplicationMailer
   end
 
   def follower_email(manager, subject, body)
-    mail(bcc: manager.charity.followers,
+    recipients = manager.charity.followers
+    mail(bcc: recipients.map(&:email).uniq,
          subject: subject,
          body: body)
   end
