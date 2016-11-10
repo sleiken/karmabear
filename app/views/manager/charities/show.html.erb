@@ -1,61 +1,6 @@
-<div id="drawerExample" class="drawer dw-xs-10 dw-sm-6 dw-md-4 fold" aria-labelledby="drawerExample">
-        <div class="drawer-controls">
-            <a href="#drawerExample" data-toggle="drawer" aria-foldedopen="false" aria-controls="drawerExample" class="btn btn-primary btn-sm">Menu</a>
-        </div>
-        <div class="drawer-contents">
-            <div class="drawer-heading">
-                <h2 class="drawer-title">Menu</h2>
-            </div>
-            <div class="drawer-body">
-                <p>
-                    This is a properly padded container for content in the
-                    drawer that isn't a navigation.
-                </p>
-                <a href="#">A Regular Link</a>
-            </div>
-            <ul class="drawer-nav">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">Profile</a></li>
-                <li role="presentation"><a href="#">Messages</a></li>
-            </ul>
-            <div class="drawer-footer">
-                <small>&copy; Caroline Amaba</small>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <!-- content as per usual -->
-    </div>
-
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-3 text-center"><%= @charity.name %></h1>
-    <p class="lead text-center"><%= @charity.address[0]%><br><%= @charity.address[2] %></p>
-    <p class="text-center">Managed by <%=@charity.manager.username%></p>
-    <p class="lead text-center"></p>
-    <%= image_tag(@charity.image_url, size: "200x150", class: 'img-circle center-block') %>
-  </div>
-</div>
+<%= render partial: 'manager/modals/drawer' %>
 
 <div class="container">
-
-  <!-- buttons -->
-  <div class="row">
-    <div class="col-md-4">
-      <p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newEventModal">Create An Event</button></p>
-      <%= render partial: 'manager/modals/new_event' %>
-    </div>
-
-    <div class="col-md-4">
-      <p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newNeedModal">Add A Need</button></p>
-      <%= render partial: 'manager/modals/new_need' %>
-    </div>
-
-    <div class="col-md-4">
-      <p><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#allGiversModal">View Givers</button></p>
-      <%= render partial: 'manager/modals/all_givers'%>
-    </div>
-  </div><hr>
 
   <!-- dashboards sections -->
   <div class="row">
@@ -69,7 +14,7 @@
             <div class="panel-body">
               <p>2000 hours</p>
               <p>1300 donations</p>
-              <p>450 givers</p>            
+              <p>450 givers</p>
             </div>
           </div>
         </div>
