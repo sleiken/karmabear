@@ -1,5 +1,7 @@
-<ul>
+<ul class="list-group">
 	<% @results.each do |result| %>
-		<li><%= link_to result.name, charity_path(result) %></li>
+		<li class="list-group-item"><%= link_to result.name, charity_path(result) %>
+			<span class="badge"><%= image_tag("#{result.image_url}", size: "25x25", class: 'img-circle center-block')%></span>
+		</li>
 	<% end %>
 </ul>

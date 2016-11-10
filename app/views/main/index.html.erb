@@ -1,16 +1,18 @@
-<div class="jumbotron">
-	<div class="container">
-		<h1 class="text-center">Giving, but convenient.</h1>
-		<hr class="my-2">
-		<div class="col-sm-6 col-md-offset-3">
-			<%= form_tag charities_path, method: :get, class: "form-group" do %>
-			  <%= text_field_tag(
-		      :search,
-		      params[:search],
-		      placeholder: "Search",
-		      class: "form-control"
-			  ) %>
-			<% end %>
+<div class="video-section">
+	<%= video_tag(["charity.mp4"], autoplay: true, loop: true) %>
+	<div class="section-content container">
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<h1 class="text-center">Giving, but convenient.</h1><br>
+				<%= form_tag charities_path, method: :get, class: "form-group" do %>
+				  <%= text_field_tag(
+			      :search,
+			      params[:search],
+			      placeholder: "Search",
+			      class: "form-control"
+				  ) %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

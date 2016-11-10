@@ -1,6 +1,7 @@
 <h2 class="text-center">Needs:</h2>
 <div class="col-xs-12">
+	<ul class="list-group text-center">
   <% charity.needs.each do |need| %>
-  	<%= link_to need.name, charity_need_path(charity, need), class: 'btn btn-info btn-block' %>
+  	<li class="list-group-item"><%= link_to need.name, charity_need_path(charity, need) %></li>
   <% end %>
 </div>
