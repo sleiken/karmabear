@@ -4,12 +4,13 @@
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
 				<h1 class="text-center">Giving, but convenient.</h1><br>
-				<%= form_tag charities_path, method: :get, class: "form-group" do %>
+				<%= form_tag charities_path, method: :get, class: "form-group search-form" do %>
+					<i class='fa fa-search'></i>
 				  <%= text_field_tag(
 			      :search,
 			      params[:search],
-			      placeholder: "Search",
-			      class: "form-control"
+			      placeholder: "",
+			      class: "form-control search"
 				  ) %>
 				<% end %>
 			</div>

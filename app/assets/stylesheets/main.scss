@@ -1,3 +1,8 @@
 @import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+
+input#search.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+}
