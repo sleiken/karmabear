@@ -6,13 +6,19 @@ class Manager::CharitiesController < Manager::ApplicationController
 		# @charity = manager.charity
 		@charity = Charity.find(params[:id])
 		@manager = @charity.manager
+
+    @followers = @charity.followers
+    @volunteers = @charity.volunteers
+    @donors = @charity.donors
+
+    @registrations = @charity.registrations.pending
+    @donations = @charity.donations.pending
+
     @events = @charity.events
     @needs = @charity.needs
-    @registrations = @charity.registrations.pending
-    @registration = Registration.find_by(id: params[:id])
-    @donations = @charity.donations.pending 
-    @need = Need.new
+
     @event = Event.new
+    @need = Need.new
 	end
 
 end
