@@ -6,20 +6,20 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id=<%= "donationApprovalModalLabel#{donation.id}" %>><%= donation.need.name %></h4>
+        <h4 class="modal-title" id=<%= "donationApprovalModalLabel#{donation.id}" %>>Please approve this <em><%= donation.need.name %></em> donation.</h4>
       </div>
 
       <div class="modal-body">
-        <%= donation.quantity_pending %> pending for <%= donation.giver.username %>
+        <h3>Giver <em><%= donation.giver.username %></em> donated <%= donation.quantity_pending %> <%= donation.need.name %>.</h3>
       </div>
 
       <div class="modal-footer">
-        <%= form_for [:manager, @charity, donation.need, donation], method: 'put' do |f| %>
-          <%= f.submit :approve, class: "btn btn-primary" %>
+        <%= form_for [:manager, @charity, donation.need, donation], method: 'put', class: 'form-inline' do |f| %>
+          <%= f.submit :Approve, class: "btn btn-success btn-block" %>
         <% end %>
 
-        <%= form_for [:manager, @charity, donation.need, donation], method: 'delete' do |f| %>
-          <%= f.submit :deny, class: "btn btn-primary" %>
+        <%= form_for [:manager, @charity, donation.need, donation], method: 'delete', class: 'form-inline' do |f| %>
+          <%= f.submit :Deny, class: "btn btn-danger btn-block" %>
         <% end %>
       </div>
 
