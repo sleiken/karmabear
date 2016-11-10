@@ -3,8 +3,6 @@ class ManagerMailer < ApplicationMailer
 
   def welcome_email(giver)
     @giver = giver
-    #url to use in email body
-    # @url =
     mail(to: @giver.email, subject: 'Welcome to My Awesome Site')
   end
 

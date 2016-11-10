@@ -1,22 +1,22 @@
-<div class="modal fade" id="newDonationModal" tabindex="-1" role="dialog" aria-labelledby="newDonationModalLabel" aria-hidden="true">
+<div class="modal fade" id="newEmailModal" tabindex="-1" role="dialog" aria-labelledby="newEmailModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="newDonationModalLabel">
+        <h4 class="modal-title" id="newEmailModalLabel">
           Email Followers
         </h4>
       </div>
 
       <div class="modal-body">
         <%= form_tag manager_mail_followers_path, method: :post do %>
-        <div class="form-group row">
+        <div class="form-group">
           <%= label_tag :subject, "Subject:", class: "col-form-label"%>
           <%= text_field_tag :subject, nil, class: 'form-control'%>
         </div>
-        <div class="form-group row">
+        <div class="form-group">
           <%= label_tag :body, "Body:", class: "col-form-label"%>
           <%= text_area_tag :body, nil, class: 'form-control'%>
         </div>
