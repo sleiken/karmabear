@@ -279,10 +279,18 @@ Giver.create!(first_name: "Nick",
               password: "password",
               points: 18)
 
+def unique_uname
+  name = Faker::Internet.user_name
+  if Giver.find_by(username: name)
+    name = name + 's'
+  end
+  name
+end
+
 300.times do
   Giver.create!(first_name: Faker::Name.first_name,
                 last_name: Faker::Name.last_name,
-                username: Faker::Internet.user_name,
+                username: unique_uname,
                 email: Faker::Internet.email,
                 password: "password",
                 points: rand(1..100))
@@ -312,7 +320,7 @@ end
 n1 = 45
 3.times do
   Registration.create!(event_id: m2.id,
-                     giver_id: n,
+                     giver_id: n1,
                      pending_hours: rand(1..6),
                      approved_hours: 0)
   n1+=1
@@ -325,7 +333,7 @@ d = 34
 5.times do
   Donation.create!(need_id: b.id,
                    giver_id: d,
-                   quantity_given: rand(1..4))
+                   quantity_pending: rand(1..4))
   d += 1
 end
 
@@ -334,6 +342,6 @@ d1 = 50
 5.times do
   Donation.create!(need_id: b1.id,
                    giver_id: d1,
-                   quantity_given: rand(1..6))
+                   quantity_pending: rand(1..6))
   d += 1
 end
