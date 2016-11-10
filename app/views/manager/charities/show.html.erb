@@ -23,7 +23,8 @@
     </div>
 
     <div class="col-md-4">
-      <%= link_to 'View Your Givers', manager_charity_givers_path(@charity), class: 'btn btn-info btn-block' %>
+      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#allGiversModal">View Givers</button>
+      <%= render partial: 'manager/modals/all_givers'%>
     </div>
   </div><hr>
 
