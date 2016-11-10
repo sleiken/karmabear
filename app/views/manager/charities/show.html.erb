@@ -1,87 +1,85 @@
-<h1>Dashboard for <%=@charity.name%></h1>
-
-<div class="charity-info">
-  <p><%= @charity.address[0] %> <%= @charity.address[1] %></p>
-  <p><%= @charity.address[2] %></p>
-  <p>Managed by <%=@charity.manager.username%></p>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3 text-center"><%= @charity.name %></h1>
+    <p class="lead text-center"><%= @charity.address[0]%><br><%= @charity.address[2] %></p>
+    <p class="text-center">Managed by <%=@charity.manager.username%></p>
+    <p class="lead text-center"></p>
+    <%= image_tag("https://theafterhoursflowers.com/wp-content/uploads/2013/10/Teddy-Bear-300x300.jpg", size: "100x100", alt: "cute teddy bear waving", class: 'img-circle center-block') %>
+  </div>
 </div>
 
-<div class="metrics-container">
-	<h2>fancy shmancy interactive charts</h2>
-  <li>2000 hours</li>
-  <li>1300 donations</li>
-  <li>450 givers</li>
-</div>
+<div class="container">
 
-<div class="followers-live">
-<!-- sam's magical web socket stuff -->
-</div>
+  <!-- buttons -->
+  <div class="row">
+    <div class="col-md-4">
+      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newEventModal">Create An Event</button>
+      <%= render partial: 'manager/modals/new_event' %>
+    </div>
 
-<!-- registrations modal implementation complete -->
-<div class="registrations-container">
-  <h2>current registrations activities</h2>
-      <%= render partial: 'manager/partials/registrations' %>
-</div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
+      <%= render partial: 'manager/modals/new_need' %>
+    </div>
 
-<!-- donations modal implementation complete -->
-<div class="donations-container">
-  <h2>current donations activities</h2>
-      <%= render partial: 'manager/partials/donations' %>
-</div>
+    <div class="col-md-4">
+      <%= link_to 'View Your Givers', manager_charity_givers_path(@charity), class: 'btn btn-info btn-block' %>
+    </div>
+  </div><hr>
 
-<!-- click on event/need to trigger a modal with event or need #show page -->
+  <div class="row">
+    <!-- left side -->
+    <div class="col-md-5">
+      <!-- live activity feed -->
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <h2>Activity Feed</h2>
+          <p>Activity 1</p>
+          <p>Activity 2</p>
+          <p>Activity 3</p>
+        </div>
+      </div>
 
+      <div class="row">
+        <!-- current registration activities -->
+        <div class="col-xs-12 text-center">
+          <h2>Current Registrations Activities</h2>
+          <%= render partial: 'manager/partials/registrations' %>
+        </div>
+      </div>
 
-<!-- ############################################### -->
-<!-- ######             WORK HERE             ######-->
-<!-- ############################################### -->
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <!-- current donation activities -->
+          <h2>Current Donation Activities</h2>
+          <%= render partial: 'manager/partials/donations' %>
+        </div>
+      </div>
 
-<div class="planned-events-container">
-  <h2>planned Events</h2>
-    <%= render partial: 'manager/partials/events' %>
-</div>
+    </div>
 
-<!-- ############################################### -->
-<!-- ######             WORK HERE             ######-->
-<!-- ############################################### -->
+    <!-- right side -->
+    <div class="col-md-7 text-center">
+      <!-- Interactive Charts -->
+      <div class="row">
+        <h2>Interactive Charts</h2>
+        <p>2000 hours</p>
+        <p>1300 donations</p>
+        <p>450 givers</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Planned Events</h2>
+          <%= render partial: 'manager/partials/events' %>
+        </div>
 
-<div class="planned-needs-container">
-  <h2>Planned Needs</h2>
-
-needs partial:
-    <%= render partial: 'manager/partials/needs' %>
-
-</div>
-
-<!-- ############################################### -->
-<!-- ######             WORK HERE             ######-->
-<!-- ############################################### -->
-
-<!-- add event modal implementation complete -->
-<div class="events-button-container">
-  <h2>add event button</h2>
-
-  <li>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEventModal">Add Event</button>
-  </li>
-  <%= render partial: 'manager/modals/new_event' %>
-</div>
-
-<!-- add need modal implementation complete -->
-<div class="needs-container">
-  <h2>add need button:</h2>
-
-  <li>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
-  </li>
-  <%= render partial: 'manager/modals/new_need' %>
-</div>
-
-
-<div class="givers-container">
-  <h2>view givers button</h2>
-
-  <li>(modal for: givers#index)
-    <%= link_to 'View givers (givers/index)', manager_charity_givers_path(@charity) %>
-  </li>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Planned Needs</h2>
+          <%= render partial: 'manager/partials/needs' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

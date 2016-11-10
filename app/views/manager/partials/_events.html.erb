@@ -1,13 +1,8 @@
 <% if @events.empty? %>
   no events
 <% else %>
-  <ul>
-    <% @events.each do |event| %>
-      <li>
-        <%= event.name %>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#viewEventModal#{event.id}" %>>View Event</button>
-      </li>
-        <%= render partial: 'manager/modals/view_event', locals: { event: event } %>
-    <% end %>
-  </ul>
+  <% @events.each do |event| %>
+    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=<%= "#viewEventModal#{event.id}" %>><%= event.name %></button></p>
+    <%= render partial: 'manager/modals/view_event', locals: { event: event } %>
+  <% end %>
 <% end %>

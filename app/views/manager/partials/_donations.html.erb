@@ -1,14 +1,10 @@
 <% if @donations.empty? %>
   no donations
 <% else %>
-  <ul>
-    <% @donations.each do |donation| %>
-      <li>
-        <%= donation.need.name %> Given By <%= donation.giver.username %>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#donationApprovalModal#{donation.id}" %>>Approve/Deny</button>
-
-        <%= render partial: 'manager/modals/approve_donation', locals: { donation: donation} %>
-      </li>
-    <% end %>
-  </ul>
+  <% @donations.each do |donation| %>
+    <p>
+      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target=<%= "#donationApprovalModal#{donation.id}" %>><strong>Approve</strong> - <%= donation.need.name %> given by <%= donation.giver.username %> </button>
+    </p>
+    <%= render partial: 'manager/modals/approve_donation', locals: { donation: donation} %>
+  <% end %>
 <% end %>
