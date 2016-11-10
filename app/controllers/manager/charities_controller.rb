@@ -11,8 +11,8 @@ class Manager::CharitiesController < Manager::ApplicationController
     @volunteers = @charity.volunteers
     @donors = @charity.donors
 
-    @registrations = @charity.registrations
-    @donations = @charity.donations
+    @registrations = @charity.registrations.pending
+    @donations = @charity.donations.pending
 
     @events = @charity.events
     @needs = @charity.needs
