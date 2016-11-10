@@ -23,7 +23,7 @@ class Registration < ApplicationRecord
       Notification.create!(manager_id: manager.id,
                            giver_id: registration.giver.id,
                            action: 3,
-                           content: registration.event.id)
+                           content: registration.id)
     end
   end
 end
