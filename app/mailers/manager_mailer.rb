@@ -3,14 +3,12 @@ class ManagerMailer < ApplicationMailer
 
   def welcome_email(giver)
     @giver = giver
-    #url to use in email body
-    # @url =
     mail(to: @giver.email, subject: 'Welcome to My Awesome Site')
   end
 
   def follower_email(manager, subject, body)
-    mail(from: manager.email,
-         bcc: manager.charity.followers,
+    recipients = manager.charity.followers
+    mail(bcc: recipients.map(&:email).uniq.last(10),
          subject: subject,
          body: body)
   end
