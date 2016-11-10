@@ -3,7 +3,7 @@ class Manager::EventsController < Manager::ApplicationController
 	before_action :find_event, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@events = charity.events
+		@events = @charity.events
 	end
 
 	def show
@@ -40,7 +40,7 @@ class Manager::EventsController < Manager::ApplicationController
 	def destroy
 		@event.destroy
 
-		redirect_to manager_charity_events_url(@charity)
+		redirect_to manager_charity_url(@charity)
 	end
 
 	private
