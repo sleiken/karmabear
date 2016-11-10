@@ -299,7 +299,8 @@ end
 num = 2
 276.times do
   Subscription.create!(charity_id: c1.id,
-                       giver_id: num)
+                       giver_id: num,
+                       created_at: DateTime.now - (rand * 320))
   num +=1
 end
 
