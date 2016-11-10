@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   end
 
   get 'notifications', to: 'notifications#index'
+  get 'mail', to: 'notifications#mail'
 
   mount ActionCable.server => '/cable'
 end
