@@ -18,7 +18,7 @@ class Manager::NeedsController < Manager::ApplicationController
     @need = @charity.needs.new(need_params)
 
     if @need.save
-      redirect_to manager_charity_need_path(@charity, @need)
+      redirect_to manager_charity_path(@charity)
     else
       @errors = @need.errors.full_messages
       render "manager/needs#show"
@@ -30,7 +30,7 @@ class Manager::NeedsController < Manager::ApplicationController
 
   def update
     if @need.update(need_params)
-      redirect_to manager_charity_need_url(@charity, @need)
+      redirect_to manager_charity_url(@charity)
     else
       @errors = @need.errors.full_messages
       render "manager/needs#edit"
@@ -40,7 +40,7 @@ class Manager::NeedsController < Manager::ApplicationController
   def destroy
     @need.destroy
 
-    redirect_to manager_charity_needs_url(@charity)
+    redirect_to manager_charity_url(@charity)
   end
 
   private

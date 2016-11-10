@@ -3,7 +3,7 @@ class Manager::EventsController < Manager::ApplicationController
 	before_action :find_event, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@events = charity.events
+		@events = @charity.events
 	end
 
 	def show
@@ -18,7 +18,7 @@ class Manager::EventsController < Manager::ApplicationController
 		@event = @charity.events.new(event_params)
 
 		if @event.save
-			redirect_to manager_charity_event_path(@charity, @event)
+			redirect_to manager_charity_path(@charity)
 		else
 			@errors = @event.errors.full_messages
 			render "manager/events#show"
@@ -30,7 +30,7 @@ class Manager::EventsController < Manager::ApplicationController
 
 	def update
 		if @event.update(event_params)
-			redirect_to manager_charity_event_url(@charity, @event)
+			redirect_to manager_charity_url(@charity)
 		else
 			@errors = @event.errors.full_messages
 			render "manager/events#edit"
@@ -40,7 +40,7 @@ class Manager::EventsController < Manager::ApplicationController
 	def destroy
 		@event.destroy
 
-		redirect_to manager_charity_events_url(@charity)
+		redirect_to manager_charity_url(@charity)
 	end
 
 	private

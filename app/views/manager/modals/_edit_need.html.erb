@@ -1,0 +1,50 @@
+<div class="modal fade" id=<%= "editNeedModal#{need.id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "editNeedModalLabel#{need.id}" %> aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id=<%= "editNeedModal#{need.id}" %>>Edit <%= need.name %> need</h4>
+      </div>
+
+      <div class="modal-body">
+        <% if @errors %>
+          <ul>
+            <% @errors.each do |error| %>
+            <li><%= error %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= form_for [:manager, @charity, need] do |f|%>
+          <div>
+            <%= f.label :item_name %>:
+            <%= f.text_field :name, value: need.name %>
+          </div>
+
+          <div>
+            <%= f.label :description %>:
+            <%= f.text_area :description, value: need.description %>
+          </div>
+
+          <div>
+            <%= f.label :quantity_needed %>:
+            <%= f.text_field :quantity_needed, value: need.quantity_needed %>
+          </div>
+
+          <div>
+            <%= f.label :status %>
+            <%= f.select :status, options_for_select([["active", "active"], ["inactive", "inactive"]])%>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+          <%= f.submit :update, class: "btn btn-primary" %>
+      </div>
+        <%end%>
+
+    </div>
+  </div>
+</div>
