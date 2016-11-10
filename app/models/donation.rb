@@ -16,13 +16,13 @@ class Donation < ApplicationRecord
 
   private
 
-  def create_give_notification(donation)
+  def create_donate_notification(donation)
     manager = donation.need.charity.manager
     if manager
       Notification.create!(manager_id: manager.id,
                            giver_id: donation.giver.id,
                            action: 2,
-                           content: "")
+                           content: donation.need.id)
     end
   end
 end
