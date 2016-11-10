@@ -6,20 +6,20 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id=<%= "regisApprovalModalLabel#{registration.id}" %>><%= registration.event.name %></h4>
+        <h4 class="modal-title" id=<%= "regisApprovalModalLabel#{registration.id}" %>>Please approve these volunteer hours.</h4>
       </div>
 
       <div class="modal-body">
-        <%= registration.pending_hours %> hours pending for <%= registration.giver.username %>
+        <h3>Giver <em><%= registration.giver.username %></em> volunteered for <%= registration.pending_hours %> hours<br>during the <%= registration.event.name %>.</h3>
       </div>
 
       <div class="modal-footer">
         <%= form_for [:manager, @charity, registration.event, registration], method: 'put' do |f| %>
-          <%= f.submit :approve, class: "btn btn-primary" %>
+          <%= f.submit :Approve, class: "btn btn-success btn-block" %>
         <% end %>
 
-        <%= form_for [:manager, @charity, registration.event, registration], method: 'delete' do |f| %>
-          <%= f.submit :deny, class: "btn btn-primary" %>
+        <%= form_for [:manager, @charity, registration.event, registration], method: 'Deny' do |f| %>
+          <%= f.submit :Deny, class: "btn btn-danger btn-block" %>
         <% end %>
       </div>
 
