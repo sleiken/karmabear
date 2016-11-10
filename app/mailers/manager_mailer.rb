@@ -9,8 +9,7 @@ class ManagerMailer < ApplicationMailer
   end
 
   def follower_email(manager, subject, body)
-    mail(from: manager.email,
-         bcc: manager.charity.followers,
+    mail(bcc: manager.charity.followers,
          subject: subject,
          body: body)
   end

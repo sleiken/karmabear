@@ -4,6 +4,6 @@ class Manager::MailController < ApplicationController
   end
 
   def followers
-    
+    ManagerMailer.follower_email(current_manager, params[:subject], params[:body]).deliver_later
   end
 end
