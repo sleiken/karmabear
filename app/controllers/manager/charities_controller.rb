@@ -8,9 +8,9 @@ class Manager::CharitiesController < Manager::ApplicationController
 		@manager = @charity.manager
     @events = @charity.events
     @needs = @charity.needs
-    @registrations = @charity.registrations
+    @registrations = @charity.registrations.pending
     @registration = Registration.find_by(id: params[:id])
-    @donations = @charity.donations
+    @donations = @charity.donations.pending 
     @need = Need.new
     @event = Event.new
 	end

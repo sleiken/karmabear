@@ -2,6 +2,8 @@ class Registration < ApplicationRecord
   belongs_to :event
   belongs_to :giver
 
+  scope :pending, -> { where("pending_hours > ?", 0) }
+
   validates :giver, uniqueness: { scope: :event }
   validates :giver, :event, presence: true
   validates :pending_hours, numericality: { greater_than_or_equal_to: 0 }
