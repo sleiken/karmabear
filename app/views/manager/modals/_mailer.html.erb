@@ -1,4 +1,4 @@
-<div class="modal fade" id="newEmailModal" tabindex="-1" role="dialog" aria-labelledby="newEmailModalLabel" aria-hidden="true">
+<div class="modal fade email-modal" id="newEmailModal" tabindex="-1" role="dialog" aria-labelledby="newEmailModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -24,7 +24,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" form="email-form" class="btn btn-secondary" data-toggle="modal" data-target="#emailSuccessModal">Send</button>
+        <button type="submit" form="email-form" class="btn btn-secondary" data-toggle="modal" data-target=".email-modal">Send</button>
       </div>
       <% end %>
     </div>
