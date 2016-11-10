@@ -27,13 +27,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var userNavBtn: UIButton!
+    
   
-let cllocationManager: CLLocationManager = CLLocationManager()
+  let cllocationManager: CLLocationManager = CLLocationManager()
+  let transitionManager = TransitionManager()
+    
   var httpHelper = HTTPHelper()
-    var LocArr: NSMutableArray = NSMutableArray()
-    var charityId: Int?
-    var passImageUrl: String!
-    var descString: String!
+  var LocArr: NSMutableArray = NSMutableArray()
+  var charityId: Int?
+  var passImageUrl: String!
+  var descString: String!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,12 +52,14 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     
     cllocationManager.startUpdatingLocation()
     mapView.showsUserLocation = true
+    mapView.delegate = self
+    
+    getUserData()
     
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -65,8 +71,64 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+    
+    @IBAction func unwindToViewController (sender: UIStoryboardSegue){
+        
+    }
+    
+    func getUserData() {
+        
+        let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
+        let userToken = currentUserToken! as String
+        
+        let httpRequest = httpHelper.buildRequest("auth/giver", method: "POST")
+        httpRequest.HTTPBody = "{\"token\":\"\(userToken)\"}".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
+            
+            guard error == nil else {
+                print(error)
+                return
+            }
+            do {
+                
+                if !CharityModel.userData.isEmpty {
+                    CharityModel.userData.removeAll()
+                }
+                
+                let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                
+                let user = responseDict["giver"] as! [String:AnyObject]
+                
+                let userEvents = responseDict["events"] as! NSArray
+                let userNeeds = responseDict["needs"] as! NSArray
+        
+                
+                CharityModel.userData.insert((UserStruct(dictionary: user)), atIndex: 0)
+                print(CharityModel.userData[0])
+                
+                for event in userEvents {
+                    CharityModel.userEvents.append(EventStruct(dictionary: event as! [String : AnyObject] ))
+                }
+                
+                for need in userNeeds {
+                    CharityModel.userNeeds.append(NeedStruct(dictionary: need as! [String : AnyObject]))
+                }
+                
+                print(CharityModel.userEvents)
+                print(CharityModel.userNeeds)
+                
+            
+            } catch let error as NSError {
+                print(error)
+            }
+        })
+        
+        let userImg = UIImage(named: "UserIcon")
+        self.userNavBtn.setImage(userImg, forState: .Normal)
+    }
   
-    func populateMapData(newCoordArr:[CLLocationCoordinate2D]) {
+    func populateMapData(newCoordArr:[CharityStruct]) {
         
         if !mapView.annotations.isEmpty{
             mapView.removeAnnotations(mapView.annotations)
@@ -74,8 +136,7 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         
         let coordinateArray = newCoordArr
         
-        var annotations = [MKPointAnnotation]()
-        print(coordinateArray)
+        var annotations = [CharityAnnotation]()
         
         for s in  coordinateArray {
             
@@ -87,8 +148,17 @@ let cllocationManager: CLLocationManager = CLLocationManager()
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             
             /* Make the map annotation with the coordinate and other student data */
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
+            let annotation = CharityAnnotation(coordinate: coordinate)
+            
+            annotation.title = s.name
+            annotation.subtitle = s.address[0] as? String
+            annotation.phone = s.phone
+            
+            let imageString = NSURL(string: "\(s.imageUrl)")
+            let imageData = NSData(contentsOfURL: imageString!)
+            if imageData != nil {
+                annotation.image = UIImage(data: imageData!)
+            }
             
             /* Add the annotation to the array */
             annotations.append(annotation)
@@ -106,80 +176,82 @@ let cllocationManager: CLLocationManager = CLLocationManager()
 
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
- 
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            if #available(iOS 9.0, *) {
-                pinView!.pinTintColor = UIColor.greenColor()
-            }else {
-                // Fallback on earlier versions
+        
+        let reuseIdentifier = "pin"
+        
+        var v = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+        if v == nil {
+            v = AnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            v!.canShowCallout = true
+        }
+        else {
+            v!.annotation = annotation
+        }
+        
+        if CharityModel.charityData.count > 0 {
+            let customPointAnnotation = annotation as! CharityAnnotation
+            
+            if customPointAnnotation.image != nil {
+                v!.image = resizeImage(customPointAnnotation.image!, newWidth: 60)
+                v!.layer.borderWidth = 2
+                v!.layer.borderColor = UIColor.grayColor().CGColor
+                v!.layer.cornerRadius = 10
+                
             }
-            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        }
+        else{
+            v!.image = UIImage(named: "KarmaBear")
+        }
         
-            pinView!.annotation = annotation
+        v!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         
-        return pinView
+        return v
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(mapView: MKMapView, didSelect view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
         if control == view.rightCalloutAccessoryView{
             
             view.layer.cornerRadius = 0.5
-            view.backgroundColor = UIColor.grayColor()
             
-            let linkUrl = view.annotation!.subtitle!
-////            if linkUrl!.rangeOfString("http") != nil{
-////                if let link = view.annotation?.subtitle!{
-////                    UIApplication.sharedApplication().openURL(NSURL(string: "\(link)")!)
-////                }
-//            }else{
-//                dispatch_async(dispatch_get_main_queue(),{
-//                    self.showAlert("Invalid", alertMessage: "This link is invalid", actionTitle: "Try Another")
-//                })
-//            }
+            print(view.annotation?.title)
+            
+        }
+        
+        
+//CUSTOM CALLOUT IMPLEMENTATION
+        
+
+//            let charityAnnotation = view.annotation as! CharityAnnotation
+//            let views = NSBundle.mainBundle().loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+//            let calloutView = views?[0] as! CustomCalloutView
+//            calloutView.charityName.text = charityAnnotation.title
+//            calloutView.charityAddress.text = charityAnnotation.address
+//            calloutView.charityPhone.text = charityAnnotation.phone
+//            print(calloutView.charityPhone.text)
+//            
+//            let tapGesture = UITapGestureRecognizer(target: self, action: Selector(("CallPhoneNumber:")))
+//            calloutView.charityPhone.addGestureRecognizer(tapGesture)
+//            calloutView.charityPhone.userInteractionEnabled = true
+//            calloutView.charityImage.image = charityAnnotation.image
+//            // 3
+//            calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+//            view.addSubview(calloutView)
+//            mapView.setCenterCoordinate((view.annotation?.coordinate)!, animated: true)
+
+
+    }
+    
+    func mapView(mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.isMemberOfClass(AnnotationView.self)
+        {
+            for subview in view.subviews
+            {
+                subview.removeFromSuperview()
+            }
         }
     }
-  
-  func displaSigninView () {
-    self.signinEmailTextField.text = nil
-    self.signinPasswordTextField.text = nil
-    
-    if self.signupNameTextField.isFirstResponder() {
-      self.signupNameTextField.resignFirstResponder()
-    }
-    
-    if self.signupEmailTextField.isFirstResponder() {
-      self.signupEmailTextField.resignFirstResponder()
-    }
-    
-    if self.signupPasswordTextField.isFirstResponder() {
-      self.signupPasswordTextField.resignFirstResponder()
-    }
-    
-    if self.signinBackgroundView.frame.origin.x != 0 {
-      UIView.animateWithDuration(0.8, animations: { () -> Void in
-        self.signupBackgroundView.frame = CGRectMake(320, 134, 320, 284)
-        self.signinBackgroundView.alpha = 0.3
-        
-        self.signinBackgroundView.frame = CGRectMake(0, 134, 320, 284)
-        self.signinBackgroundView.alpha = 1.0
-        }, completion: nil)
-    }
-  }
-  
-  func displaySignupView () {
-    
-      UIView.animateWithDuration(0.8, animations: { () -> Void in
-        self.mapView.frame = CGRectMake(-320, 134, 320, 284)
-        self.mapView.alpha = 0.3;
-        
-        self.mapView.frame = CGRectMake(0, 134, 320, 284)
-        self.mapView.alpha = 1.0
-        
-        }, completion: nil)
-  }
+
   
   func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
     // hide activityIndicator view and display alert message
@@ -188,16 +260,10 @@ let cllocationManager: CLLocationManager = CLLocationManager()
     errorAlert.show()
   }
   
-  @IBAction func createAccountBtnTapped(sender: AnyObject) {
-    self.displaySignupView()
-  }
-  
-  @IBAction func cancelBtnTapped(sender: AnyObject) {
-    self.displaSigninView()
-  }
 
     @IBAction func searchCoordBtn() {
         searchDBForLocation(searchField.text!)
+    
     }
 
   
@@ -217,20 +283,19 @@ let cllocationManager: CLLocationManager = CLLocationManager()
                 
                 let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? NSArray
                 
-                var charityLocations: [CLLocationCoordinate2D] = []
+                var charityLocations = [CharityStruct]()
                 
                 if !CharityModel.charityData.isEmpty{
                     CharityModel.charityData.removeAll()
                 }
                 
                 for coordinate in responseDict!{
+                    
                     print(coordinate)
                     
                     CharityModel.charityData.append(CharityStruct(dictionary: coordinate as! [String : AnyObject]))
                     
-                    let json = coordinate as? [String:AnyObject]
-                    let coordinatesToAppend = CLLocationCoordinate2D(latitude: (json!["lat"]! as? Double)!, longitude: (json!["lng"]! as? Double)!)
-                    charityLocations.append(coordinatesToAppend)
+                    charityLocations.append(CharityStruct(dictionary: coordinate as! [String : AnyObject]))
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -245,6 +310,14 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
+        })
+        
+        UIView.animateWithDuration(2, animations: {
+            var newCenter = self.tableView.center
+            newCenter.y -= 100
+            self.tableView.center = newCenter
+            }, completion: { finished in
+                print("Table levitating!")
         })
     }
     
@@ -286,6 +359,7 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         
         if CharityModel.charityData.count != 0 {
             let selectedCharity = CharityModel.charityData[indexPath.row]
+            print(selectedCharity)
             
             
             passImageUrl = selectedCharity.imageUrl
@@ -298,7 +372,10 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         }
     }
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        print(segue.identifier)
         
         if (segue.identifier == "charityDetail") {
             let viewController = segue.destinationViewController as! CharityDetailViewController
@@ -306,6 +383,11 @@ let cllocationManager: CLLocationManager = CLLocationManager()
             viewController.imageUrl = passImageUrl
             viewController.descString = descString
         }
+        
+        if (segue.identifier == "activityDetail") {
+            let toViewController = segue.destinationViewController as! UserActivityViewController
+        }
+        
     }
 
 
@@ -321,6 +403,18 @@ let cllocationManager: CLLocationManager = CLLocationManager()
         alert.addAction(UIAlertAction(title: actionTitle, style: .Default, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
 
     

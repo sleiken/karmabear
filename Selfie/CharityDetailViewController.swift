@@ -24,6 +24,17 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var eventData = [EventStruct]()
     var needData = [NeedStruct]()
     
+    var needId: Int!
+    var needTitle: String!
+    var quantityNeed: Int!
+    var needStatus: String!
+    
+    var eventId: Int!
+    var eventTitle: String!
+    var eventDescription: String!
+    var eventStart: String!
+    var eventEnd: String!
+    
     let dimLevel: CGFloat = 0.5
     let dimSpeed: Double = 0.5
     
@@ -35,10 +46,13 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
         needsTableView.dataSource = self
         needsTableView.delegate = self
         needsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "needsCell")
+        needsTableView.backgroundColor = UIColor.clearColor()
         
         eventsTableView.dataSource = self
         eventsTableView.delegate = self
         eventsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "eventsCell")
+        eventsTableView.backgroundColor = UIColor.clearColor()
+        
         
         descLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         descLabel.numberOfLines = 0
@@ -66,6 +80,7 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
         if imageUrl != nil {
             let url = NSURL(string: self.imageUrl!)
+            print(url)
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -177,55 +192,6 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    func donateToCharity(needId: Int) {
-        
-        let httpRequest = httpHelper.buildRequest("auth/donate", method: "POST")
-        let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
-        let userToken = currentUserToken! as String
-        
-        httpRequest.HTTPBody = "{\"id\":\"\(needId)\",\"token\":\"\(userToken)\"}".dataUsingEncoding(NSUTF8StringEncoding)
-        
-        httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
-            
-            guard error == nil else {
-                print(error)
-                return
-            }
-            do {
-//                let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-//                print(responseDict)
-                
-            } catch let error as NSError {
-                print(error)
-            }
-        })
-    }
-
-
-    func registerForEvent(eventId: Int) {
-        
-        let httpRequest = httpHelper.buildRequest("auth/register", method: "POST")
-        let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
-        let userToken = currentUserToken! as String
-        
-        httpRequest.HTTPBody = "{\"id\":\"\(eventId)\",\"token\":\"\(userToken)\"}".dataUsingEncoding(NSUTF8StringEncoding)
-        
-        httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
-            
-            guard error == nil else {
-                print(error)
-                return
-            }
-            do {
-                //                let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                //                print(responseDict)
-                
-            } catch let error as NSError {
-                print(error)
-            }
-        })
-        }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var count:Int?
@@ -257,25 +223,66 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell!.textLabel!.text = needsDetail.name
         }
         
+        cell?.backgroundColor = UIColorFromHex(0x6BB7B9)
+        
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView == self.needsTableView {
             let actionForNeed = needData[indexPath.row]
-            donateToCharity(actionForNeed.id)
-            
-            
+//            donateToCharity(actionForNeed.id)
+            needId = actionForNeed.id
+            needTitle = actionForNeed.name
+            quantityNeed = actionForNeed.quantityNeeded
+            needStatus = actionForNeed.status
+            performSegueWithIdentifier("needModal", sender: self)
         }
+        
         if tableView == self.eventsTableView {
-            let actionForEvent = needData[indexPath.row]
-            registerForEvent(actionForEvent.id)
+            let actionForEvent = eventData[indexPath.row]
+//          
+            eventId = actionForEvent.id
+            eventTitle = actionForEvent.name
+            eventDescription = actionForEvent.description
+            eventStart = actionForEvent.start
+            eventEnd = actionForEvent.end
+            
+            performSegueWithIdentifier("eventModal", sender: self)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if (segue.identifier == "needModal") {
+            let viewController = segue.destinationViewController as! NeedModalViewController
+            viewController.needId = needId
+            viewController.needTitle = needTitle
+            viewController.quantityNeed = quantityNeed
+            viewController.status = needStatus
+            
+            viewController.modalPresentationStyle = .OverCurrentContext
+        }
         
+        if (segue.identifier == "eventModal") {
+            let viewController = segue.destinationViewController as! EventModalViewController
+            viewController.eventId = eventId
+            viewController.eventTitle = eventTitle
+            viewController.eventDescription = eventDescription
+            viewController.eventStart = eventStart
+            viewController.eventEnd = eventEnd
+            
+            viewController.modalPresentationStyle = .OverCurrentContext
+        }
+        
+    }
+    
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
 
 }

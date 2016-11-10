@@ -11,6 +11,9 @@ import Foundation
 class CharityModel {
     
     static var charityData = [CharityStruct]()
+    static var userData = [UserStruct]()
+    static var userEvents = [EventStruct]()
+    static var userNeeds = [NeedStruct]()
     
     class func sharedInstance() -> CharityModel{
         struct Singleton{

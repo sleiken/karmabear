@@ -20,7 +20,7 @@ enum HTTPRequestContentType {
 }
 
 struct HTTPHelper {
-  static let BASE_URL = "http://karma-bear.herokuapp.com/api"
+  static let BASE_URL = "http://karmabear.herokuapp.com/api"
   
   func buildRequest(path: String!, method: String,
     requestContentType: HTTPRequestContentType = HTTPRequestContentType.HTTPJsonContent, requestBoundary:String = "") -> NSMutableURLRequest {

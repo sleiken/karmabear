@@ -8,8 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100447C91DD263740086CB37 /* CharityDetailViewController.swift */; };
+		100ED3171DD39A0F007B29B6 /* EventModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ED3161DD39A0F007B29B6 /* EventModalViewController.swift */; };
+		100ED3191DD39A1F007B29B6 /* NeedModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100ED3181DD39A1F007B29B6 /* NeedModalViewController.swift */; };
+		104BF9351DD44687000DBEAC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104BF9341DD44687000DBEAC /* Launch.storyboard */; };
 		10769D7D1DD2A0CA005BB037 /* EventStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7C1DD2A0CA005BB037 /* EventStruct.swift */; };
 		10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */; };
+		10838B651DD3C58D000718A2 /* CharityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B641DD3C58D000718A2 /* CharityAnnotation.swift */; };
+		10838B671DD3DA8B000718A2 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B661DD3DA8B000718A2 /* CustomCalloutView.swift */; };
+		10838B691DD3DB57000718A2 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10838B681DD3DB57000718A2 /* CustomCalloutView.xib */; };
+		10838B6B1DD3E8B6000718A2 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B6A1DD3E8B6000718A2 /* AnnotationView.swift */; };
+		10838B6D1DD4113A000718A2 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B6C1DD4113A000718A2 /* TransitionManager.swift */; };
+		10838B6F1DD41AAB000718A2 /* UserActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B6E1DD41AAB000718A2 /* UserActivityViewController.swift */; };
+		10838B751DD43668000718A2 /* UserStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B741DD43668000718A2 /* UserStruct.swift */; };
 		10FF59DC1DD000F10003CB87 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FF59DB1DD000F10003CB87 /* MapKit.framework */; };
 		10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E11DD10E1B0003CB87 /* CharityModel.swift */; };
 		10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */; };
@@ -48,8 +58,18 @@
 
 /* Begin PBXFileReference section */
 		100447C91DD263740086CB37 /* CharityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityDetailViewController.swift; sourceTree = "<group>"; };
+		100ED3161DD39A0F007B29B6 /* EventModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModalViewController.swift; sourceTree = "<group>"; };
+		100ED3181DD39A1F007B29B6 /* NeedModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedModalViewController.swift; sourceTree = "<group>"; };
+		104BF9341DD44687000DBEAC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Launch.storyboard; path = ../Launch.storyboard; sourceTree = "<group>"; };
 		10769D7C1DD2A0CA005BB037 /* EventStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStruct.swift; sourceTree = "<group>"; };
 		10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedStruct.swift; sourceTree = "<group>"; };
+		10838B641DD3C58D000718A2 /* CharityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityAnnotation.swift; sourceTree = "<group>"; };
+		10838B661DD3DA8B000718A2 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		10838B681DD3DB57000718A2 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		10838B6A1DD3E8B6000718A2 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		10838B6C1DD4113A000718A2 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		10838B6E1DD41AAB000718A2 /* UserActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActivityViewController.swift; sourceTree = "<group>"; };
+		10838B741DD43668000718A2 /* UserStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStruct.swift; sourceTree = "<group>"; };
 		10FF59DB1DD000F10003CB87 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		10FF59DD1DD000FA0003CB87 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		10FF59E11DD10E1B0003CB87 /* CharityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityModel.swift; sourceTree = "<group>"; };
@@ -149,10 +169,17 @@
 				C1B77A6B1A1B98DB0024857B /* HTTPHelper.swift */,
 				10FF59E51DD12A3D0003CB87 /* AuthenticateViewController.swift */,
 				D37383E619B07A75008C2DB6 /* ViewController.swift */,
+				10838B6E1DD41AAB000718A2 /* UserActivityViewController.swift */,
+				10838B661DD3DA8B000718A2 /* CustomCalloutView.swift */,
 				10FF5A1B1DD18B5F0003CB87 /* CharityLocTableView.swift */,
 				100447C91DD263740086CB37 /* CharityDetailViewController.swift */,
+				10838B6A1DD3E8B6000718A2 /* AnnotationView.swift */,
+				10838B641DD3C58D000718A2 /* CharityAnnotation.swift */,
+				100ED3161DD39A0F007B29B6 /* EventModalViewController.swift */,
+				100ED3181DD39A1F007B29B6 /* NeedModalViewController.swift */,
 				C1F59B1619E4084C0083F33B /* KeychainAccess.swift */,
 				D37383E419B07A75008C2DB6 /* AppDelegate.swift */,
+				10838B741DD43668000718A2 /* UserStruct.swift */,
 				10FF59E11DD10E1B0003CB87 /* CharityModel.swift */,
 				10FF59E31DD10E9A0003CB87 /* CharityStruct.swift */,
 				10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */,
@@ -162,6 +189,9 @@
 				C186CA0F19EA34DF00E3B500 /* SelfieImage.swift */,
 				C186CA1119EA80DB00E3B500 /* ComposeViewController.swift */,
 				C186CA1519EA92C600E3B500 /* DetailViewController.swift */,
+				10838B6C1DD4113A000718A2 /* TransitionManager.swift */,
+				10838B681DD3DB57000718A2 /* CustomCalloutView.xib */,
+				104BF9341DD44687000DBEAC /* Launch.storyboard */,
 				D37383E819B07A75008C2DB6 /* Main.storyboard */,
 				D37383EB19B07A75008C2DB6 /* Images.xcassets */,
 				D37383E219B07A75008C2DB6 /* Supporting Files */,
@@ -285,7 +315,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D37383EA19B07A75008C2DB6 /* Main.storyboard in Resources */,
+				10838B691DD3DB57000718A2 /* CustomCalloutView.xib in Resources */,
 				D37383EC19B07A75008C2DB6 /* Images.xcassets in Resources */,
+				104BF9351DD44687000DBEAC /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,12 +339,20 @@
 				10769D7D1DD2A0CA005BB037 /* EventStruct.swift in Sources */,
 				100447CA1DD263740086CB37 /* CharityDetailViewController.swift in Sources */,
 				10FF59E61DD12A3D0003CB87 /* AuthenticateViewController.swift in Sources */,
+				10838B671DD3DA8B000718A2 /* CustomCalloutView.swift in Sources */,
 				C1B77A6C1A1B98DB0024857B /* HTTPHelper.swift in Sources */,
 				10FF5A1C1DD18B5F0003CB87 /* CharityLocTableView.swift in Sources */,
 				D373840219B07C3B008C2DB6 /* SelfieCollectionViewController.swift in Sources */,
+				10838B6F1DD41AAB000718A2 /* UserActivityViewController.swift in Sources */,
 				D37383E719B07A75008C2DB6 /* ViewController.swift in Sources */,
 				C186CA1219EA80DB00E3B500 /* ComposeViewController.swift in Sources */,
+				10838B6D1DD4113A000718A2 /* TransitionManager.swift in Sources */,
+				10838B6B1DD3E8B6000718A2 /* AnnotationView.swift in Sources */,
+				10838B651DD3C58D000718A2 /* CharityAnnotation.swift in Sources */,
 				C186CA1019EA34DF00E3B500 /* SelfieImage.swift in Sources */,
+				10838B751DD43668000718A2 /* UserStruct.swift in Sources */,
+				100ED3191DD39A1F007B29B6 /* NeedModalViewController.swift in Sources */,
+				100ED3171DD39A0F007B29B6 /* EventModalViewController.swift in Sources */,
 				10FF59E41DD10E9A0003CB87 /* CharityStruct.swift in Sources */,
 				D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */,
 				10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */,

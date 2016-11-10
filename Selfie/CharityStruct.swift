@@ -15,10 +15,10 @@ struct CharityStruct {
     var address: NSArray
     var latitude: Double
     var longitude: Double
-    var description: String?
-    var phone: String?
-    var url: String?
-    var imageUrl: String?
+    var description: String!
+    var phone: String!
+    var url: String!
+    var imageUrl: String!
     
     init(dictionary: [String : AnyObject]) {
 
