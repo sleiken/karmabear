@@ -22,7 +22,7 @@ class Donation < ApplicationRecord
       Notification.create!(manager_id: manager.id,
                            giver_id: donation.giver.id,
                            action: 2,
-                           content: donation.need.id)
+                           content: donation.id)
     end
   end
 end

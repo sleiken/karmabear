@@ -5,7 +5,8 @@ module NotificationsHelper
     elsif notification.action == "unfollow"
       ApplicationController.renderer.render(partial: 'notifications/unfollow', locals: { notification: notification })
     elsif notification.action == "donate"
-      ApplicationController.renderer.render(partial: 'notifications/donate', locals: { notification: notification, need: Need.find(notification.content) })
+      donation = Donation.find(notification.content)
+      ApplicationController.renderer.render(partial: 'notifications/donate', locals: { notification: notification, need: donation.need, donation: donation})
     elsif notification.action == "volunteer"
       ApplicationController.renderer.render(partial: 'notifications/volunteer', locals: { notification: notification })
     end
