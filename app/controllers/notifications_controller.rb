@@ -1,4 +1,3 @@
-
 class NotificationsController < ApplicationController
   def index
     @manager = $current_manager
