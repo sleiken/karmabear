@@ -1,5 +1,5 @@
 class Notification < ApplicationRecord
-  enum action: [:unfollow, :follow]
+  enum action: [:unfollow, :follow, :donate, :volunteer]
 
   belongs_to :giver
   belongs_to :manager
