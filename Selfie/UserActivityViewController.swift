@@ -1,4 +1,3 @@
-//
 //  UserActivityViewController.swift
 //  Selfie
 //
@@ -8,20 +7,127 @@
 
 import Foundation
 
-class UserActivityViewController: UIViewController {
+class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource{
+    
     @IBOutlet weak var userProfile: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var needsTableView: UITableView!
+    @IBOutlet weak var eventsTableView: UITableView!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var headerImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string: CharityModel.userData[0].imageUrl)
-        print(url)
+        needsTableView.dataSource = self
+        needsTableView.delegate = self
+        needsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "needsCell")
+        needsTableView.backgroundColor = UIColor.clearColor()
         
-            
-            let thisData = NSData(contentsOfURL: url!)
-            let userImg = UIImage(data: thisData!)
-            
-            self.userProfile.image = userImg
+        eventsTableView.dataSource = self
+        eventsTableView.delegate = self
+        eventsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "eventsCell")
+        eventsTableView.backgroundColor = UIColor.clearColor()
+        
+        setUpViews()
+        
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.scrollView!.contentInset = UIEdgeInsetsMake(self.userProfile.frame.size.height-40, 0, 0, 0);
+    }
+    
+    func setUpViews() {
+        
+        let userData = CharityModel.userData[0]
+        
+        let url = NSURL(string: userData.imageUrl)
+        print(url)
+        
+        
+        let thisData = NSData(contentsOfURL: url!)
+        let userImg = UIImage(data: thisData!)
+        
+        self.userProfile.image = userImg
+        
+        self.pointsLabel.text = String(userData.points)
+        self.userNameLabel.text = "\(userData.firstName) \(userData.lastName)"
+        
+        let blurEffect = UIBlurEffect(style: .Dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.headerImage.frame
+        
+        self.view.insertSubview(blurEffectView, atIndex: 0)
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        var count:Int?
+        
+        if tableView == self.needsTableView {
+            count = CharityModel.userNeeds.count
+            
+        }
+        if tableView == self.eventsTableView {
+            count = CharityModel.userEvents.count
+        }
+        
+        return count!
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell:UITableViewCell?
+        
+        if tableView == self.needsTableView {
+            cell = tableView.dequeueReusableCellWithIdentifier("needsCell", forIndexPath: indexPath)
+            let needsDetail = CharityModel.userNeeds[indexPath.row]
+            cell!.textLabel!.text = needsDetail.name
+        }
+        
+        if tableView == self.eventsTableView {
+            cell = tableView.dequeueReusableCellWithIdentifier("eventsCell", forIndexPath: indexPath)
+            let needsDetail = CharityModel.userEvents[indexPath.row]
+            cell!.textLabel!.text = needsDetail.name
+        }
+        
+        cell?.backgroundColor = UIColorFromHex(0x904CFF)
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.needsTableView {
+            let actionForNeed = CharityModel.userNeeds[indexPath.row]
+            //            donateToCharity(actionForNeed.id)
+//            needId = actionForNeed.id
+//            needTitle = actionForNeed.name
+//            quantityNeed = actionForNeed.quantityNeeded
+//            needStatus = actionForNeed.status
+            performSegueWithIdentifier("needModal", sender: self)
+        }
+        
+        if tableView == self.eventsTableView {
+            let actionForEvent = CharityModel.userEvents[indexPath.row]
+            //
+//            eventId = actionForEvent.id
+//            eventTitle = actionForEvent.name
+//            eventDescription = actionForEvent.description
+//            eventStart = actionForEvent.start
+//            eventEnd = actionForEvent.end
+            
+            performSegueWithIdentifier("eventModal", sender: self)
+        }
+    }
+    
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    }
 }

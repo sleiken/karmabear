@@ -315,6 +315,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         UIView.animateWithDuration(2, animations: {
             var newCenter = self.tableView.center
             newCenter.y -= 100
+            var mapCenter = self.mapView.center
+            mapCenter.y += 100
             self.tableView.center = newCenter
             }, completion: { finished in
                 print("Table levitating!")
