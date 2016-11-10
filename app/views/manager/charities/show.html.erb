@@ -81,7 +81,8 @@ needs partial:
 <div class="givers-container">
   <h2>view givers button</h2>
 
-  <li>(modal for: givers#index)
-    <%= link_to 'View givers (givers/index)', manager_charity_givers_path(@charity) %>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#allGiversModal">View Givers</button>
   </li>
+  <%= render partial: 'manager/modals/all_givers'%>
 </div>
