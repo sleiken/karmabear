@@ -1,0 +1,11 @@
+<h2>Volunteers</h2>
+
+<ul>
+  <% @volunteers[0...5].each do |volunteer| %>
+    <li>
+      <%= volunteer.first_name %> <%= volunteer.last_name %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#viewVolunteerModal#{volunteer.id}" %>>Profile</button>
+    </li>
+      <%= render partial: 'manager/modals/view_volunteer', locals: { volunteer: volunteer } %>
+  <% end %>
+</ul>

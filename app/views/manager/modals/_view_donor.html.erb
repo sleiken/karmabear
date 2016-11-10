@@ -1,0 +1,22 @@
+<div class="modal fade" id=<%= "viewDonorModal#{donor.id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "viewDonorModalLabel#{donor.id}" %> aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id=<%= "#viewDonorModalLabel#{donor.id}" %>>Profile: <%= donor.first_name %> <%= donor.last_name %></h4>
+      </div>
+
+      <div class="modal-body">
+      <%= donor.first_name %>
+      </div>
+
+      <div class="modal-footer">
+         might not need a footer, or could be where "email" buttons are
+      </div>
+
+    </div>
+  </div>
+</div>

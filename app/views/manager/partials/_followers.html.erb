@@ -1,0 +1,11 @@
+<h2>Followers</h2>
+
+<ul>
+  <% @followers[0...5].each do |follower| %>
+    <li>
+      <%= follower.first_name %> <%= follower.last_name %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#viewFollowerModal#{follower.id}" %>>Profile</button>
+    </li>
+      <%= render partial: 'manager/modals/view_follower', locals: { follower: follower } %>
+  <% end %>
+</ul>
