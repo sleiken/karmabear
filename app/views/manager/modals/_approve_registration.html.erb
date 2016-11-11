@@ -18,7 +18,7 @@
           <%= f.submit :Approve, class: "btn btn-success btn-block" %>
         <% end %>
 
-        <%= form_for [:manager, @charity, registration.event, registration], method: 'Deny' do |f| %>
+        <%= form_for [:manager, @charity, registration.event, registration], method: 'delete' do |f| %>
           <%= f.submit :Deny, class: "btn btn-danger btn-block" %>
         <% end %>
       </div>
