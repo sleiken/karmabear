@@ -5,4 +5,5 @@ class Manager < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :charity
+  has_many   :notifications
 end
