@@ -3,7 +3,7 @@
 <% else %>
   <% @donations.each do |donation| %>
     <p>
-      <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target=<%= "#donationApprovalModal#{donation.id}" %>><strong>Approve</strong> - <%= donation.need.name %> given by <%= donation.giver.username %> </button>
+      <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#donationApprovalModal#{donation.id}" %>><%= donation.giver.username %> donated by <%= donation.need.name %></button>
     </p>
     <%= render partial: 'manager/modals/approve_donation', locals: { donation: donation} %>
   <% end %>
