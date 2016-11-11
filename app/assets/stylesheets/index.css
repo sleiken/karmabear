@@ -59,9 +59,14 @@ div.charity-show-scroll {
 
 div.charity-user-hero,
 div.charity-show-hero {
-	background: url(/images/charity-user-show.jpg) top center no-repeat;
+	/*background: url(/images/charity-user-show.jpg) top center no-repeat;*/
+	background: url(/images/sf-charity-show-b.jpg) top center no-repeat;
 	background-size: cover;
+	/*background-position: 0px -325px;*/
+	background-position: 0px -514px;
 }
+
+
 
 div.charity-show-hero {
 	height: 550px;
