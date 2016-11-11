@@ -26,7 +26,7 @@ class DonationsController < ApplicationController
     end
   end
 
-def edit
+  def edit
     @donation = donation.find(params[:id])
   end
 
