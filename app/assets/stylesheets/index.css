@@ -63,7 +63,6 @@ div.charity-show-scroll {
 	box-sizing: border-box;
 	width: 100%;
 	text-align: center;
-	font: normal 18px sans-serif;
 	padding: 45px;
 }
 
@@ -86,6 +85,7 @@ div.charity-show-scroll {
 
 .footer-basic-centered .footer-links a {
 	display: inline-block;
+	color: #3D1550;
 }
 
 /* media queries */
