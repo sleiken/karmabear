@@ -1,5 +1,4 @@
-class Manager::CharitiesController < Manager::ApplicationController
-	skip_before_action :authorize_manager
+class Manager::CharitiesController < ApplicationController
 	before_action :authorize_manager_show
 
 	def show

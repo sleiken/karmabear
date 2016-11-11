@@ -1,7 +1,7 @@
 class Manager::ApplicationController < ApplicationController
   before_action :authorize_manager
 
-  protected
+  private
 
   def authorize_manager
     if Charity.find_by!(id: params[:charity_id]).manager

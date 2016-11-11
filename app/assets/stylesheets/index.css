@@ -1,5 +1,4 @@
 /* navbar */
-
 nav.navbar {
 	margin-bottom: 0;
 }
@@ -12,7 +11,8 @@ nav.navbar-default .navbar-brand,
 nav.navbar-default .navbar-nav > li > a {
   color: #3d1550;
 }
-/* video */
+
+/* video & video-section*/
 .video-section {
 	position: relative;
 }
@@ -40,8 +40,18 @@ video {
 	color: #fff;
 }
 
+.video-section h1 {
+	color: #DB70DB;
+}
+
+/* scrolling functionality */
 div.scroll-section {
 	height: 300px;
+	overflow-y: scroll;
+}
+
+div.charity-show-scroll {
+	height: 700px;
 	overflow-y: scroll;
 }
 
@@ -80,9 +90,15 @@ div.scroll-section {
 
 /* media queries */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 525px) {
 	.video-section .section-content {
-	  bottom: 200px;
+	  bottom: 150px;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	.video-section .section-content {
+	  bottom: 175px;
 	}
 }
 
@@ -90,10 +106,18 @@ div.scroll-section {
 	.video-section .section-content {
 	  bottom: 250px;
 	}
+	.video-section h1 {
+		font-size: 3em;
+		margin-bottom: 20px;
+	}
 }
 
 @media screen and (min-width: 1200px) {
 	.video-section .section-content {
 	  bottom: 425px;
+	}
+	.video-section h1 {
+		font-size: 4em;
+		margin-bottom: 20px;
 	}
 }
