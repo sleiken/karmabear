@@ -6,26 +6,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id=<%= "viewEventModalLabel#{event.id}" %>>Event Page</h4>
+        <h2 class="modal-title" id=<%= "viewEventModalLabel#{event.id}" %>>Event Page</h2>
       </div>
 
       <div class="modal-body">
-        <li>Starts: <%= event.start %></li>
-        <li>Starts: <%= event.end %></li>
+        <p><strong>Starts:</strong> <%= event.start %></p>
+        <p><strong>Ends:</strong> <%= event.end %></p>
 
-        <li>Description: <%= event.description %></li>
+        <p><strong>Description:</strong> <%= event.description %></p>
 
-        <li><%= event.givers_needed %> givers needed</li>
+        <p><strong>Givers Needed:</strong> <%= event.givers_needed %></p>
 
         <div class="registered-volunteers">
-          <h1>Givers Registered: </h1>
+          <h3>Givers Registered: </h3>
 
           <% if event.givers.empty? %>
             no volunteers yet
           <% else %>
             <ul>
-              <% event.givers.each do |giver| %>
-                <li> <%= giver.username %></li>
+              <% event.givers[0..10].each do |giver| %>
+                <li class="list-unstyled"> <%= giver.username %></li>
               <% end %>
             </ul>
           <% end %>
