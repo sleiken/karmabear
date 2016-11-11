@@ -92,7 +92,7 @@ obj11.update_attributes(attributes11)
 #12
 attributes12 = {description: "GLIDE's mission is to create a radically inclusive, just and loving community mobilized to alleviate suffering and break the cycles of poverty and marginalization.", 
                 url: "http://www.glide.org/", 
-                image_url: "https://haasundergrad.files.wordpress.com/2013/11/locations_glide.jpg"}
+                image_url: "https://enginecompany1.files.wordpress.com/2009/12/logo-glide1.jpg"}
 obj12 = Charity.find_by(name: "Glide")
 obj12.update_attributes(attributes12)
 

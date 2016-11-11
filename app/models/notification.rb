@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
   belongs_to :giver
   belongs_to :manager
 
-  scope :for_display, -> { order('created_at DESC').first(10) }
+  scope :for_display, -> { order('created_at DESC').first(30) }
 
   after_create_commit { broadcast_notification(self) }
 

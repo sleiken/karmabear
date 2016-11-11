@@ -299,7 +299,8 @@ end
 num = 2
 276.times do
   Subscription.create!(charity_id: c1.id,
-                       giver_id: num)
+                       giver_id: num,
+                       created_at: DateTime.now - (rand * 320))
   num +=1
 end
 
@@ -312,7 +313,8 @@ n = 5
   Registration.create!(event_id: m1.id,
                      giver_id: n,
                      pending_hours: rand(1..4),
-                     approved_hours: 0)
+                     approved_hours: 0,
+                     created_at: DateTime.now - (rand * 320))
   n+=1
 end
 
@@ -322,7 +324,8 @@ n1 = 45
   Registration.create!(event_id: m2.id,
                      giver_id: n1,
                      pending_hours: rand(1..6),
-                     approved_hours: 0)
+                     approved_hours: 0,
+                     created_at: DateTime.now - (rand * 320))
   n1+=1
 end
 
@@ -333,7 +336,8 @@ d = 34
 5.times do
   Donation.create!(need_id: b.id,
                    giver_id: d,
-                   quantity_pending: rand(1..4))
+                   quantity_pending: rand(1..4),
+                   created_at: DateTime.now - (rand * 320))
   d += 1
 end
 
@@ -342,6 +346,7 @@ d1 = 50
 5.times do
   Donation.create!(need_id: b1.id,
                    giver_id: d1,
-                   quantity_pending: rand(1..6))
+                   quantity_pending: rand(1..6),
+                   created_at: DateTime.now - (rand * 320))
   d += 1
 end

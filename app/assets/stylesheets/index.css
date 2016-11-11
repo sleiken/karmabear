@@ -1,3 +1,42 @@
+/* navbar */
+
+nav.navbar {
+	margin-bottom: 0;
+}
+
+/* video */
+.video-section {
+	position: relative;
+}
+
+.video-section video {
+	width: 100%;
+}
+
+video {
+	object-fit: contain;
+}
+
+.video-section .section-content {
+	position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.video-section .section-content,
+.section-content small {
+	color: #fff;
+}
+
+div.scroll-section {
+	height: 300px;
+	overflow-y: scroll;
+}
+
 /* footer */
 
 .footer-basic-centered {
@@ -29,4 +68,24 @@
 
 .footer-basic-centered .footer-links a {
 	display: inline-block;
+}
+
+/* media queries */
+
+@media screen and (min-width: 768px) {
+	.video-section .section-content {
+	  bottom: 200px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.video-section .section-content {
+	  bottom: 250px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.video-section .section-content {
+	  bottom: 425px;
+	}
 }

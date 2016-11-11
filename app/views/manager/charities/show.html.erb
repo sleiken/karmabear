@@ -1,86 +1,85 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-3 text-center"><%= @charity.name %></h1>
-    <p class="lead text-center"><%= @charity.address[0]%><br><%= @charity.address[2] %></p>
-    <p class="text-center">Managed by <%=@charity.manager.username%></p>
-    <p class="lead text-center"></p>
-    <%= image_tag("https://theafterhoursflowers.com/wp-content/uploads/2013/10/Teddy-Bear-300x300.jpg", size: "100x100", alt: "cute teddy bear waving", class: 'img-circle center-block') %>
-  </div>
-</div>
+<%= render partial: 'manager/modals/drawer' %>
 
-<div class="container">
+<div class="container-fluid">
 
-  <!-- buttons -->
+  <!-- dashboards sections -->
   <div class="row">
-    <div class="col-md-4">
-      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newEventModal">Create An Event</button>
-      <%= render partial: 'manager/modals/new_event' %>
-    </div>
-
-    <div class="col-md-4">
-      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#newNeedModal">Add Need</button>
-      <%= render partial: 'manager/modals/new_need' %>
-    </div>
-
-    <div class="col-md-4">
-      <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#allGiversModal">View Givers</button>
-      <%= render partial: 'manager/modals/all_givers'%>
-    </div>
-  </div><hr>
-
-  <div class="row">
-    <!-- left side -->
-    <div class="col-md-5">
-      <!-- live activity feed -->
+    <!-- left side (small screen devices) -->
+    <!-- right side (medium+ screen devices) -->
+    <div class="col-md-9 col-md-push-3 text-center">
+      <!-- Interactive Charts -->
       <div class="row">
-        <div class="col-xs-12 text-center">
-          <h2>Activity Feed</h2>
-          <p>Activity 1</p>
-          <p>Activity 2</p>
-          <p>Activity 3</p>
+        <div class="col-xs-12">
+          <h2>Interactive Charts</h2>
+          <div class="panel panel-default chart-section">
+            <div class="panel-body">
+
+            <div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Planned Events -->
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Events</h2>
+          <div class="panel panel-default scroll-section">
+            <div class="panel-body">
+              <%= render partial: 'manager/partials/events' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h2>Needs</h2>
+          <div class="panel panel-default scroll-section">
+            <div class="panel-body">
+              <%= render partial: 'manager/partials/needs' %>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="row">
-        <!-- current registration activities -->
-        <div class="col-xs-12 text-center">
-          <h2>Current Registrations Activities</h2>
-          <%= render partial: 'manager/partials/registrations' %>
+        <div class="col-sm-6">
+          <h2>Registration Management</h2>
+          <div class="panel panel-default scroll-section">
+            <div class="panel-body">
+              <%= render partial: 'manager/partials/registrations' %>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 text-center">
-          <!-- current donation activities -->
-          <h2>Current Donation Activities</h2>
-          <%= render partial: 'manager/partials/donations' %>
+        <div class="col-sm-6">
+          <h2>Donation Management</h2>
+          <div class="panel panel-default scroll-section">
+            <div class="panel-body">
+              <%= render partial: 'manager/partials/donations' %>
+             </div>
+          </div>
         </div>
       </div>
 
     </div>
 
     <!-- right side -->
-    <div class="col-md-7 text-center">
-      <!-- Interactive Charts -->
+    <div class="col-md-3 col-md-pull-9">
+      <!-- live activity feed -->
       <div class="row">
-        <h2>Interactive Charts</h2>
-        <p>2000 hours</p>
-        <p>1300 donations</p>
-        <p>450 givers</p>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>Planned Events</h2>
-          <%= render partial: 'manager/partials/events' %>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>Planned Needs</h2>
-          <%= render partial: 'manager/partials/needs' %>
+        <div class="col-xs-12 text-center">
+          <h2>Activity Feed</h2>
+          <div class="panel panel-default">
+            <div class="panel-body notifications">
+              <div class="list-group">
+              <% @notifications.each do |notification| %>
+                <%= render_notification(notification) %>
+              <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>

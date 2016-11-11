@@ -73,3 +73,5 @@ gem 'bcrypt'
 gem 'jwt'
 
 gem 'google-v3-geocoder'
+
+gem 'font-awesome-sass', '~> 4.7.0'

@@ -1,17 +1,14 @@
-<%= render partial: 'partials/charity_hero', locals: { charity: @charity } %>
+<%= render partial: 'partials/charity_hero' %>
 
 <section class="container">
 
   <div class="row">
-    <%= render partial: 'partials/follow_charity' %>
-  </div>
-
-  <div class="row">
-    <%= render partial: 'partials/events_list', locals: { charity: @charity } %>
-  </div>
-
-  <div class="row">
-    <%= render partial: 'partials/needs_list', locals: { charity: @charity } %>
+  	<div class="col-sm-6">
+	    <%= render partial: 'partials/events_list', locals: { charity: @charity } %>
+   	</div>
+   	<div class="col-sm-6">
+	    <%= render partial: 'partials/needs_list', locals: { charity: @charity } %>
+   	</div>
   </div>
 
 </section>
