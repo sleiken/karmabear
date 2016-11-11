@@ -3,7 +3,7 @@
   <% else %>
     <% @registrations.each do |registration| %>
       <p>
-        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target=<%= "#regisApprovalModal#{registration.id}" %>><strong>Approve</strong> - <em><%= registration.giver.username %> volunteered for <%= registration.event.name %></em></button>
+        <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#regisApprovalModal#{registration.id}" %>><%= registration.giver.username %> volunteered for <%= registration.event.name %></button>
       </p>
       <%= render partial: 'manager/modals/approve_registration', locals: { registration: registration} %>
     <% end %>
