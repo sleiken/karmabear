@@ -1,11 +1,9 @@
 class Manager::CharitiesController < Manager::ApplicationController
+	before_action :authorize_manager
 
 	def show
-		# until oauth/user auth is decided, the below shoulmd remain commented out
-		# manager = current_manager
-		# @charity = manager.charity
+		@manager = current_manager
 		@charity = Charity.find(params[:id])
-		@manager = @charity.manager
 
     @followers = @charity.followers
     @volunteers = @charity.volunteers
@@ -22,4 +20,16 @@ class Manager::CharitiesController < Manager::ApplicationController
     @need = Need.new
 	end
 
+	private
+
+  def authorize_manager
+		if Charity.find_by!(id: params[:id]).manager
+    	manager_id = Charity.find_by!(id: params[:id]).manager.id
+	    if current_manager != Manager.find_by!(id: manager_id)
+	      redirect_to root_path
+	    end
+		else 
+			redirect_to root_path
+		end
+  end
 end
