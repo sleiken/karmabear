@@ -13,6 +13,7 @@ class Manager::CharitiesController < Manager::ApplicationController
 
     @registrations = @charity.registrations.pending
     @donations = @charity.donations.pending
+		@notifications = @manager.notifications
 
     @events = @charity.events
     @needs = @charity.needs

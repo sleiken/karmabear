@@ -69,10 +69,10 @@
         <div class="col-xs-12 text-center">
           <h2>Activity Feed</h2>
           <div class="panel panel-default">
-            <div class="panel-body">
-              <p>Activity 1</p>
-              <p>Activity 2</p>
-              <p>Activity 3</p>
+            <div class="panel-body notifications">
+              <% @notifications.each do |notification| %>
+                <%= render_notification(notification) %>
+              <% end %>
             </div>
           </div>
         </div>
