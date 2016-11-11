@@ -55,6 +55,30 @@ div.charity-show-scroll {
 	overflow-y: scroll;
 }
 
+/* charity and user show */
+
+div.charity-user-hero,
+div.charity-show-hero {
+	background: url(/images/charity-user-show.jpg) top center no-repeat;
+	background-size: cover;
+}
+
+div.charity-show-hero {
+	height: 550px;
+}
+
+div.charity-user-hero {
+	height: 300px;
+}
+
+div.charity-show-hero h1 {
+	margin-top: 90px;
+}
+
+div.charity-user-hero h1 {
+	margin-top: 90px;
+}
+
 /* footer */
 
 .footer-basic-centered {
@@ -114,10 +138,50 @@ div.charity-show-scroll {
 
 @media screen and (min-width: 1200px) {
 	.video-section .section-content {
-	  bottom: 425px;
+	  bottom: 300px;
 	}
 	.video-section h1 {
 		font-size: 4em;
 		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.video-section .section-content {
+	  bottom: 400px;
+	}
+	.video-section h1 {
+		font-size: 4em;
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.video-section .section-content {
+	  bottom: 400px;
+	}
+	.video-section h1 {
+		font-size: 5em;
+		margin-bottom: 40px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.video-section .section-content {
+	  bottom: 450px;
+	}
+	.video-section h1 {
+		font-size: 4.5em;
+		margin-bottom: 60px;
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	.video-section .section-content {
+	  bottom: 600px;
+	}
+	.video-section h1 {
+		font-size: 5em;
+		margin-bottom: 80px;
 	}
 }
