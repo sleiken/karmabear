@@ -20,11 +20,11 @@
         <%= link_to 'Cancel Registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete', class: 'btn btn-danger btn-block' %>
 
       <% else %>
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal"><i class="fa fa-calendar-check-o"></i> Register</button>
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal"><i class="fa fa-hand-paper-o"></i> Volunteer</button>
       <% end %>
 
     <% else %>
-      <a href="/givers/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-calendar-check-o"></i> Register</a>
+      <a href="/givers/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-hand-paper-o"></i> Volunteer</a>
     <% end %>
 
   </div>
