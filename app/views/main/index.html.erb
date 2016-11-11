@@ -2,8 +2,12 @@
 	<%= video_tag(["charity.mp4"], autoplay: true, loop: true) %>
 	<div class="section-content container">
 		<div class="row">
+			<div class="col-xs-12">
+				<h1>Give. <small>Connect to causes in your community.</small></h1>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<h1 class="text-center">Giving, but convenient.</h1><br>
 				<%= form_tag charities_path, method: :get, class: "form-group search-form" do %>
 					<i class='fa fa-search'></i>
 				  <%= text_field_tag(
@@ -22,16 +26,19 @@
 <section class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<h3 class="text-center">Heading</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis nesciunt error doloribus aliquam temporibus dicta quam odit sint sit autem laudantium neque modi nulla, delectus qui asperiores commodi, quaerat, eos molestiae velit. Inventore voluptates ratione vero nostrum reprehenderit exercitationem expedita magnam, incidunt assumenda libero necessitatibus tempore molestiae fugiat odio sit.</p>
+	    <%= image_tag("community.jpg", size: "300x300", class: 'img-circle center-block') %>
+			<h3 class="text-center">Community</h3>
+			<p>We believe everyone should have the chance to make a difference. We've connect people with a great place to volunteer and organizations better leverage volunteers to create real impact.</p>
 		</div>
 		<div class="col-md-4">
-			<h3 class="text-center">Heading</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati dolore dicta dignissimos numquam suscipit quas a sequi, dolorum, in placeat voluptatem modi labore explicabo tempora eum asperiores. Optio ipsum reiciendis distinctio, iure sed ducimus, rem tempore voluptatibus, dicta quod quisquam aliquam, perferendis praesentium quaerat excepturi beatae? Non pariatur consectetur, reprehenderit.</p>
+	    <%= image_tag("relationships.jpg", size: "300x300", class: 'img-circle center-block') %>
+			<h3 class="text-center">Relationships</h3>
+			<p>KarmaBear is about relationships. We are a service that brings good people and good causes together. We believe that the health of our community can be measured by the relationships formed between volunteers and the nonprofits they serve.</p>
 		</div>
 		<div class="col-md-4">
-			<h3 class="text-center">Heading</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi quam aperiam animi dolorem autem perferendis itaque in quo laboriosam, sit, veritatis, optio sed laborum officia, quos atque fugit quidem inventore error. Culpa commodi enim quos facilis, quaerat molestias autem, hic laudantium veritatis ipsam dolorum libero distinctio nam eos totam laborum?</p>
+	    <%= image_tag("partnerships.jpg", size: "300x300", class: 'img-circle center-block') %>
+			<h3 class="text-center">Partnerships</h3>
+			<p>We are a network that is only as strong as the partnerships that support it. KarmaBear offers a variety of tools and services to help you connect with new volunteers, manage volunteers and prospects, and become a great place to volunteer.</p>
 		</div>
 	</div>
 </section>
