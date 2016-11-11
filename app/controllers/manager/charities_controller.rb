@@ -33,4 +33,7 @@ class Manager::CharitiesController < Manager::ApplicationController
 			redirect_to root_path
 		end
   end
+
+	def authorize_manager
+  end
 end
