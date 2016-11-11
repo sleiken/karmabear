@@ -2,7 +2,7 @@
   no events
 <% else %>
   <% @events.each do |event| %>
-    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=<%= "#viewEventModal#{event.id}" %>><%= event.name %></button></p>
+    <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#viewEventModal#{event.id}" %>><%= event.name %></button></p>
     <%= render partial: 'manager/modals/view_event', locals: { event: event } %>
   <% end %>
 <% end %>

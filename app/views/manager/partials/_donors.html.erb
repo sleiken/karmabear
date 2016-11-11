@@ -1,11 +1,9 @@
-<h2>Donors</h2>
-
+<br>
 <ul>
   <% @donors[0...5].each do |donor| %>
-    <li>
-      <%= donor.first_name %> <%= donor.last_name %>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#viewDonorModal#{donor.id}" %>>Profile</button>
-    </li>
+    <p>
+        <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#viewDonorModal#{donor.id}" %>><%= donor.first_name %> <%= donor.last_name %></button>
+    </p>
       <%= render partial: 'manager/modals/view_donor', locals: { donor: donor } %>
   <% end %>
 </ul>
