@@ -8,9 +8,9 @@
     <!-- right side (medium+ screen devices) -->
     <div class="col-md-9 col-md-push-3 text-center">
       <!-- Interactive Charts -->
+    </br>
       <div class="row">
         <div class="col-xs-12">
-          <h2>Interactive Charts</h2>
           <div class="panel panel-default chart-section">
             <div class="panel-body">
 
@@ -64,12 +64,13 @@
     <!-- right side -->
     <div class="col-md-3 col-md-pull-9">
       <!-- live activity feed -->
+    </br>
       <div class="row">
         <div class="col-xs-12 text-center">
-          <h2>Activity Feed</h2>
           <div class="panel panel-default">
             <div class="panel-body notifications">
               <div class="list-group">
+                <h3>Activity Feed</h3>
               <% @notifications.each do |notification| %>
                 <%= render_notification(notification) %>
               <% end %>
@@ -79,7 +80,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 

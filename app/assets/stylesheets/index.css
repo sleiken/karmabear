@@ -1,4 +1,18 @@
-/* video styling */
+/* navbar */
+nav.navbar {
+	margin-bottom: 0;
+}
+
+a.navbar-brand > img {
+  display: inline;
+}
+
+nav.navbar-default .navbar-brand,
+nav.navbar-default .navbar-nav > li > a {
+  color: #3d1550;
+}
+
+/* video & video-section*/
 .video-section {
 	position: relative;
 }
@@ -16,12 +30,22 @@ video {
   bottom: 30px;
   width: 100%;
   text-align: center;
-  color: #fff;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
 
+.video-section .section-content,
+.section-content small {
+	color: #fff;
+}
+
+.video-section h1 {
+	color: #DB70DB;
+}
+
+
+/* scrolling functionality for manager dashboard */
 div.scroll-section {
 	height: 300px;
 	overflow-y: scroll;
@@ -58,4 +82,38 @@ div.scroll-section {
 
 .footer-basic-centered .footer-links a {
 	display: inline-block;
+}
+
+/* media queries */
+
+@media screen and (min-width: 525px) {
+	.video-section .section-content {
+	  bottom: 150px;
+	}
+}
+
+@media screen and (min-width: 700px) {
+	.video-section .section-content {
+	  bottom: 175px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.video-section .section-content {
+	  bottom: 250px;
+	}
+	.video-section h1 {
+		font-size: 3em;
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.video-section .section-content {
+	  bottom: 425px;
+	}
+	.video-section h1 {
+		font-size: 4em;
+		margin-bottom: 20px;
+	}
 }
