@@ -6,24 +6,24 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id=<%= "viewNeedModalLabel#{need.id}" %>>Show <%=@need.name%> Need Page</h4>
+        <h2 class="modal-title" id=<%= "viewNeedModalLabel#{need.id}" %>>Show <%=@need.name%> Need Page</h2>
       </div>
 
       <div class="modal-body">
-        <li>Status: <%= need.status %></li>
+        <p><strong>Status:</strong> <%= need.status %></p>
 
-        <li>Description: <%= need.description %></li>
+        <p><strong>Description:</strong> <%= need.description %></p>
 
-        <li>Quantity Needed: <%= need.quantity_needed %></li>
+        <p><strong>Quantity Needed:</strong> <%= need.quantity_needed %></p>
 
         <div class="donors">
-          <h1>Donors: </h1>
+          <h3>Donors: </h3>
           <% if need.givers.empty? %>
             no volunteers yet
             <% else %>
               <ul>
-                <% need.givers.each do |giver| %>
-                  <li> <%= giver.username %></li>
+                <% need.givers[0..10].each do |giver| %>
+                  <li class="list-unstyled"> <%= giver.username %></li>
 
                 <% end %>
               </ul>
@@ -32,11 +32,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editNeedModal#{need.id}" %>>edit</button>
+        <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#editNeedModal#{need.id}" %>>edit</button>
           <%= render partial: 'manager/modals/edit_need', locals: { need: need } %>
 
         <%= form_for [:manager, @charity, need], method: 'delete' do |f| %>
-          <%= f.submit :delete, class: "btn btn-primary" %>
+          <%= f.submit :delete, class: "btn deny-btn btn-block" %>
         <% end %>
       </div>
 

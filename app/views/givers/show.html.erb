@@ -26,7 +26,8 @@
 						<div class="collapse" id="collapseEvent<%= event.id.to_s%>">
 						  <div class="card card-block">
 						    <%= link_to "View the event", charity_event_path(event.charity, event), class: 'btn btn-primary' %>
-							  Your approved hours: <%= event.registrations.map { |r| r.approved_hours} %> | pending_hours: <%= event.registrations.map { |r| r.pending_hours} %>
+							  <p>Approved Hours: 38</p>
+							  <p>Pending Hours: 8</p>
 							  </div>
 							</div>
 						<% end %>
@@ -53,7 +54,8 @@
 						<div class="collapse" id="collapseNeed<%= need.id.to_s %>">
 						  <div class="card card-block">
 							<%= link_to "View this need", charity_need_path(need.charity, need), class: 'btn btn-primary' %>
-						  You've given <%= need.donations.map { |d| d.quantity_pending} %> <%= need.name %>
+						  <p>Pending Quantity: 10</p>
+							<p>Approved Quantity: 10</p>
 						  </div>
 						</div>
 					<% end %>

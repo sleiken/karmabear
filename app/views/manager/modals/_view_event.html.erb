@@ -6,26 +6,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id=<%= "viewEventModalLabel#{event.id}" %>>Event Page</h4>
+        <h2 class="modal-title" id=<%= "viewEventModalLabel#{event.id}" %>>Event Page</h2>
       </div>
 
       <div class="modal-body">
-        <li>Starts: <%= event.start %></li>
-        <li>Starts: <%= event.end %></li>
+        <p><strong>Starts:</strong> <%= event.start %></p>
+        <p><strong>Ends:</strong> <%= event.end %></p>
 
-        <li>Description: <%= event.description %></li>
+        <p><strong>Description:</strong> <%= event.description %></p>
 
-        <li><%= event.givers_needed %> givers needed</li>
+        <p><strong>Givers Needed:</strong> <%= event.givers_needed %></p>
 
         <div class="registered-volunteers">
-          <h1>Givers Registered: </h1>
+          <h3>Givers Registered: </h3>
 
           <% if event.givers.empty? %>
             no volunteers yet
           <% else %>
             <ul>
-              <% event.givers.each do |giver| %>
-                <li> <%= giver.username %></li>
+              <% event.givers[0..10].each do |giver| %>
+                <li class="list-unstyled"> <%= giver.username %></li>
               <% end %>
             </ul>
           <% end %>
@@ -34,11 +34,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editEventModal#{event.id}" %>>edit</button>
+        <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#editEventModal#{event.id}" %>>edit</button>
           <%= render partial: 'manager/modals/edit_event', locals: { event: event } %>
 
         <%= form_for [:manager, @charity, event], method: 'delete' do |f| %>
-          <%= f.submit :delete, class: "btn btn-primary" %>
+          <%= f.submit :delete, class: "btn deny-btn btn-block" %>
         <% end %>
       </div>
 

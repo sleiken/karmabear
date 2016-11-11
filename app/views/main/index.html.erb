@@ -7,8 +7,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-				<%= form_tag charities_path, method: :get, class: "form-group search-form" do %>
+			<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+				<%= form_tag charities_path, method: :get, class: "form-group search-form", autocomplete: :off do %>
 					<i class='fa fa-search'></i>
 				  <%= text_field_tag(
 			      :search,
@@ -23,8 +23,10 @@
 	</div>
 </div>
 
-<section class="container">
-	<br>
+<section class="container below-video">
+	<div class="row">
+		<h1 class="text-center">Why KarmaBear?</h1>
+	</div>
 	<div class="row">
 		<div class="col-md-4">
 	    <%= image_tag("community.jpg", size: "300x300", class: 'img-circle img-responsive center-block') %><br>
