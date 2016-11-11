@@ -1,5 +1,4 @@
-class Manager::CharitiesController < Manager::ApplicationController
-	skip_before_action :authorize_manager
+class Manager::CharitiesController < ApplicationController
 	before_action :authorize_manager_show
 
 	def show
@@ -32,8 +31,5 @@ class Manager::CharitiesController < Manager::ApplicationController
 		else
 			redirect_to root_path
 		end
-  end
-
-	def authorize_manager
   end
 end
