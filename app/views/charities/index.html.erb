@@ -51,7 +51,7 @@ function initMap() {
 
     google.maps.event.addListener(marker, 'click', function() {
       	infoWindow.setContent(
-      		"<%=result.name%> <br><%=result.description%><br><br><br><a>Follow</a><a href=<%=charity_path(result)%>>Details</a>"
+      		"<strong><%=result.name%></strong><p><%=result.description%></p><a>Follow</a><a href=<%=charity_path(result)%>> | Details</a>"
 
       		);
       	infoWindow.open(map, this);
