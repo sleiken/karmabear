@@ -1,8 +1,11 @@
 <h2 class="text-center">Upcoming Events:</h2>
 <div class="col-xs-12">
-	<ul class="list-group text-center">
+	<div class="list-group text-center">
 		<% charity.events.each do |event| %>
-	    <li class="list-group-item"><%= link_to "#{event.name}", charity_event_path(charity, event) %></li>
+	    <a href="<%= charity_event_path(charity, event)%>" class="list-group-item list-group-item-action list-group-item-info">
+	    	<h5 class="list-group-item-heading"><%= event.name %></h5>
+	    	<p class="list-group-item-text"><%= event.description %></p>
+	    </a>
 	  <% end %>
-	</ul>
+	</div>
 </div>
