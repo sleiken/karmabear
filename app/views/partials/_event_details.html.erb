@@ -20,11 +20,11 @@
         <%= link_to 'Cancel Registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete', class: 'btn btn-danger btn-block' %>
 
       <% else %>
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal">Register</button>
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newRegisModal"><i class="fa fa-calendar-check-o"></i> Register</button>
       <% end %>
 
     <% else %>
-      <%= link_to 'Register', giver_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-block' %>
+      <a href="/givers/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-calendar-check-o"></i> Register</a>
     <% end %>
 
   </div>
