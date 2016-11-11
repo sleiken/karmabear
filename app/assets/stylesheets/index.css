@@ -138,10 +138,50 @@ div.charity-user-hero h1 {
 
 @media screen and (min-width: 1200px) {
 	.video-section .section-content {
-	  bottom: 425px;
+	  bottom: 300px;
 	}
 	.video-section h1 {
 		font-size: 4em;
 		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.video-section .section-content {
+	  bottom: 400px;
+	}
+	.video-section h1 {
+		font-size: 4em;
+		margin-bottom: 20px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.video-section .section-content {
+	  bottom: 400px;
+	}
+	.video-section h1 {
+		font-size: 5em;
+		margin-bottom: 40px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.video-section .section-content {
+	  bottom: 450px;
+	}
+	.video-section h1 {
+		font-size: 4.5em;
+		margin-bottom: 60px;
+	}
+}
+
+@media screen and (min-width: 2000px) {
+	.video-section .section-content {
+	  bottom: 600px;
+	}
+	.video-section h1 {
+		font-size: 5em;
+		margin-bottom: 80px;
 	}
 }
