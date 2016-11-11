@@ -6,14 +6,32 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="allGiversModalLabel">All Givers (or could be where the tabs go?</h4>
+        <h4 class="modal-title" id="allGiversModalLabel">Your Givers</h4>
       </div>
 
       <div class="modal-body">
-          3 givers partials rendered to modal of each giver type
-          <%= render partial: 'manager/partials/followers'%>
-          <%= render partial: 'manager/partials/donors'%>
-          <%= render partial: 'manager/partials/volunteers'%>
+        <div>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">Followers</a></li>
+            <li role="presentation"><a href="#donors" aria-controls="donors" role="tab" data-toggle="tab">Donors</a></li>
+            <li role="presentation"><a href="#volunteers" aria-controls="volunteers" role="tab" data-toggle="tab">Volunteers</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="followers">
+              <%= render partial: 'manager/partials/followers'%>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="donors">
+              <%= render partial: 'manager/partials/donors'%>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="volunteers">
+              <%= render partial: 'manager/partials/volunteers'%>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
 
       <div class="modal-footer">
