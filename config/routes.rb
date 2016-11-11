@@ -51,7 +51,6 @@ Rails.application.routes.draw do
     get 'auth/test', to: 'auth#test'
   end
 
-  get 'notifications', to: 'notifications#index'
   get 'mail', to: 'notifications#mail'
 
   mount ActionCable.server => '/cable'
