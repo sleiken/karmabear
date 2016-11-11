@@ -44,10 +44,14 @@ video {
 	color: #DB70DB;
 }
 
-
-/* scrolling functionality for manager dashboard */
+/* scrolling functionality */
 div.scroll-section {
 	height: 300px;
+	overflow-y: scroll;
+}
+
+div.charity-show-scroll {
+	height: 700px;
 	overflow-y: scroll;
 }
 
