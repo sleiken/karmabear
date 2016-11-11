@@ -1,6 +1,6 @@
 <%= render partial: 'manager/modals/drawer' %>
 
-<div class="container">
+<div class="container-fluid">
 
   <!-- dashboards sections -->
   <div class="row">
@@ -70,9 +70,11 @@
           <h2>Activity Feed</h2>
           <div class="panel panel-default">
             <div class="panel-body notifications">
+              <div class="list-group">
               <% @notifications.each do |notification| %>
                 <%= render_notification(notification) %>
               <% end %>
+              </div>
             </div>
           </div>
         </div>
