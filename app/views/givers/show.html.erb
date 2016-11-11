@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron charity-user-hero">
 	<div class="container">
 		<h1 class="text-center"><%= @giver.username %></h1>
 		<p class="text-center">Karma Points: <%= @giver.points %></p>
@@ -9,41 +9,75 @@
 	<div class="row">
 
 		<div class="col-md-4">
-			<h2 class="text-center">Registered Events</h2>
-				<% @events.each do |event| %>
-					<p>
-						<a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseEvent<%= event.id.to_s%>" aria-expanded="false" aria-controls="#collapseEvent<%= event.id.to_s%>"><%= event.name %></a>
-					</p>
-					<!-- Maybe add a table here-->
-					<div class="collapse" id="collapseEvent<%= event.id.to_s%>">
-					  <div class="card card-block">
-					    <%= link_to "View the event", charity_event_path(event.charity, event), class: 'btn btn-primary' %>
-					  Your approved hours: <%= event.registrations.map { |r| r.approved_hours} %> | pending_hours: <%= event.registrations.map { |r| r.pending_hours} %>
-					  </div>
-					</div>
-				<% end %>
-		</div>
-
-		<div class="col-md-4">
-			<h2 class="text-center">Donated Needs</h2>
-			<% @needs.each do |need| %>
-				<p>
-					<a class="btn btn-info btn-block" data-toggle="collapse" href="#collapseNeed<%= need.id.to_s%>" aria-expanded="false" aria-controls="collapseNeed<%= need.id.to_s%>"><%= need.name %></a>
-				</p>
-				<div class="collapse" id="collapseNeed<%= need.id.to_s %>">
-				  <div class="card card-block">
-					<%= link_to "View this need", charity_need_path(need.charity, need), class: 'btn btn-primary' %>
-				  You've given <%= need.donations.map { |d| d.quantity_pending} %> <%= need.name %>
-				  </div>
+  		<div class="panel panel-info">
+  			<div class="panel-heading">
+					<h2 class="text-center">Registered Events</h2>
 				</div>
-			<% end %>
+
+				<div class="panel-body">
+					<div class="list-group text-center">
+
+						<% @events.each do |event| %>
+						<a class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapseEvent<%= event.id.to_s%>" aria-expanded="false" aria-controls="#collapseEvent<%= event.id.to_s%>">
+				    	<h5 class="list-group-item-heading"><%= event.name %></h5>
+	   		    	<p class="list-group-item-text"><%= event.description %></p>
+						</a>
+						<!-- Maybe add a table here-->
+						<div class="collapse" id="collapseEvent<%= event.id.to_s%>">
+						  <div class="card card-block">
+						    <%= link_to "View the event", charity_event_path(event.charity, event), class: 'btn btn-primary' %>
+							  Your approved hours: <%= event.registrations.map { |r| r.approved_hours} %> | pending_hours: <%= event.registrations.map { |r| r.pending_hours} %>
+							  </div>
+							</div>
+						<% end %>
+
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md-4">
-			<h2 class="text-center">Followed Charities</h2>
-			<% @charities.each do |charity| %>
-				<%= link_to charity.name, charity_path(charity), class: 'btn btn-info btn-block' %>
-			<%end %>
+			<div class="panel panel-info">
+  			<div class="panel-heading">
+					<h2 class="text-center">Donated Needs</h2>
+				</div>
+
+				<div class="panel-body">
+					<div class="list-group text-center">
+						<% @needs.each do |need| %>
+							<a class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapseNeed<%= need.id.to_s%>" aria-expanded="false" aria-controls="#collapseNeed<%= need.id.to_s%>">
+					    	<h5 class="list-group-item-heading"><%= need.name %></h5>
+			 		    	<p class="list-group-item-text"><%= need.description %></p>
+							</a>
+							<!-- Maybe add a table here-->
+						<div class="collapse" id="collapseNeed<%= need.id.to_s %>">
+						  <div class="card card-block">
+							<%= link_to "View this need", charity_need_path(need.charity, need), class: 'btn btn-primary' %>
+						  You've given <%= need.donations.map { |d| d.quantity_pending} %> <%= need.name %>
+						  </div>
+						</div>
+					<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="panel panel-info">
+  			<div class="panel-heading">
+					<h2 class="text-center">Followed Charities</h2>
+				</div>
+
+			<div class="panel-body">
+				<div class="list-group text-center">
+					<% @charities.each do |charity| %>
+				    <a href="<%= charity_path(charity)%>" class="list-group-item list-group-item-action">
+				    	<h5 class="list-group-item-heading"><%= charity.name %></h5>
+				    	<p class="list-group-item-text"><%= charity.description %></p>
+				    </a>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

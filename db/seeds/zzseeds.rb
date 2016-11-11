@@ -28,7 +28,7 @@ Charity.create(a1)
 c1 = Charity.find_by(name: "Glide")
 
 Manager.create!(first_name: "Laurie",
-                email: "manager@.com",
+                email: "lmac@glide.com",
                 last_name: "MacKenzie",
                 username: "LMacKenzie",
                 password: "123456",
