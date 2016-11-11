@@ -15,11 +15,11 @@
 
       <div class="modal-footer">
         <%= form_for [:manager, @charity, donation.need, donation], method: 'put', class: 'form-inline' do |f| %>
-          <%= f.submit :Approve, class: "btn btn-success btn-block" %>
+          <%= f.submit :Approve, class: "btn approve-btn btn-block" %>
         <% end %>
 
         <%= form_for [:manager, @charity, donation.need, donation], method: 'delete', class: 'form-inline' do |f| %>
-          <%= f.submit :Deny, class: "btn btn-danger btn-block" %>
+          <%= f.submit :Deny, class: "btn deny-btn btn-block" %>
         <% end %>
       </div>
 

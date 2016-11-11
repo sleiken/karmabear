@@ -32,11 +32,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%= "#editNeedModal#{need.id}" %>>edit</button>
+        <button type="button" class="btn man-dash-top-btn btn-block" data-toggle="modal" data-target=<%= "#editNeedModal#{need.id}" %>>edit</button>
           <%= render partial: 'manager/modals/edit_need', locals: { need: need } %>
 
         <%= form_for [:manager, @charity, need], method: 'delete' do |f| %>
-          <%= f.submit :delete, class: "btn btn-primary" %>
+          <%= f.submit :delete, class: "btn deny-btn btn-block" %>
         <% end %>
       </div>
 
