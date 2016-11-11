@@ -309,7 +309,7 @@ m2 = Event.find_by(name: "Trip to the Museum!")
 
 
 n = 5
-40.times do
+113.times do
   Registration.create!(event_id: m1.id,
                      giver_id: n,
                      pending_hours: rand(1..4),
@@ -320,7 +320,7 @@ end
 
 
 n1 = 45
-3.times do
+197.times do
   Registration.create!(event_id: m2.id,
                      giver_id: n1,
                      pending_hours: rand(1..6),
@@ -333,7 +333,7 @@ end
 b = Need.find_by(name: "Board Games")
 
 d = 34
-5.times do
+150.times do
   Donation.create!(need_id: b.id,
                    giver_id: d,
                    quantity_pending: rand(1..4),
@@ -343,10 +343,10 @@ end
 
 b1 = Need.find_by(name: "Peanut Butter")
 d1 = 50
-5.times do
+100.times do
   Donation.create!(need_id: b1.id,
                    giver_id: d1,
                    quantity_pending: rand(1..6),
                    created_at: DateTime.now - (rand * 320))
-  d += 1
+  d1 += 1
 end
