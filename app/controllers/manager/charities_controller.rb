@@ -5,7 +5,7 @@ class Manager::CharitiesController < Manager::ApplicationController
 		# manager = current_manager
 		# @charity = manager.charity
 		@charity = Charity.find(params[:id])
-		@manager = @charity.manager
+		@manager = @charity. manager
 
     @followers = @charity.followers
     @volunteers = @charity.volunteers

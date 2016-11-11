@@ -18,9 +18,25 @@ class Charity < ApplicationRecord
   validates :name, :lat, :lng, :address, presence: true
 
   def follows_per_month
-    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct","Nov","Dec"]
-    follow_data = months.map do |month|
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct","Nov"]
+    follow_data = months.map! do |month|
       self.subscriptions.where("date_trunc('month', created_at) = ?", "#{month}".to_date).count
+    end
+    follow_data
+  end
+
+  def registrations_per_month
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct","Nov"]
+    follow_data = months.map! do |month|
+      self.registrations.where("date_trunc('month', registrations.created_at) = ?", "#{month}".to_date).count
+    end
+    follow_data
+  end
+
+  def donations_per_month
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct","Nov"]
+    follow_data = months.map! do |month|
+      self.donations.where("date_trunc('month', donations.created_at) = ?", "#{month}".to_date).count
     end
     follow_data
   end

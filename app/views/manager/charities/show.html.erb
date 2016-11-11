@@ -15,7 +15,6 @@
             <div class="panel-body">
 
             <div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
             </div>
           </div>
         </div>
@@ -83,3 +82,91 @@
 
   </div>
 </div>
+
+<script>
+$(function () {
+var registrations_data = <%= @charity.registrations_per_month %>
+registrations_data.push(null);
+//
+
+    if (!Highcharts.theme) {
+        Highcharts.setOptions({
+            chart: {
+                backgroundColor: 'white'
+            },
+            colors: ['#904CFF', '#F44A3A', '#2DC7FC'],
+            title: {
+                style: {
+                    color: '#904CFF'
+                }
+            },
+            tooltip: {
+                style: {
+                    color: '#767676', // text color in hover over details box ** change this from purple
+                    backgroundColor: "#000"
+                },
+                crosshairs: true,
+                shared: true
+            },
+        });
+    }
+
+
+//
+    Highcharts.chart('chart-container', {
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: "<%= @charity.name %>" + " Activity Report"
+        },
+        subtitle: {
+            text: '2016'
+        },
+        xAxis: {
+            categories: [
+                'JAN',
+                'FEB',
+                'MAR',
+                'APRIL',
+                'MAY',
+                'JUN',
+                'JUL',
+                'AUG',
+                'SEP',
+                'OCT',
+                'NOV',
+                'DEC'
+                ]
+        },
+        yAxis: {
+            title: {
+                text: 'Number of KarmaBears'
+            }
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' KarmaBears'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5,
+                lineWidth: 3,
+            }
+        },
+        series: [{
+            name: 'Donations',
+            data: <%= @charity.donations_per_month %>
+        }, {
+            name: 'Follows',
+            data: <%= @charity.follows_per_month %>
+        }, {
+            name: 'Registrations',
+            data: registrations_data
+        }]
+    });
+});
+</script>
