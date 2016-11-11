@@ -20,11 +20,13 @@
 				  <li><%= link_to "Hi, #{current_giver.first_name}", "/users/#{current_giver.username}" %></li>
           <li><%= link_to "Log out", destroy_giver_session_path, method: :delete %></li>
 				<% else %>
-				  <li>
+          <% if !current_manager %>
+				  <li> 
             <%= link_to giver_facebook_omniauth_authorize_path do %>
               <%= image_tag("facebook.png", size: "130x28") %>
             <% end %>
           </li>
+          <% end %>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
