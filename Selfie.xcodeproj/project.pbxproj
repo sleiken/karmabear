@@ -13,6 +13,10 @@
 		104BF9351DD44687000DBEAC /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 104BF9341DD44687000DBEAC /* Launch.storyboard */; };
 		10769D7D1DD2A0CA005BB037 /* EventStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7C1DD2A0CA005BB037 /* EventStruct.swift */; };
 		10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */; };
+		107B2B251DD5617B00B09B6D /* BackgroundVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107B2B241DD5617B00B09B6D /* BackgroundVideo.swift */; };
+		107B2B301DD569F000B09B6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 107B2B2E1DD569F000B09B6D /* Main.storyboard */; };
+		107B2B321DD5794C00B09B6D /* charity-1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 107B2B311DD5794C00B09B6D /* charity-1.mp4 */; };
+		107B2B341DD586D600B09B6D /* KarmaBear-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 107B2B331DD586D600B09B6D /* KarmaBear-logo.png */; };
 		10838B651DD3C58D000718A2 /* CharityAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B641DD3C58D000718A2 /* CharityAnnotation.swift */; };
 		10838B671DD3DA8B000718A2 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10838B661DD3DA8B000718A2 /* CustomCalloutView.swift */; };
 		10838B691DD3DB57000718A2 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10838B681DD3DB57000718A2 /* CustomCalloutView.xib */; };
@@ -40,7 +44,6 @@
 		C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F59B1619E4084C0083F33B /* KeychainAccess.swift */; };
 		D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37383E419B07A75008C2DB6 /* AppDelegate.swift */; };
 		D37383E719B07A75008C2DB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37383E619B07A75008C2DB6 /* ViewController.swift */; };
-		D37383EA19B07A75008C2DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37383E819B07A75008C2DB6 /* Main.storyboard */; };
 		D37383EC19B07A75008C2DB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37383EB19B07A75008C2DB6 /* Images.xcassets */; };
 		D37383F819B07A75008C2DB6 /* SelfieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37383F719B07A75008C2DB6 /* SelfieTests.swift */; };
 		D373840219B07C3B008C2DB6 /* SelfieCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373840119B07C3B008C2DB6 /* SelfieCollectionViewController.swift */; };
@@ -63,6 +66,10 @@
 		104BF9341DD44687000DBEAC /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Launch.storyboard; path = ../Launch.storyboard; sourceTree = "<group>"; };
 		10769D7C1DD2A0CA005BB037 /* EventStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStruct.swift; sourceTree = "<group>"; };
 		10769D7E1DD2A1CE005BB037 /* NeedStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeedStruct.swift; sourceTree = "<group>"; };
+		107B2B241DD5617B00B09B6D /* BackgroundVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundVideo.swift; sourceTree = "<group>"; };
+		107B2B2F1DD569F000B09B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		107B2B311DD5794C00B09B6D /* charity-1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "charity-1.mp4"; sourceTree = "<group>"; };
+		107B2B331DD586D600B09B6D /* KarmaBear-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "KarmaBear-logo.png"; sourceTree = "<group>"; };
 		10838B641DD3C58D000718A2 /* CharityAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharityAnnotation.swift; sourceTree = "<group>"; };
 		10838B661DD3DA8B000718A2 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		10838B681DD3DB57000718A2 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
@@ -94,7 +101,6 @@
 		D37383E319B07A75008C2DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37383E419B07A75008C2DB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D37383E619B07A75008C2DB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D37383E919B07A75008C2DB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D37383EB19B07A75008C2DB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D37383F119B07A75008C2DB6 /* SelfieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37383F619B07A75008C2DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,7 +198,8 @@
 				10838B6C1DD4113A000718A2 /* TransitionManager.swift */,
 				10838B681DD3DB57000718A2 /* CustomCalloutView.xib */,
 				104BF9341DD44687000DBEAC /* Launch.storyboard */,
-				D37383E819B07A75008C2DB6 /* Main.storyboard */,
+				107B2B2E1DD569F000B09B6D /* Main.storyboard */,
+				107B2B241DD5617B00B09B6D /* BackgroundVideo.swift */,
 				D37383EB19B07A75008C2DB6 /* Images.xcassets */,
 				D37383E219B07A75008C2DB6 /* Supporting Files */,
 			);
@@ -202,8 +209,10 @@
 		D37383E219B07A75008C2DB6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				107B2B331DD586D600B09B6D /* KarmaBear-logo.png */,
 				D37383E319B07A75008C2DB6 /* Info.plist */,
 				10FF5A0A1DD13E070003CB87 /* Selfie-Bridging-Header.h */,
+				107B2B311DD5794C00B09B6D /* charity-1.mp4 */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -314,10 +323,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37383EA19B07A75008C2DB6 /* Main.storyboard in Resources */,
+				107B2B321DD5794C00B09B6D /* charity-1.mp4 in Resources */,
+				107B2B301DD569F000B09B6D /* Main.storyboard in Resources */,
 				10838B691DD3DB57000718A2 /* CustomCalloutView.xib in Resources */,
 				D37383EC19B07A75008C2DB6 /* Images.xcassets in Resources */,
 				104BF9351DD44687000DBEAC /* Launch.storyboard in Resources */,
+				107B2B341DD586D600B09B6D /* KarmaBear-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +368,7 @@
 				D37383E519B07A75008C2DB6 /* AppDelegate.swift in Sources */,
 				10769D7F1DD2A1CE005BB037 /* NeedStruct.swift in Sources */,
 				10FF59E21DD10E1B0003CB87 /* CharityModel.swift in Sources */,
+				107B2B251DD5617B00B09B6D /* BackgroundVideo.swift in Sources */,
 				C1F59B1719E4084C0083F33B /* KeychainAccess.swift in Sources */,
 				C186CA0E19EA299B00E3B500 /* SelfieCollectionViewCell.swift in Sources */,
 			);
@@ -381,10 +393,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D37383E819B07A75008C2DB6 /* Main.storyboard */ = {
+		107B2B2E1DD569F000B09B6D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D37383E919B07A75008C2DB6 /* Base */,
+				107B2B2F1DD569F000B09B6D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

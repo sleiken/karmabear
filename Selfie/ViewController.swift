@@ -24,6 +24,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
   @IBOutlet weak var activityIndicatorView: UIView!
   @IBOutlet weak var passwordRevealBtn: UIButton!
   @IBOutlet weak var tableView: CharityLocTableView!
+    @IBOutlet weak var charityCellImageView: UIImageView!
     
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var searchField: UITextField!
@@ -38,6 +39,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
   var charityId: Int?
   var passImageUrl: String!
   var descString: String!
+  var charitySearchCount = 0
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,16 +52,44 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     self.cllocationManager.requestAlwaysAuthorization()
     self.cllocationManager.requestWhenInUseAuthorization()
     
+    let userLocation = mapView.userLocation
+    
     cllocationManager.startUpdatingLocation()
     mapView.showsUserLocation = true
     mapView.delegate = self
     
-    getUserData()
+    let userImg = UIImage(named: "UserIcon")
+    userNavBtn.setImage(userImg, forState: .Normal)
     
+    if NSUserDefaults.standardUserDefaults().stringForKey("FBToken") == nil {
+        performSegueWithIdentifier("authFailure", sender: self)
     }
+    
+    if NSUserDefaults.standardUserDefaults().stringForKey("FBToken") != nil {
+        
+        let activityView = UIView.init(frame: view.frame)
+        activityView.backgroundColor = UIColor.grayColor()
+        activityView.alpha = 1
+        view.addSubview(activityView)
+        
+        let activitySpinner = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        activitySpinner.center = view.center
+        activitySpinner.startAnimating()
+        activityView.addSubview(activitySpinner)
+
+        getUserData()
+        
+        activitySpinner.stopAnimating()
+        activityView.removeFromSuperview()
+        
+        showAlert("Wecome to KarmaBear", alertMessage: "Start giving by adding a destination", actionTitle: "Ok")
+    }
+    
+  }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,56 +106,78 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+    func mapView(mapView: MKMapView, didUpdateUserLocation
+        userLocation: MKUserLocation) {
+
+        mapView.centerCoordinate = userLocation.location!.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 50000, 50000)
+    
+        mapView.setRegion(region, animated: true)
+    } 
+    
     func getUserData() {
         
-        let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
-        let userToken = currentUserToken! as String
+        let activityView = UIView.init(frame: view.frame)
+        activityView.backgroundColor = UIColor.grayColor()
+        activityView.alpha = 1
+        view.addSubview(activityView)
         
-        let httpRequest = httpHelper.buildRequest("auth/giver", method: "POST")
-        httpRequest.HTTPBody = "{\"token\":\"\(userToken)\"}".dataUsingEncoding(NSUTF8StringEncoding)
-        
-        httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
+        let activitySpinner = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        activitySpinner.center = view.center
+        activitySpinner.startAnimating()
+        activityView.addSubview(activitySpinner)
             
-            guard error == nil else {
-                print(error)
-                return
-            }
-            do {
-                
-                if !CharityModel.userData.isEmpty {
-                    CharityModel.userData.removeAll()
-                }
-                
-                let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                
-                let user = responseDict["giver"] as! [String:AnyObject]
-                
-                let userEvents = responseDict["events"] as! NSArray
-                let userNeeds = responseDict["needs"] as! NSArray
-        
-                
-                CharityModel.userData.insert((UserStruct(dictionary: user)), atIndex: 0)
-                print(CharityModel.userData[0])
-                
-                for event in userEvents {
-                    CharityModel.userEvents.append(EventStruct(dictionary: event as! [String : AnyObject] ))
-                }
-                
-                for need in userNeeds {
-                    CharityModel.userNeeds.append(NeedStruct(dictionary: need as! [String : AnyObject]))
-                }
-                
-                print(CharityModel.userEvents)
-                print(CharityModel.userNeeds)
-                
+            print("Creating User Data...")
             
-            } catch let error as NSError {
-                print(error)
-            }
-        })
+            let currentUserToken = NSUserDefaults.standardUserDefaults().stringForKey("FBToken")
+            let userToken = currentUserToken! as String
+            
+            let httpRequest = httpHelper.buildRequest("auth/giver", method: "POST")
+            httpRequest.HTTPBody = "{\"token\":\"\(userToken)\"}".dataUsingEncoding(NSUTF8StringEncoding)
+            
+            httpHelper.sendRequest(httpRequest, completion: {(data: NSData!, error: NSError!) in
+                
+                guard error == nil else {
+                    print(error)
+                    return
+                }
+                do {
+                    
+                    if !CharityModel.userData.isEmpty {
+                        CharityModel.userData.removeAll()
+                    }
+                    
+                    let responseDict = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                    
+                    let user = responseDict["giver"] as! [String:AnyObject]
+                    print(user)
+                    
+                    let userEvents = responseDict["events"] as! NSArray
+                    let userNeeds = responseDict["needs"] as! NSArray
+            
+                    
+                    CharityModel.userData.insert((UserStruct(dictionary: user)), atIndex: 0)
+                    print(CharityModel.userData[0])
+                    
+                    for event in userEvents {
+                        CharityModel.userEvents.append(EventStruct(dictionary: event as! [String : AnyObject] ))
+                    }
+                    
+                    for need in userNeeds {
+                        CharityModel.userNeeds.append(NeedStruct(dictionary: need as! [String : AnyObject]))
+                    }
+                    
+                    print(CharityModel.userEvents)
+                    print(CharityModel.userNeeds)
+                    
+                
+                } catch let error as NSError {
+                    print(error)
+                }
+            })
         
-        let userImg = UIImage(named: "UserIcon")
-        self.userNavBtn.setImage(userImg, forState: .Normal)
+        activitySpinner.stopAnimating()
+        activityView.removeFromSuperview()
     }
   
     func populateMapData(newCoordArr:[CharityStruct]) {
@@ -172,6 +224,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         tableView.reloadData()
+        
     }
 
     
@@ -251,7 +304,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
     }
-
   
   func displayAlertMessage(alertTitle:String, alertDescription:String) -> Void {
     // hide activityIndicator view and display alert message
@@ -263,13 +315,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     @IBAction func searchCoordBtn() {
         searchDBForLocation(searchField.text!)
-    
+        getUserData()
     }
 
   
     
     
     func searchDBForLocation(search: String) {
+        
         let httpRequest = httpHelper.buildRequest("search", method: "POST")
         httpRequest.HTTPBody = "{\"search\":\"\(search)\"}".dataUsingEncoding(NSUTF8StringEncoding)
         
@@ -312,15 +365,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.tableView.reloadData()
         })
         
-        UIView.animateWithDuration(2, animations: {
-            var newCenter = self.tableView.center
-            newCenter.y -= 100
-            var mapCenter = self.mapView.center
-            mapCenter.y += 100
-            self.tableView.center = newCenter
-            }, completion: { finished in
-                print("Table levitating!")
-        })
+        
+        if charitySearchCount == 0 {
+            UIView.animateWithDuration(3, animations: {
+                var newCenter = self.tableView.center
+                newCenter.y -= 200
+                var mapCenter = self.mapView.center
+                mapCenter.y += 100
+                self.tableView.center = newCenter
+                }, completion: { finished in
+                    print("Table levitating!")
+            })
+        }
+        
+        charitySearchCount += 1
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -343,15 +401,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell? = self.tableView!.dequeueReusableCellWithIdentifier("cell") as UITableViewCell?
-        
+        let cell:UITableViewCell? = self.tableView!.dequeueReusableCellWithIdentifier("CharityCell") as UITableViewCell?
         
         if CharityModel.charityData.count == 0 {
-            cell?.textLabel?.text = "No Data"
-        }
-        else {
-            print("New Charity Data")
-            cell?.textLabel?.text = CharityModel.charityData[indexPath.row].name
+            (cell?.contentView.viewWithTag(20) as? UIImageView)!.image = UIImage(named: "Launch")
+            
+        }else{
+            let charityArr = CharityModel.charityData[indexPath.row]
+            
+            let url = NSURL(string: "\(charityArr.imageUrl)")
+            let thisData = NSData(contentsOfURL: url!)
+            let charityImg = UIImage(data: thisData!)
+            
+            
+            if charityImg != nil {
+                (cell?.contentView.viewWithTag(20) as? UIImageView)!.image = charityImg
+            }
+            
+            (cell?.contentView.viewWithTag(21) as? UILabel)!.text = charityArr.name
+            (cell?.contentView.viewWithTag(22) as? UILabel)!.text = charityArr.address[0] as! String
         }
         
         return cell!

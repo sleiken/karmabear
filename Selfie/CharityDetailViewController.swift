@@ -34,6 +34,7 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
     var eventDescription: String!
     var eventStart: String!
     var eventEnd: String!
+    var headersArr = ["Needs","Events"]
     
     let dimLevel: CGFloat = 0.5
     let dimSpeed: Double = 0.5
@@ -223,8 +224,6 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
             cell!.textLabel!.text = needsDetail.name
         }
         
-        cell?.backgroundColor = UIColorFromHex(0x6BB7B9)
-        
         return cell!
     }
     
@@ -250,6 +249,18 @@ class CharityDetailViewController: UIViewController, UITableViewDelegate, UITabl
             
             performSegueWithIdentifier("eventModal", sender: self)
         }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if tableView == self.needsTableView {
+            title = headersArr[0]
+        }
+        if tableView == self.eventsTableView {
+            title = headersArr[1]
+        }
+        
+        return title
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

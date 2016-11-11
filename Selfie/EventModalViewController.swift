@@ -39,6 +39,9 @@ class EventModalViewController: UIViewController {
         descriptionText.text = eventDescription
         startLabel.text = eventStart
         endLabel.text = eventEnd
+        
+        descriptionText.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        descriptionText.numberOfLines = 0
     }
     
     @IBAction func dismissModal(sender: AnyObject) {

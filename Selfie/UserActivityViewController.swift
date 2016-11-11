@@ -17,6 +17,8 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var headerImage: UIImageView!
     
+    var headersArr = ["My Contributions","Upcoming Events"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,9 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
         eventsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "eventsCell")
         eventsTableView.backgroundColor = UIColor.clearColor()
         
+        self.userProfile.layer.masksToBounds = true
+        userProfile.layer.cornerRadius = 10
+        
         setUpViews()
         
     }
@@ -40,6 +45,16 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
     }
     
     func setUpViews() {
+        
+        let activityView = UIView.init(frame: view.frame)
+        activityView.backgroundColor = UIColor.grayColor()
+        activityView.alpha = 1
+        view.addSubview(activityView)
+        
+        let activitySpinner = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        activitySpinner.center = view.center
+        activitySpinner.startAnimating()
+        activityView.addSubview(activitySpinner)
         
         let userData = CharityModel.userData[0]
         
@@ -55,11 +70,14 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
         self.pointsLabel.text = String(userData.points)
         self.userNameLabel.text = "\(userData.firstName) \(userData.lastName)"
         
-        let blurEffect = UIBlurEffect(style: .Dark)
+        let blurEffect = UIBlurEffect(style: .Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.headerImage.frame
         
-        self.view.insertSubview(blurEffectView, atIndex: 0)
+        self.headerImage.insertSubview(blurEffectView, atIndex: 0)
+        
+        activitySpinner.stopAnimating()
+        activityView.removeFromSuperview()
         
     }
     
@@ -94,7 +112,7 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
             cell!.textLabel!.text = needsDetail.name
         }
         
-        cell?.backgroundColor = UIColorFromHex(0x904CFF)
+        cell?.backgroundColor = UIColorFromHex(0xF5F5F5)
         
         return cell!
     }
@@ -121,6 +139,18 @@ class UserActivityViewController: UIViewController, UIScrollViewDelegate, UITabl
             
             performSegueWithIdentifier("eventModal", sender: self)
         }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if tableView == self.needsTableView {
+            title = headersArr[0]
+        }
+        if tableView == self.eventsTableView {
+            title = headersArr[1]
+        }
+        
+        return title
     }
     
     func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
