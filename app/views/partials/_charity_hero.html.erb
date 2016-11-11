@@ -1,7 +1,8 @@
 <div class="jumbotron">
-  <div class="container">
-    <h1 class="display-3 text-center"><%= @charity.name %></h1>
-    <p class="lead text-center"><%= @charity.address[0] %></p>
+  <div class="container text-center">
+    <h1 class="display-3"><%= @charity.name %></h1>
+    <p class="lead"><%= @charity.address[0] %></p>
     <%= image_tag(@charity.image_url, size: "150x150", alt: "logo of #{@charity.name}", class: 'img-circle center-block') %>
+    <p><%= render partial: 'partials/follow_charity' %></p>
   </div>
 </div>
