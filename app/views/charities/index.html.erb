@@ -47,7 +47,6 @@ function initMap() {
     google.maps.event.addListener(marker, 'click', function() {
       	infoWindow.setContent(
       		'<p><img src="<%= result.image_url %>" height="50" >' + " <strong><%=result.name%></strong></p>" + "<p><%=result.description%></p><p><a href=<%=charity_path(result)%>>Visit Profile</a></p>"
-
       		);
       	infoWindow.open(map, this);
     });

@@ -4,6 +4,7 @@ class CharitiesController < ApplicationController
   def index
     @results = Charity.within(0.8, origin: params[:search])
     @location = geocode_address(params[:search])
+    @giver = current_giver
   end
 
   def show
