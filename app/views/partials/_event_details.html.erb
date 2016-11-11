@@ -6,9 +6,9 @@
   </div>
 
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Start Date: <%= @event.start.to_date %></li>
-    <li class="list-group-item">End Date: <%= @event.end.to_date %></li>
-    <li class="list-group-item">Givers Needed: <%= @event.givers_needed %></li>
+    <li class="list-group-item"><strong>Start Date:</strong> <%= @event.start.to_date %></li>
+    <li class="list-group-item"><strong>End Date:</strong> <%= @event.end.to_date %></li>
+    <li class="list-group-item"><strong>Givers Needed:</strong> <%= @event.givers_needed %></li>
   </ul>
 
   <div class="card-block">
@@ -16,7 +16,7 @@
 
       <% if @giver.registrations.include?(@registration) %>
 
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editRegisModal">Edit Registration</button>
+        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#editRegisModal">Edit Registration</button>
         <%= link_to 'Cancel Registration', charity_event_registration_path(@charity, @event, @registration), method: 'delete', class: 'btn btn-danger btn-block' %>
 
       <% else %>

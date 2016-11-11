@@ -13,7 +13,7 @@
     <% if @giver %>
 
       <% if @giver.donations.include?(@donation) %>
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editDonationModal">Edit Donation</button>
+        <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#editDonationModal">Edit Donation</button>
 
         <%= link_to 'Cancel Donation', charity_need_donation_path(@charity, @need, @donation), method: 'delete', class: 'btn btn-danger btn-block' %>
 
