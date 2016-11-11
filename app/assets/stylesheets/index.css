@@ -55,6 +55,30 @@ div.charity-show-scroll {
 	overflow-y: scroll;
 }
 
+/* charity and user show */
+
+div.charity-user-hero,
+div.charity-show-hero {
+	background: url(/images/charity-user-show.jpg) top center no-repeat;
+	background-size: cover;
+}
+
+div.charity-show-hero {
+	height: 550px;
+}
+
+div.charity-user-hero {
+	height: 300px;
+}
+
+div.charity-show-hero h1 {
+	margin-top: 90px;
+}
+
+div.charity-user-hero h1 {
+	margin-top: 90px;
+}
+
 /* footer */
 
 .footer-basic-centered {
