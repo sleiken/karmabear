@@ -21,7 +21,7 @@
           <li><%= link_to "Log out", destroy_giver_session_path, method: :delete %></li>
 				<% else %>
           <% if !current_manager %>
-				  <li>
+				  <li> 
             <%= link_to giver_facebook_omniauth_authorize_path do %>
               <%= image_tag("facebook.png", size: "130x28") %>
             <% end %>
