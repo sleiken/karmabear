@@ -10,21 +10,18 @@
       </button>
       <%= link_to root_path, class: 'navbar-brand' do %>
        <%= image_tag("karmabear_icon.png", size: "25x25") %>
-	      KarmaBear
+       KarmaBear
 	    <% end%>
     </div>
 
     <div class="collapse navbar-collapse" id="main-nav-collapse">
       <ul class="nav navbar-nav navbar-right">
-      	<li><%= link_to "Home", root_path %></li>
     		<% if current_giver %>
 				  <li><%= link_to current_giver.username, "/users/#{current_giver.username}" %></li>
-				<% end %>
-        <li><%= link_to "Sign In(M)", new_manager_session_path %></li>
-				<li><%= link_to "Sign Out(M)", destroy_manager_session_path, method: :delete %></li>
-				<li><%= link_to "Sign In(Giver)", new_giver_session_path %></li>
-				<li><%= link_to "Sign Out(Giver)", destroy_giver_session_path, method: :delete %></li>
-				<li><%= link_to "Sign in with Facebook", giver_facebook_omniauth_authorize_path %></li>
+          <li><%= link_to "Sign Out", destroy_giver_session_path, method: :delete %></li>
+				<% else %>
+				  <li><%= link_to "Sign in with Facebook", giver_facebook_omniauth_authorize_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
 

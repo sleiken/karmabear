@@ -1,5 +1,5 @@
 <footer class="footer-basic-centered">
-	<p class="footer-company-motto">Give.Locally.</p>
+	<p class="footer-company-motto">Give.Local.</p>
 	<p class="footer-links">
 		<%= link_to "Home", root_path %>
 		·
@@ -7,7 +7,11 @@
 		·
 		<%= link_to "Contact" %>
 		·
-		<%= link_to "Login" %>
+		<% if current_manager %>
+			<%= link_to "Logout", destroy_manager_session_path, method: :delete %>
+		<% else %>
+			<%= link_to "Login", new_manager_session_path %>
+		<% end %>
 	</p>
 	<p class="footer-company-name">KarmaBear &copy; 2016</p>
 </footer>
