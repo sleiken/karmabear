@@ -1,4 +1,4 @@
-# [KarmaBear](https://karmabear.herokuapp.com) [![Build Status](https://travis-ci.org/sleiken/karmabear.svg?branch=master)](https://travis-ci.org/sleiken/karmabear) [![Code Climate](https://codeclimate.com/github/sleiken/karmabear/badges/gpa.svg)](https://codeclimate.com/github/sleiken/karmabear)
+# [Karma Bear](https://karmabear.herokuapp.com) [![Build Status](https://travis-ci.org/sleiken/karmabear.svg?branch=master)](https://travis-ci.org/sleiken/karmabear) [![Code Climate](https://codeclimate.com/github/sleiken/karmabear/badges/gpa.svg)](https://codeclimate.com/github/sleiken/karmabear)
 
 KarmaBear is an app created by five DevBootcamp students for their final project. KarmaBear was created to connect charities and givers and to make giving easier. Givers can search for charities by location, check out volunteer and donation opportunities, and register for these events. Charities can also sign up to manage their charity page and thereby have a platform to publish volunteer events, keep track of who's coming, and interact with givers directly.
 
