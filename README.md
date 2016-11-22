@@ -1,4 +1,4 @@
-# [KarmaBear](https://karmabear.herokuapp.com) [![Build Status](https://travis-ci.org/sleiken/karma-bear.svg?branch=master)](https://travis-ci.org/sleiken/karma-bear)
+# [Karma Bear](https://karmabear.herokuapp.com) [![Build Status](https://travis-ci.org/sleiken/karmabear.svg?branch=master)](https://travis-ci.org/sleiken/karmabear) [![Code Climate](https://codeclimate.com/github/sleiken/karmabear/badges/gpa.svg)](https://codeclimate.com/github/sleiken/karmabear)
 
 ![](/public/images/kb_fb_login.gif)
 
