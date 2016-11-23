@@ -4,7 +4,8 @@ class Api::ApiController < ApplicationController
   Dotenv.load
 
   def search
-    results = Charity.within(0.8, origin: params[:search])
+    dist = params[:distance].to_f
+    results = Charity.within(dist, origin: params[:search])
     render :json => JSON.pretty_generate(JSON.parse(results.to_json))
   end
 
